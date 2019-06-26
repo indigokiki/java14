@@ -1,4 +1,4 @@
 *.iml
 target/
 .idea/
-src/main/resources/mydatabase.properties
+src/main/resources/mydb.properties
