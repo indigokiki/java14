@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mapper.OrderMapper">
+    <select id="findAllOrders" resultType="com.cskaoyan.bean.Order">
+        select
+          o.*,c.custom_name,p.product_name
+        from
+          c_order o left join custom c
+        on
+          o.custom_id = c.custom_id
+        left join
+          product p
+        on
+          o.product_id = p.product_id
+        limit
+          #{limit}
+        offset
+          #{offset}
+    </select>
+
+    <select id="OrdersCount" resultType="_int">
+        select
+          count(*)
+        from
+          c_order o left join custom c
+        on
+          o.custom_id = c.custom_id
+        left join
+          product p
+        on
+          o.product_id = p.product_id
+    </select>
+
+</mapper>
