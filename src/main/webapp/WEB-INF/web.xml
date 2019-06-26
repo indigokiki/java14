@@ -68,7 +68,7 @@
   </error-page>
   
   <!--  配置druid监控-->
-    <filter>
+   <!-- <filter>
         <filter-name>DruidWebStatFilter</filter-name>
         <filter-class>com.alibaba.druid.support.http.WebStatFilter</filter-class>
         <init-param>
@@ -88,5 +88,5 @@
     <servlet-mapping>
         <servlet-name>DruidStatView</servlet-name>
         <url-pattern>/druid/*</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
 </web-app>
