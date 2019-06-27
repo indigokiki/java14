@@ -32,6 +32,6 @@ public interface TechnologyMapper {
     //新增
     String selectTechnologyNameById(@Param("technology_id") String technologyId);
     //新增
-    String[] selectTechnologyIdByName(@Param("technologyName") String technologyName);
+    List<String> selectTechnologyIdByName(@Param("technologyName") String technologyName);
 
 }

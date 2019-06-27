@@ -57,13 +57,20 @@ public class TechnologyRequirementServiceImpl implements TechnologyRequirementSe
 
     }
 
+    //工艺名称搜索：精确查询
     @Override
     public Page<TechnologyRequirement> searchTechReqPageByTechnologyName(String technologyName, int page, int rows) {
         //用technologyName在technology表里查technologyId,再用technologyId在requirement表里查technologyRequirement
-        String[] technologyIds = technologyMapper.selectTechnologyIdByName(technologyName);
+        //一个technologyId对应多个requirement
+        List<String> technologyIds = technologyMapper.selectTechnologyIdByName(technologyName);
 
+        PageHelper.startPage(page,rows);
+        List<TechnologyRequirement> requirementList = requirementMapper.selectByTechnologyIds(technologyIds);
 
+        Page<TechnologyRequirement> requirementPage = new Page<TechnologyRequirement>();
+        requirementPage.setRows(requirementList);
+        requirementPage.setTotal(requirementList.size());
 
-        return null;
+        return requirementPage;
     }
 }

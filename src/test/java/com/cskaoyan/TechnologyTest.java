@@ -68,8 +68,8 @@ public class TechnologyTest {
 
     @Test
     public void techMapTest(){
-        String[] id = technologyMapper.selectTechnologyIdByName("抛光");
-        System.out.println("id = " + id);
+        List<String> list = technologyMapper.selectTechnologyIdByName("抛光");
+        System.out.println("list = " + list);
     }
 
     @Autowired

@@ -248,4 +248,16 @@
     where technology_requirement_id = #{technologyRequirementId}
   </select>
 
+  <!--新增-->
+  <select id="selectByTechnologyIds" resultMap="BaseResultMapWithTechName">
+    select
+    <include refid="Base_Column_List" />
+    from technology_requirement
+    where technology_id in
+    <foreach collection="technologyIds" item="technologyId" separator="," open="(" close=")">
+      #{technologyId}
+    </foreach>
+  </select>
+
+
 </mapper>
