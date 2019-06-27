@@ -150,8 +150,4 @@
         where
           p.product_name = #{productName}
     </select>
-
-    <select id="getOrderData" resultType="com.cskaoyan.bean.schemedprogress.Order">
-        select * from c_order
-    </select>
 </mapper>

@@ -1,6 +1,5 @@
 package com.cskaoyan.service.schemedprogress.impl;
 
-import com.cskaoyan.bean.schemedprogress.Order;
 import com.cskaoyan.bean.schemedprogress.OrderMangger;
 import com.cskaoyan.bean.schemedprogress.OrderRow;
 import com.cskaoyan.mapper.schemedprogress.OrderMapper;
@@ -61,9 +60,4 @@ public class OrderServiceImpl implements OrderService {
         return orderMangger;
     }
 
-    @Override
-    public List<Order> getOrderData() {
-        List<Order> orderData = orderMapper.getOrderData();
-        return orderData;
-    }
 }
