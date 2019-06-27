@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Page<T> {
 
+<<<<<<< HEAD
     private int pageSize;
 
     private int totalRecordsNum;
@@ -85,5 +86,25 @@ public class Page<T> {
                 ", nextPageNum=" + nextPageNum +
                 ", list=" + list +
                 '}';
+=======
+    int total;
+
+    List<T> rows;
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    public List<T> getRows() {
+        return rows;
+    }
+
+    public void setRows(List<T> rows) {
+        this.rows = rows;
+>>>>>>> origin/master
     }
 }
