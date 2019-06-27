@@ -1,5 +1,9 @@
 package com.cskaoyan.bean.schemedprogress;
 
+
+import com.cskaoyan.bean.Custom;
+import com.cskaoyan.bean.Product;
+
 import java.math.BigDecimal;
 
 public class OrderRow {

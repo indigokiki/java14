@@ -1,11 +1,9 @@
 /*
 package com.cskaoyan;
 
-import com.cskaoyan.bean.Page;
-import com.cskaoyan.bean.Technology;
-import com.cskaoyan.bean.TechnologyExample;
-import com.cskaoyan.bean.TechnologyPlan;
+import com.cskaoyan.bean.*;
 import com.cskaoyan.mapper.TechnologyMapper;
+import com.cskaoyan.mapper.TechnologyRequirementMapper;
 import com.cskaoyan.service.TechnologyPlanService;
 import com.cskaoyan.service.TechnologyService;
 import com.cskaoyan.service.TechnologyServiceImpl;
@@ -23,6 +21,7 @@ import java.util.List;
  * @author YangShuo
  * @date 2019-06-26 20:21
  *//*
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:application.xml")
@@ -63,5 +62,35 @@ public class TechnologyTest {
         Page<TechnologyPlan> technologyPlanPage = technologyPlanService.selectTechPlanPage(1, 30);
         System.out.println("technologyPlanPage = " + technologyPlanPage);
     }
+
+    @Test
+    public void techTest4(){
+        Page<Technology> page = technologyService.searchTechPageByVagueName("打磨", 1, 30);
+        System.out.println("page = " + page);
+    }
+
+    @Test
+    public void techMapTest(){
+        List<String> list = technologyMapper.selectTechnologyIdByName("抛光");
+        System.out.println("list = " + list);
+    }
+
+    @Autowired
+    TechnologyRequirementMapper requirementMapper;
+    @Test
+    public void techRMapTest(){
+        List<TechnologyRequirement> requirementList = requirementMapper.selectTechReqByTechnologyId("001");
+        System.out.println("requirementList = " + requirementList);
+
+    }
+
+    @Test
+    public void techRMapTest2(){
+        List<TechnologyRequirement> requirementList = requirementMapper.selectAllWithTechnologyName();
+        System.out.println("requirementList = " + requirementList);
+
+    }
+
 }
+
 */

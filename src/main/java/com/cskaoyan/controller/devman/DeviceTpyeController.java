@@ -41,9 +41,9 @@ public class DeviceTpyeController {
     }
 
 
-    @RequestMapping("deviceType/get_data")
-    public List<DeviceType> findlist(){
-        List<DeviceType> all = deviceTpyeMapper.findAll();
-        return all;
-    }
+//    @RequestMapping("deviceType/get_data")
+//    public List<DeviceType> findlist(){
+//        List<DeviceType> all = deviceTpyeMapper.findAll();
+//        return all;
+//    }
 }

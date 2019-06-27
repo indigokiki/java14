@@ -25,4 +25,39 @@ public class OrderServiceImpl implements OrderService {
         orderMangger.setRows(allOrders);
         return orderMangger;
     }
+
+
+    @Override
+    public OrderMangger selectOrderById(String searchValue, String page, String rows) {
+        int count = orderMapper.OrderCountById(Integer.parseInt(searchValue));
+        PageHelper.startPage(Integer.parseInt(page), Integer.parseInt(rows));
+        List<OrderRow> orderRows = orderMapper.selectOrdersById(Integer.parseInt(searchValue));
+        OrderMangger orderMangger = new OrderMangger();
+        orderMangger.setTotal(count);
+        orderMangger.setRows(orderRows);
+        return orderMangger;
+    }
+
+    @Override
+    public OrderMangger selectOrderByCustom(String searchValue, String page, String rows) {
+        int count = orderMapper.OrderCountByCustom(searchValue);
+        PageHelper.startPage(Integer.parseInt(page), Integer.parseInt(rows));
+        List<OrderRow> orderRows = orderMapper.selectOrdersBCustom(searchValue);
+        OrderMangger orderMangger = new OrderMangger();
+        orderMangger.setTotal(count);
+        orderMangger.setRows(orderRows);
+        return orderMangger;
+    }
+
+    @Override
+    public OrderMangger selectOrderByProduct(String searchValue, String page, String rows) {
+        int count = orderMapper.OrderCountByProduct(searchValue);
+        PageHelper.startPage(Integer.parseInt(page), Integer.parseInt(rows));
+        List<OrderRow> orderRows = orderMapper.selectOrdersByProduct(searchValue);
+        OrderMangger orderMangger = new OrderMangger();
+        orderMangger.setTotal(count);
+        orderMangger.setRows(orderRows);
+        return orderMangger;
+    }
+
 }

@@ -2,6 +2,7 @@ package com.cskaoyan.service;
 
 import com.cskaoyan.bean.Page;
 import com.cskaoyan.bean.TechnologyPlan;
+import com.cskaoyan.bean.TechnologyPlanExample;
 import com.cskaoyan.mapper.TechnologyPlanMapper;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +23,16 @@ public class TechnologyPlanServiceImpl implements TechnologyPlanService {
     @Override
     public Page<TechnologyPlan> selectTechPlanPage(int page, int rows) {
         PageHelper.startPage(page, rows);
-        List<TechnologyPlan> technologyPlans = planMapper.selectAll();
+        List<TechnologyPlan> technologyPlans = planMapper.selectAllWithTechnologyName();
         Page<TechnologyPlan> technologyPlanPage = new Page<>();
         technologyPlanPage.setRows(technologyPlans);
         technologyPlanPage.setTotal(technologyPlans.size());
         return technologyPlanPage;
+    }
+
+    @Override
+    public TechnologyPlan selectTechPlanById(String technologyPlanId) {
+        TechnologyPlan technologyPlan = planMapper.selectByPrimaryKey(technologyPlanId);
+        return technologyPlan;
     }
 }

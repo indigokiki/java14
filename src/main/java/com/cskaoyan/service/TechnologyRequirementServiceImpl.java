@@ -4,11 +4,13 @@ import com.cskaoyan.bean.Page;
 import com.cskaoyan.bean.Technology;
 import com.cskaoyan.bean.TechnologyRequirement;
 import com.cskaoyan.bean.TechnologyRequirementExample;
+import com.cskaoyan.mapper.TechnologyMapper;
 import com.cskaoyan.mapper.TechnologyRequirementMapper;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +23,9 @@ public class TechnologyRequirementServiceImpl implements TechnologyRequirementSe
     @Autowired
     TechnologyRequirementMapper requirementMapper;
 
+    @Autowired
+    TechnologyMapper technologyMapper;
+
     @Override
     public List<TechnologyRequirement> selectTechReqs() {
         TechnologyRequirementExample example = new TechnologyRequirementExample();
@@ -31,10 +36,41 @@ public class TechnologyRequirementServiceImpl implements TechnologyRequirementSe
     @Override
     public Page<TechnologyRequirement> selectTechReqPage(int page, int rows) {
         PageHelper.startPage(page, rows);
-        List<TechnologyRequirement> technologyRequirements = requirementMapper.selectAll();
+        List<TechnologyRequirement> technologyRequirements = requirementMapper.selectAllWithTechnologyName();
         Page<TechnologyRequirement> techReqPage = new Page<>();
         techReqPage.setRows(technologyRequirements);
         techReqPage.setTotal(technologyRequirements.size());
         return techReqPage;
+    }
+
+    //工艺要求编号搜索：精确查询
+    @Override
+    public Page<TechnologyRequirement> searchTechReqPageById(String technologyRequirementId) {
+        TechnologyRequirement technologyRequirement = requirementMapper.selectByPrimaryKeyWithTechName(technologyRequirementId);
+        List<TechnologyRequirement> requirementList = new ArrayList<>();
+        requirementList.add(technologyRequirement);
+
+        Page<TechnologyRequirement> requirementPage = new Page<>();
+        requirementPage.setTotal(requirementList.size());
+        requirementPage.setRows(requirementList);
+        return requirementPage;
+
+    }
+
+    //工艺名称搜索：精确查询
+    @Override
+    public Page<TechnologyRequirement> searchTechReqPageByTechnologyName(String technologyName, int page, int rows) {
+        //用technologyName在technology表里查technologyId,再用technologyId在requirement表里查technologyRequirement
+        //一个technologyId对应多个requirement
+        List<String> technologyIds = technologyMapper.selectTechnologyIdByName(technologyName);
+
+        PageHelper.startPage(page,rows);
+        List<TechnologyRequirement> requirementList = requirementMapper.selectByTechnologyIds(technologyIds);
+
+        Page<TechnologyRequirement> requirementPage = new Page<TechnologyRequirement>();
+        requirementPage.setRows(requirementList);
+        requirementPage.setTotal(requirementList.size());
+
+        return requirementPage;
     }
 }

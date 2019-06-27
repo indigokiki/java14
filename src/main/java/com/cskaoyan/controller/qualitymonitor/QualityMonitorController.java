@@ -251,11 +251,11 @@ public class QualityMonitorController {
 
 
 
-    /*@RequestMapping("department/get_data")
-    public List<Department> depgetdata(){
-        return qualityMonitorService.getDepartmentList();
-    }*/
-
+//    @RequestMapping("department/get_data")
+//    public List<Department> depgetdata(){
+//        return qualityMonitorService.getDepartmentList();
+//    }
+//
     @RequestMapping("custom/get_data")
     public List<Custom> cusgetdata(){
         return qualityMonitorService.getCustomList();
@@ -275,7 +275,8 @@ public class QualityMonitorController {
 
 
 
-    @RequestMapping("unqualify/list")
+
+    @RequestMapping("unqualify/list*")
     public Page unqualifypage(int page,int rows){
         return qualityMonitorService.getUnqualifyPage(page,rows);
     }

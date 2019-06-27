@@ -4,7 +4,6 @@ import com.cskaoyan.bean.TechnologyPlan;
 import com.cskaoyan.bean.TechnologyPlanExample;
 import java.util.List;
 
-import com.cskaoyan.bean.TechnologyRequirement;
 import org.apache.ibatis.annotations.Param;
 
 public interface TechnologyPlanMapper {
@@ -31,4 +30,7 @@ public interface TechnologyPlanMapper {
     int updateByPrimaryKey(TechnologyPlan record);
 
     List<TechnologyPlan> selectAll();
+
+    //新增
+    List<TechnologyPlan> selectAllWithTechnologyName();
 }

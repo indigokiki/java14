@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cskaoyan.mapper.MaterialConsumeMapper">
-  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.MaterialConsume">
+<mapper namespace="com.cskaoyan.mapper.material.MaterialConsumeMapper">
+  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.material.MaterialConsume">
     <id column="consume_id" jdbcType="VARCHAR" property="consumeId" />
     <result column="work_id" jdbcType="VARCHAR" property="workId" />
     <result column="material_id" jdbcType="VARCHAR" property="materialId" />
@@ -73,7 +73,7 @@
     consume_id, work_id, material_id, consume_amount, consume_date, sender, receiver, 
     note
   </sql>
-  <select id="selectByExample" parameterType="com.cskaoyan.bean.MaterialConsumeExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.cskaoyan.bean.material.MaterialConsumeExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -98,13 +98,13 @@
     delete from material_consume
     where consume_id = #{consumeId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.cskaoyan.bean.MaterialConsumeExample">
+  <delete id="deleteByExample" parameterType="com.cskaoyan.bean.material.MaterialConsumeExample">
     delete from material_consume
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.cskaoyan.bean.MaterialConsume">
+  <insert id="insert" parameterType="com.cskaoyan.bean.material.MaterialConsume">
     insert into material_consume (consume_id, work_id, material_id, 
       consume_amount, consume_date, sender, 
       receiver, note)
@@ -112,7 +112,7 @@
       #{consumeAmount,jdbcType=INTEGER}, #{consumeDate,jdbcType=TIMESTAMP}, #{sender,jdbcType=VARCHAR}, 
       #{receiver,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.cskaoyan.bean.MaterialConsume">
+  <insert id="insertSelective" parameterType="com.cskaoyan.bean.material.MaterialConsume">
     insert into material_consume
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="consumeId != null">
@@ -167,7 +167,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.cskaoyan.bean.MaterialConsumeExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.cskaoyan.bean.material.MaterialConsumeExample" resultType="java.lang.Long">
     select count(*) from material_consume
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -219,7 +219,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.MaterialConsume">
+  <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.material.MaterialConsume">
     update material_consume
     <set>
       <if test="workId != null">
@@ -246,7 +246,7 @@
     </set>
     where consume_id = #{consumeId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.MaterialConsume">
+  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.material.MaterialConsume">
     update material_consume
     set work_id = #{workId,jdbcType=VARCHAR},
       material_id = #{materialId,jdbcType=VARCHAR},

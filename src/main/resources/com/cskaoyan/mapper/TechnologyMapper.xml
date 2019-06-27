@@ -280,4 +280,12 @@
     <include refid="Base_Column_List" />
     from technology
   </select>
+  <!--新增-->
+  <select id="selectTechnologyIdByName" resultType="string">
+    select technology_id from technology where technology_name = #{technologyName}
+  </select>
+  <!--新增，给requirement使用-->
+  <select id="selectTechnologyNameById" resultType="string">
+    select technology_name from technology where technology_id = #{technology_id}
+  </select>
 </mapper>

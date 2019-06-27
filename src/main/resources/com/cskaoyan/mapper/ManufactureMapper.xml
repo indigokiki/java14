@@ -225,4 +225,71 @@
       end_date = #{endDate,jdbcType=TIMESTAMP}
     where manufacture_sn = #{manufactureSn,jdbcType=VARCHAR}
   </update>
+
+  <resultMap id="manufacturerow" type="com.cskaoyan.bean.schemedprogress.ManufactureRow">
+    <id column="manufacture_sn"  property="manufactureSn" />
+    <result column="launch_quantity"  property="launchQuantity" />
+    <result column="begin_date"  property="beginDate" />
+    <result column="end_date"  property="endDate" />
+
+    <association property="cOrder" javaType="com.cskaoyan.bean.schemedprogress.Order">
+      <result property="orderId" column="order_id"/>
+      <result property="orderDate" column="order_date"/>
+      <result property="requestDate" column="request_date"/>
+      <result property="note" column="onote"/>
+      <result property="quantity" column="quantity"/>
+      <result property="unitPrice" column="unit_price"/>
+      <result property="unit" column="unit"/>
+      <result property="file" column="file"/>
+      <result property="status" column="ostatus"/>
+      <result column="ccustomid" property="customId"/>
+      <result property="productId" column="pproductid"/>
+    </association>
+
+    <association property="technology" javaType="com.cskaoyan.bean.Technology">
+      <id column="technology_id" jdbcType="VARCHAR" property="technologyId" />
+      <result column="technology_name" jdbcType="VARCHAR" property="technologyName" />
+      <result column="price" jdbcType="DECIMAL" property="price" />
+      <result column="vital_process_period" jdbcType="VARCHAR" property="vitalProcessPeriod" />
+      <result column="standard_capacity" jdbcType="INTEGER" property="standardCapacity" />
+      <result column="overtime_standard_capacity" jdbcType="INTEGER" property="overtimeStandardCapacity" />
+      <result column="overtime_overfulfil_capacity" jdbcType="INTEGER" property="overtimeOverfulfilCapacity" />
+      <result column="double_capacity" jdbcType="INTEGER" property="doubleCapacity" />
+      <result column="overfulfil_capacity" jdbcType="INTEGER" property="overfulfilCapacity" />
+    </association>
+  </resultMap>
+
+  <select id="getAllManufactureByPage" resultMap="manufacturerow">
+     select m.manufacture_sn,m.launch_quantity,m.begin_date,m.end_date,
+           o.order_id,order_date,request_date,onote,quantity,unit_price,unit,file,ostatus,
+           ccustomid,custom_name,pproductid,product_name,t.*
+           from manufacture m left join  technology t on t.technology_id = m.technology_id
+						left join  (select
+          order_id,order_date,request_date,o.note onote,quantity,unit_price,unit,file,o.status ostatus,
+          c.custom_id ccustomid,custom_name,product_name,p.product_id pproductid
+        from
+          c_order o left join custom c
+        on
+          o.custom_id = c.custom_id
+        left join
+          product p
+        on
+          o.product_id = p.product_id) o on o.order_id = m.order_id
+  </select>
+
+  <select id="getCountManufacture" resultType="_int">
+    select count(m.manufacture_sn)
+          from manufacture m left join  technology t on t.technology_id = m.technology_id
+						left join  (select
+          order_id,order_date,request_date,o.note onote,quantity,unit_price,unit,file,o.status ostatus,
+          c.custom_id ccustomid,custom_name,product_name,p.product_id pproductid
+        from
+          c_order o left join custom c
+        on
+          o.custom_id = c.custom_id
+        left join
+          product p
+        on
+          o.product_id = p.product_id) o on o.order_id = m.order_id
+  </select>
 </mapper>
