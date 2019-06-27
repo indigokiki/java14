@@ -1,10 +1,12 @@
 package com.cskaoyan.controller;
 
 import com.cskaoyan.bean.Page;
+import com.cskaoyan.bean.Process;
 import com.cskaoyan.bean.Technology;
 import com.cskaoyan.bean.TechnologyPlan;
 import com.cskaoyan.bean.TechnologyRequirement;
 import com.cskaoyan.mapper.TechnologyMapper;
+import com.cskaoyan.service.ProcessService;
 import com.cskaoyan.service.TechnologyPlanService;
 import com.cskaoyan.service.TechnologyRequirementService;
 import com.cskaoyan.service.TechnologyService;
@@ -12,6 +14,7 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -102,6 +105,10 @@ public class TechnologyMonitorController {
 
 
     //四.工序管理
+
+    @Autowired
+    ProcessService processService;
+
     @RequestMapping("/process/find")
     public ModelAndView processFind(){
         ModelAndView modelAndView = new ModelAndView();
@@ -110,6 +117,27 @@ public class TechnologyMonitorController {
         modelAndView.setViewName("/WEB-INF/jsp/process_list.jsp");
 
         return modelAndView;
+    }
+
+    @RequestMapping("/process/list")
+    @ResponseBody
+    public Page<Process> processList(int page, int rows){
+        Page<Process> processPage = processService.selectProcessPage(page, rows);
+        return processPage;
+    }
+
+    @RequestMapping("/technology/get_data")
+    @ResponseBody
+    public List<Technology> getTechnologyList(){
+        List<Technology> technologies = technologyService.selectTechnologys();
+        return technologies;
+    }
+
+    @RequestMapping("/technologyPlan/get/{technologyPlanId}")
+    @ResponseBody
+    public TechnologyPlan getTechnologyPlanById(@PathVariable("technologyPlanId") String technologyPlanId){
+        TechnologyPlan technologyPlan = planService.selectTechPlanById(technologyPlanId);
+        return technologyPlan;
     }
 
 

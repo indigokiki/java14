@@ -2,7 +2,6 @@ package com.cskaoyan.service;
 
 import com.cskaoyan.bean.Page;
 import com.cskaoyan.bean.TechnologyPlan;
-import com.cskaoyan.bean.TechnologyRequirement;
 
 /**
  * @author YangShuo
@@ -12,4 +11,7 @@ import com.cskaoyan.bean.TechnologyRequirement;
 public interface TechnologyPlanService {
 
     Page<TechnologyPlan> selectTechPlanPage(int page, int rows);
+
+    //用于工序管理（第四项）
+    TechnologyPlan selectTechPlanById(String technologyPlanId);
 }

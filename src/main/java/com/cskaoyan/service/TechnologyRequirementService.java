@@ -1,7 +1,6 @@
 package com.cskaoyan.service;
 
 import com.cskaoyan.bean.Page;
-import com.cskaoyan.bean.Technology;
 import com.cskaoyan.bean.TechnologyRequirement;
 
 import java.util.List;
