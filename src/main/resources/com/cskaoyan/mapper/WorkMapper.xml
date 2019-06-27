@@ -225,4 +225,56 @@
       rating = #{rating,jdbcType=INTEGER}
     where work_id = #{workId,jdbcType=VARCHAR}
   </update>
+
+  <resultMap id="WorkRow" type="com.cskaoyan.bean.schemedprogress.WorkRow">
+    <result column="work_id" property="workid"/>
+    <result property="processNumber" column="process_number"/>
+    <result column="rating" property="rating"/>
+
+    <association property="process" javaType="com.cskaoyan.bean.Process">
+      <id column="process_id"  property="processId" />
+      <result column="technology_plan_id"  property="technologyPlanId" />
+      <result column="sequence" property="sequence" />
+      <result column="quota" property="quota" />
+    </association>
+
+    <association property="device" javaType="com.cskaoyan.bean.Device">
+      <id column="device_id"  property="deviceId" />
+      <result column="device_name"  property="deviceName" />
+      <result column="device_type_id"  property="deviceTypeId" />
+      <result column="device_status_id"  property="deviceStatusId" />
+      <result column="device_status"  property="deviceStatus" />
+      <result column="device_purchase_date" property="devicePurchaseDate" />
+      <result column="device_purchase_price"  property="devicePurchasePrice" />
+      <result column="device_manufacture_date"  property="deviceManufactureDate" />
+      <result column="device_service_life"  property="deviceServiceLife" />
+      <result column="device_keeper_id"  property="deviceKeeperId" />
+      <result column="note"  property="note" />
+    </association>
+
+    <association property="product" javaType="com.cskaoyan.bean.Product">
+      <id column="product_id"  property="productId" />
+      <result column="product_name"  property="productName" />
+      <result column="product_type"  property="productType" />
+      <result column="image"  property="image" />
+      <result column="note"  property="note" />
+      <result column="status"  property="status" />
+    </association>
+
+
+  </resultMap>
+
+  <select id="getAllWorkByPage" resultMap="WorkRow">
+    select w.work_id,w.process_number,w.rating,p.*,d.*,t.product_id,t.product_name,t.product_type,t.image,t.note,t.status
+    from work w left join process p on w.process_id = p.process_id
+                left join device d on w.device_id = d.device_id
+                left join product t on w.product_id = t.product_id
+  </select>
+
+  <select id="getCountWork" resultType="_int">
+    select count(*)
+    from work w left join process p on w.process_id = p.process_id
+                left join device d on w.device_id = d.device_id
+                left join product t on w.product_id = t.product_id
+  </select>
 </mapper>

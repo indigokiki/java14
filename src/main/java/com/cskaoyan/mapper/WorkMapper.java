@@ -2,6 +2,7 @@ package com.cskaoyan.mapper;
 
 import com.cskaoyan.bean.Work;
 import com.cskaoyan.bean.WorkExample;
+import com.cskaoyan.bean.schemedprogress.WorkRow;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -28,4 +29,8 @@ public interface WorkMapper {
     int updateByPrimaryKeySelective(Work record);
 
     int updateByPrimaryKey(Work record);
+
+    List<WorkRow> getAllWorkByPage();
+
+    int getCountWork();
 }

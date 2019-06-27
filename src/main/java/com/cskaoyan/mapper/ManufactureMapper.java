@@ -2,6 +2,7 @@ package com.cskaoyan.mapper;
 
 import com.cskaoyan.bean.Manufacture;
 import com.cskaoyan.bean.ManufactureExample;
+import com.cskaoyan.bean.schemedprogress.ManufactureRow;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -28,4 +29,7 @@ public interface ManufactureMapper {
     int updateByPrimaryKeySelective(Manufacture record);
 
     int updateByPrimaryKey(Manufacture record);
+
+    List<ManufactureRow> getAllManufactureByPage();
+    int getCountManufacture();
 }
