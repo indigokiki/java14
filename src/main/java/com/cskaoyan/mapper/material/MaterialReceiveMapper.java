@@ -1,12 +1,13 @@
-package com.cskaoyan.mapper;
+package com.cskaoyan.mapper.material;
 
-import com.cskaoyan.bean.MaterialReceive;
-import com.cskaoyan.bean.MaterialReceiveExample;
+import com.cskaoyan.bean.material.MaterialReceive;
+import com.cskaoyan.bean.material.MaterialReceiveExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface MaterialReceiveMapper {
+
     long countByExample(MaterialReceiveExample example);
 
     int deleteByExample(MaterialReceiveExample example);

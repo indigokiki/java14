@@ -1,17 +1,17 @@
-package com.cskaoyan.bean;
+package com.cskaoyan.bean.material;
 
 import java.util.Date;
 
-public class MaterialConsume {
-    private String consumeId;
-
-    private String workId;
+public class MaterialReceive {
+    private String receiveId;
 
     private String materialId;
 
-    private Integer consumeAmount;
+    private Material material;
 
-    private Date consumeDate;
+    private Integer amount;
+
+    private Date receiveDate;
 
     private String sender;
 
@@ -19,20 +19,20 @@ public class MaterialConsume {
 
     private String note;
 
-    public String getConsumeId() {
-        return consumeId;
+    public Material getMaterial() {
+        return material;
     }
 
-    public void setConsumeId(String consumeId) {
-        this.consumeId = consumeId == null ? null : consumeId.trim();
+    public void setMaterial(Material material) {
+        this.material = material;
     }
 
-    public String getWorkId() {
-        return workId;
+    public String getReceiveId() {
+        return receiveId;
     }
 
-    public void setWorkId(String workId) {
-        this.workId = workId == null ? null : workId.trim();
+    public void setReceiveId(String receiveId) {
+        this.receiveId = receiveId == null ? null : receiveId.trim();
     }
 
     public String getMaterialId() {
@@ -43,20 +43,20 @@ public class MaterialConsume {
         this.materialId = materialId == null ? null : materialId.trim();
     }
 
-    public Integer getConsumeAmount() {
-        return consumeAmount;
+    public Integer getAmount() {
+        return amount;
     }
 
-    public void setConsumeAmount(Integer consumeAmount) {
-        this.consumeAmount = consumeAmount;
+    public void setAmount(Integer amount) {
+        this.amount = amount;
     }
 
-    public Date getConsumeDate() {
-        return consumeDate;
+    public Date getReceiveDate() {
+        return receiveDate;
     }
 
-    public void setConsumeDate(Date consumeDate) {
-        this.consumeDate = consumeDate;
+    public void setReceiveDate(Date receiveDate) {
+        this.receiveDate = receiveDate;
     }
 
     public String getSender() {

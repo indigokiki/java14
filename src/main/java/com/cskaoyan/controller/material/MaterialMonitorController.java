@@ -1,9 +1,11 @@
-package com.cskaoyan.controller;
+package com.cskaoyan.controller.material;
 
-import com.cskaoyan.bean.Material;
-import com.cskaoyan.bean.MaterialConsume;
-import com.cskaoyan.bean.MaterialReceive;
-import com.cskaoyan.service.MaterialService;
+import com.cskaoyan.bean.material.Material;
+import com.cskaoyan.bean.material.MaterialConsume;
+import com.cskaoyan.bean.material.MaterialReceive;
+import com.cskaoyan.bean.material.MaterialReceives;
+import com.cskaoyan.mapper.material.MaterialMapper;
+import com.cskaoyan.service.material.MaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +27,7 @@ public class MaterialMonitorController {
         modelAndView.setViewName("/WEB-INF/jsp/material_list.jsp");
         return modelAndView;
     }
-    @RequestMapping("material/list")
+    @RequestMapping("/material/list")
     @ResponseBody
     public List<Material> materialList(){
         List<Material> materials = materialService.queryMaterialList();
@@ -34,31 +36,39 @@ public class MaterialMonitorController {
     }
 
     //物料收入
-    @RequestMapping("materialReceive/find")
+    @RequestMapping("/materialReceive/find")
     public ModelAndView findMaterialReceive(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/WEB-INF/jsp/materialReceive_list.jsp");
         return modelAndView;
     }
-    @RequestMapping("materialReceive/list")
+    @RequestMapping("/materialReceive/list")
     @ResponseBody
     public Map<String, Object> materialReceiveList(){
-        Map<String, Object> materialReceives = materialService.queryMaterialReceiveList();
+        Map<String, Object> materialReceives = materialService.allMaterialReceives();
         System.out.println(materialReceives);
         return materialReceives;
     }
     //物料消耗
-    @RequestMapping("materialConsume/find")
+    @RequestMapping("/materialConsume/find")
     public ModelAndView findMaterialConsume(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/WEB-INF/jsp/materialConsume_list.jsp");
         return modelAndView;
     }
-    @RequestMapping("materialConsume/list")
+    @RequestMapping("/materialConsume/list")
     @ResponseBody
-    public List<MaterialConsume> materialConsumeList(){
-        List<MaterialConsume> materialConsumes = materialService.queryMaterialConsumeList();
-        System.out.println(materialConsumes);
-        return materialConsumes;
+    public Map<String, Object> materialConsumeList(){
+        Map<String, Object> consumes = materialService.allMaterialConsumes();
+        System.out.println(consumes);
+        return consumes;
+    }
+    @Autowired
+    MaterialMapper materialMapper;
+    @RequestMapping("/ilm")
+    @ResponseBody
+    public List<MaterialReceives> mytest(){
+        List<MaterialReceives> materialReceives = materialMapper.allMaterialReceives();
+        return materialReceives;
     }
 }
