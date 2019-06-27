@@ -5,25 +5,20 @@ import com.cskaoyan.bean.Process;
 import com.cskaoyan.bean.Technology;
 import com.cskaoyan.bean.TechnologyPlan;
 import com.cskaoyan.bean.TechnologyRequirement;
-import com.cskaoyan.mapper.TechnologyMapper;
 import com.cskaoyan.service.ProcessService;
 import com.cskaoyan.service.TechnologyPlanService;
 import com.cskaoyan.service.TechnologyRequirementService;
 import com.cskaoyan.service.TechnologyService;
-import com.github.pagehelper.PageHelper;
+import com.cskaoyan.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import sun.security.timestamp.TSRequest;
 
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author YangShuo
@@ -100,7 +95,7 @@ public class TechnologyMonitorController {
         return modelAndView;
     }
 
-    @RequestMapping("/technology/insert")
+    /*@RequestMapping("/technology/insert")
     @ResponseBody
     public Map<String,Object> technologyInsert(Technology technology){
         int i = technologyService.insertTechnology(technology);
@@ -114,7 +109,35 @@ public class TechnologyMonitorController {
         }
 
         return map;
+    }*/
+
+    @RequestMapping("/technology/insert")
+    @ResponseBody
+    public ResponseVo technologyInsert(Technology technology){
+        int i = technologyService.insertTechnology(technology);
+        ResponseVo<Object> responseVo = new ResponseVo<>();
+        if (i == 1){
+            responseVo.setStatus(200);
+            responseVo.setMsg("OK");
+        }else {
+            responseVo.setStatus(0);
+            responseVo.setMsg("该工艺编号已经存在，请更换工艺编号！");
+        }
+
+        return responseVo;
     }
+
+    /*工艺管理-修改*/
+    @RequestMapping("/technology/edit")
+    public ModelAndView technologyEdit(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/WEB-INF/jsp/technology_edit.jsp");
+        return modelAndView;
+    }
+
+    /*@RequestMapping("/technology/update_all")
+    @ResponseBody*/
+
 
 
     @Autowired
