@@ -13,4 +13,16 @@ public interface OrderMapper {
     List<OrderRow> findAllOrders();
 
     int OrdersCount();
+
+    List<OrderRow> selectOrdersById(@Param("id") int id);
+
+    int OrderCountById(@Param("id") int id);
+
+    List<OrderRow> selectOrdersBCustom(@Param("customName") String customName);
+
+    int OrderCountByCustom(@Param("customName") String customName);
+
+    List<OrderRow> selectOrdersByProduct(@Param("productName") String productName);
+
+    int OrderCountByProduct(@Param("productName") String productName);
 }

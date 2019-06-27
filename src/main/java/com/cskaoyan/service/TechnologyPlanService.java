@@ -3,6 +3,8 @@ package com.cskaoyan.service;
 import com.cskaoyan.bean.Page;
 import com.cskaoyan.bean.TechnologyPlan;
 
+import java.util.List;
+
 /**
  * @author YangShuo
  * @date 2019-06-26 23:24
@@ -14,4 +16,8 @@ public interface TechnologyPlanService {
 
     //用于工序管理（第四项）
     TechnologyPlan selectTechPlanById(String technologyPlanId);
+
+    //计划进度模块的查询需求
+
+    List<TechnologyPlan> selectTechnologyPlan();
 }

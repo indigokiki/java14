@@ -6,6 +6,7 @@ import com.cskaoyan.bean.Technology;
 import com.cskaoyan.bean.TechnologyPlan;
 import com.cskaoyan.bean.TechnologyRequirement;
 import com.cskaoyan.mapper.TechnologyMapper;
+import com.cskaoyan.mapper.TechnologyPlanMapper;
 import com.cskaoyan.service.ProcessService;
 import com.cskaoyan.service.TechnologyPlanService;
 import com.cskaoyan.service.TechnologyRequirementService;
@@ -13,7 +14,6 @@ import com.cskaoyan.service.TechnologyService;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,6 +39,9 @@ public class TechnologyMonitorController {
 
     @Autowired
     TechnologyService technologyService;
+
+    @Autowired
+    TechnologyPlanService technologyPlanService;
     //一.工艺管理
     //URL：technology/find，technology/list?page=1&rows=30
     @RequestMapping("/technology/find")
@@ -181,4 +184,12 @@ public class TechnologyMonitorController {
 
 
 
+
+    //计划进度模块的get_data请求
+    @RequestMapping("technologyPlan/get_data")
+    @ResponseBody
+    public List<TechnologyPlan> getData(){
+        List<TechnologyPlan> technologyPlans = technologyPlanService.selectTechnologyPlan();
+        return technologyPlans;
+    }
 }

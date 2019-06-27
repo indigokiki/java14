@@ -3,6 +3,7 @@ package com.cskaoyan.mapper;
 import com.cskaoyan.bean.Custom;
 import com.cskaoyan.bean.CustomExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

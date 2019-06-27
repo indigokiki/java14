@@ -35,4 +35,13 @@ public class TechnologyPlanServiceImpl implements TechnologyPlanService {
         TechnologyPlan technologyPlan = planMapper.selectByPrimaryKey(technologyPlanId);
         return technologyPlan;
     }
+
+    @Override
+    public List<TechnologyPlan> selectTechnologyPlan() {
+        TechnologyPlanExample technologyPlanExample = new TechnologyPlanExample();
+
+        List<TechnologyPlan> technologyPlans = planMapper.selectByExample(technologyPlanExample);
+
+        return technologyPlans;
+    }
 }
