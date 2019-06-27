@@ -4,31 +4,31 @@ import java.util.List;
 
 public class ManufactureMagger {
 
-    private int totll;
+    private int total;
 
-    private List<ManufactureRow> manufactureRows;
+    private List<ManufactureRow> rows;
 
-    public int getTotll() {
-        return totll;
+    public int getTotal() {
+        return total;
     }
 
-    public void setTotll(int totll) {
-        this.totll = totll;
+    public void setTotal(int totll) {
+        this.total = totll;
     }
 
-    public List<ManufactureRow> getManufactureRows() {
-        return manufactureRows;
+    public List<ManufactureRow> getRows() {
+        return rows;
     }
 
-    public void setManufactureRows(List<ManufactureRow> manufactureRows) {
-        this.manufactureRows = manufactureRows;
+    public void setRows(List<ManufactureRow> rows) {
+        this.rows = rows;
     }
 
     @Override
     public String toString() {
         return "ManufactureMagger{" +
-                "totll=" + totll +
-                ", manufactureRows=" + manufactureRows +
+                "total=" + total +
+                ", rows=" + rows +
                 '}';
     }
 }

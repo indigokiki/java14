@@ -1,7 +1,9 @@
 package com.cskaoyan.controller.qualitymonitor;
 
 import com.cskaoyan.bean.*;
+import com.cskaoyan.bean.schemedprogress.Order;
 import com.cskaoyan.service.qualitymonitor.QualityMonitorService;
+import com.cskaoyan.service.schemedprogress.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +18,9 @@ public class QualityMonitorController {
 
     @Autowired
     QualityMonitorService qualityMonitorService;
+
+    @Autowired
+    OrderService orderService;
 
     @RequestMapping("unqualify/find*")
     public ModelAndView unqualifyfind(ModelAndView modelAndView){
@@ -53,7 +58,13 @@ public class QualityMonitorController {
 //    public List<Department> depgetdata(){
 //        return qualityMonitorService.getDepartmentList();
 //    }
-//
+
+
+    @RequestMapping ("order/get_data")
+    public List<Order> ordergetdata(){
+        return orderService.getOrderData();
+    }
+
     @RequestMapping("custom/get_data")
     public List<Custom> cusgetdata(){
         return qualityMonitorService.getCustomList();

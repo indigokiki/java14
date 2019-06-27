@@ -22,8 +22,8 @@ public class ManufactureServiceImpl implements ManufactureService {
         PageHelper.startPage(Integer.parseInt(page), Integer.parseInt(rows));
         List<ManufactureRow> allManufactureByPage = manufactureMapper.getAllManufactureByPage();
         ManufactureMagger manufactureMagger = new ManufactureMagger();
-        manufactureMagger.setTotll(count);
-        manufactureMagger.setManufactureRows(allManufactureByPage);
+        manufactureMagger.setTotal(count);
+        manufactureMagger.setRows(allManufactureByPage);
         return manufactureMagger;
     }
 }

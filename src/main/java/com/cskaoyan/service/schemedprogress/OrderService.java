@@ -1,5 +1,6 @@
 package com.cskaoyan.service.schemedprogress;
 
+import com.cskaoyan.bean.schemedprogress.Order;
 import com.cskaoyan.bean.schemedprogress.OrderMangger;
 
 import java.util.List;
@@ -16,4 +17,5 @@ public interface OrderService {
 
     OrderMangger selectOrderByProduct(String searchValue, String page, String rows);
 
+    List<Order> getOrderData();
 }
