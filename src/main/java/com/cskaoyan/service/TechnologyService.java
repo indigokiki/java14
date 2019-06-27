@@ -24,4 +24,11 @@ public interface TechnologyService {
 
     //工艺管理-插入功能
     int insertTechnology(Technology technology);
+
+    //工艺管理-修改功能
+    int updateTechnology(Technology technology);
+
+    //工艺管理-删除功能
+    int deleteTechnologyById(String technologyId);
+
 }

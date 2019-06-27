@@ -81,5 +81,17 @@ public class TechnologyServiceImpl implements TechnologyService {
         return insert;
     }
 
+    @Override
+    public int updateTechnology(Technology technology) {
+        int i = technologyMapper.updateByPrimaryKey(technology);
+        return i;
+    }
+
+    @Override
+    public int deleteTechnologyById(String technologyId) {
+        int i = technologyMapper.deleteByPrimaryKey(technologyId);
+        return i;
+    }
+
 
 }

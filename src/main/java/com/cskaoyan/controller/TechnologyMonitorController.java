@@ -84,7 +84,7 @@ public class TechnologyMonitorController {
     /*工艺管理-新增*/
     @RequestMapping("/technology/add_judge")
     @ResponseBody
-    public String addJudge(){
+    public String technologyAddJudge(){
         return "{}";
     }
 
@@ -95,21 +95,6 @@ public class TechnologyMonitorController {
         return modelAndView;
     }
 
-    /*@RequestMapping("/technology/insert")
-    @ResponseBody
-    public Map<String,Object> technologyInsert(Technology technology){
-        int i = technologyService.insertTechnology(technology);
-        HashMap<String, Object> map = new HashMap<>();
-        if (i == 1){
-            map.put("status",200);
-            map.put("msg","OK");
-        }else {
-            map.put("status",0);
-            map.put("msg","该工艺编号已经存在，请更换工艺编号！");
-        }
-
-        return map;
-    }*/
 
     @RequestMapping("/technology/insert")
     @ResponseBody
@@ -128,6 +113,13 @@ public class TechnologyMonitorController {
     }
 
     /*工艺管理-修改*/
+    @RequestMapping("/technology/edit_judge")
+    @ResponseBody
+    public String technologyEditJudge(){
+        return "{}";
+    }
+
+
     @RequestMapping("/technology/edit")
     public ModelAndView technologyEdit(){
         ModelAndView modelAndView = new ModelAndView();
@@ -135,8 +127,44 @@ public class TechnologyMonitorController {
         return modelAndView;
     }
 
-    /*@RequestMapping("/technology/update_all")
-    @ResponseBody*/
+    @RequestMapping("/technology/update_all")
+    @ResponseBody
+    public ResponseVo technologyUpdate(Technology technology){
+        int i = technologyService.updateTechnology(technology);
+        ResponseVo<Object> responseVo = new ResponseVo<>();
+        if (i == 1){
+            responseVo.setStatus(200);
+            responseVo.setMsg("OK");
+        }else {
+            responseVo.setStatus(0);
+            responseVo.setMsg("编辑工艺失败！");
+        }
+
+        return responseVo;
+    }
+
+    /*工艺管理-删除*/
+    @RequestMapping("/technology/delete_judge")
+    @ResponseBody
+    public String technologyDeleJudge(){
+        return "{}";
+    }
+
+
+    @RequestMapping("/technology/delete_batch")
+    @ResponseBody
+    public ResponseVo technologyDelete(String[] ids){
+        int i = 0 ;
+        for(String technologyId : ids){
+            i += technologyService.deleteTechnologyById(technologyId);
+        }
+        ResponseVo<Object> responseVo = new ResponseVo<>();
+        if (i == ids.length){
+            responseVo.setStatus(200);
+            responseVo.setMsg("OK");
+        }
+        return responseVo;
+    }
 
 
 
