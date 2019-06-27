@@ -4,9 +4,9 @@ import java.util.List;
 
 public class Page<T> {
 
-    int total;
+    private int total;
 
-    List<T> rows;
+    private List<T> rows;
 
     public int getTotal() {
         return total;

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mapper.FinalMeasuretCheckMapper">
+
+    <resultMap id="finalMeasuretCheckMap" type="com.cskaoyan.bean.FinalMeasuretCheck">
+        <result property="fMeasureCheckId" column="f_measure_check_id"/>
+        <result property="orderId" column="order_id"/>
+        <result property="checkItem" column="check_item"/>
+        <result property="cdate" column="cdate"/>
+        <result property="measureData" column="measure_data"/>
+        <result property="empId" column="emp_id"/>
+        <result property="result" column="result"/>
+        <result property="note" column="note"/>
+        <result property="empName" column="emp_name"/>
+    </resultMap>
+
+    <select id="getFinalMeasuretCheckList" resultMap="finalMeasuretCheckMap">
+      select fmc.f_measure_check_id,
+      fmc.order_id,
+      fmc.check_item,
+      fmc.cdate,
+      fmc.measure_data,
+      fmc.emp_id,
+      fmc.result,
+      fmc.note,
+      emp.emp_name
+      from final_measuret_check fmc
+      left join employee emp on fmc.emp_id = emp.emp_id
+    </select>
+
+    <select id="getFinalMeasuretCheckNum" resultType="Integer">
+        select count(f_measure_check_id) from final_measuret_check
+    </select>
+</mapper>
