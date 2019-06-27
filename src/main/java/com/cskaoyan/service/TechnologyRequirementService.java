@@ -1,7 +1,6 @@
 package com.cskaoyan.service;
 
 import com.cskaoyan.bean.Page;
-import com.cskaoyan.bean.Technology;
 import com.cskaoyan.bean.TechnologyRequirement;
 
 import java.util.List;
@@ -16,5 +15,9 @@ public interface TechnologyRequirementService {
     List<TechnologyRequirement> selectTechReqs();
 
     Page<TechnologyRequirement> selectTechReqPage(int page, int rows);
+
+    Page<TechnologyRequirement> searchTechReqPageById(String technologyRequirementId);
+
+    Page<TechnologyRequirement> searchTechReqPageByTechnologyName(String technologyName, int page, int rows);
 
 }

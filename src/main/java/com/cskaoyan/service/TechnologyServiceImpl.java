@@ -8,6 +8,7 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,6 +43,54 @@ public class TechnologyServiceImpl implements TechnologyService {
         techPage.setTotal(technologyList.size());
 
         return techPage;
+    }
+
+    //工艺编号搜索做精确查询：虽然是分页，但technologyId是主键，只能查出来1或0个结果。
+    @Override
+    public Page<Technology> searchTechPageById(String technologyId) {
+        Technology technology = technologyMapper.selectByPrimaryKey(technologyId);
+        List<Technology> technologyList = new ArrayList<>();
+        technologyList.add(technology);
+
+        Page<Technology> technologyPage = new Page<>();
+        technologyPage.setTotal(technologyList.size());
+        technologyPage.setRows(technologyList);
+        return technologyPage;
+    }
+
+    //工艺名称搜索做模糊查询
+    @Override
+    public Page<Technology> searchTechPageByVagueName(String vagueTechnologyName, int page, int rows) {
+        TechnologyExample technologyExample = new TechnologyExample();
+        TechnologyExample.Criteria criteria = technologyExample.createCriteria();
+        vagueTechnologyName = "%" + vagueTechnologyName + "%";
+        criteria.andTechnologyNameLike(vagueTechnologyName);
+
+        PageHelper.startPage(page,rows);
+        List<Technology> technologyList = technologyMapper.selectByExample(technologyExample);
+
+        Page<Technology> technologyPage = new Page<>();
+        technologyPage.setTotal(technologyList.size());
+        technologyPage.setRows(technologyList);
+        return technologyPage;
+    }
+
+    @Override
+    public int insertTechnology(Technology technology) {
+        int insert = technologyMapper.insert(technology);
+        return insert;
+    }
+
+    @Override
+    public int updateTechnology(Technology technology) {
+        int i = technologyMapper.updateByPrimaryKey(technology);
+        return i;
+    }
+
+    @Override
+    public int deleteTechnologyById(String technologyId) {
+        int i = technologyMapper.deleteByPrimaryKey(technologyId);
+        return i;
     }
 
 

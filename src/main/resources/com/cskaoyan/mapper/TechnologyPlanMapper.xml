@@ -265,4 +265,22 @@
     <include refid="Base_Column_List" />
     from technology_plan
   </select>
+
+  <!--新增-->
+  <select id="selectAllWithTechnologyName" resultMap="BaseResultMapWithTechName">
+    select
+    <include refid="Base_Column_List" />
+    from technology_plan
+  </select>
+  <resultMap id="BaseResultMapWithTechName" type="com.cskaoyan.bean.TechnologyPlan">
+    <id column="technology_plan_id" jdbcType="VARCHAR" property="technologyPlanId" />
+    <result column="technology_id" jdbcType="VARCHAR" property="technologyId" />
+    <result column="batch_amount" jdbcType="INTEGER" property="batchAmount" />
+    <result column="start_plan" jdbcType="TIMESTAMP" property="startPlan" />
+    <result column="end_plan" jdbcType="TIMESTAMP" property="endPlan" />
+    <result column="commit_plan" jdbcType="TIMESTAMP" property="commitPlan" />
+    <result column="technology_plan_start" jdbcType="TIMESTAMP" property="technologyPlanStart" />
+    <result column="technology_plan_end" jdbcType="TIMESTAMP" property="technologyPlanEnd" />
+    <association property="technologyName" column="technology_id" select="com.cskaoyan.mapper.TechnologyMapper.selectTechnologyNameById"/>
+  </resultMap>
 </mapper>
