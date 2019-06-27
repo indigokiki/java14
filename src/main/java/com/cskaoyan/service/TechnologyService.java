@@ -21,4 +21,7 @@ public interface TechnologyService {
     Page<Technology> searchTechPageById(String technologyId);
 
     Page<Technology> searchTechPageByVagueName(String vagueTechnologyName, int page, int rows);
+
+    //工艺管理-插入功能
+    int insertTechnology(Technology technology);
 }

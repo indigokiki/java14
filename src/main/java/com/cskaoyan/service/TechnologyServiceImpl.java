@@ -75,5 +75,11 @@ public class TechnologyServiceImpl implements TechnologyService {
         return technologyPage;
     }
 
+    @Override
+    public int insertTechnology(Technology technology) {
+        int insert = technologyMapper.insert(technology);
+        return insert;
+    }
+
 
 }

@@ -86,6 +86,36 @@ public class TechnologyMonitorController {
         return technologyPage;
     }
 
+    /*工艺管理-新增*/
+    @RequestMapping("/technology/add_judge")
+    @ResponseBody
+    public String addJudge(){
+        return "{}";
+    }
+
+    @RequestMapping("/technology/add")
+    public ModelAndView technologyAdd(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/WEB-INF/jsp/technology_add.jsp");
+        return modelAndView;
+    }
+
+    @RequestMapping("/technology/insert")
+    @ResponseBody
+    public Map<String,Object> technologyInsert(Technology technology){
+        int i = technologyService.insertTechnology(technology);
+        HashMap<String, Object> map = new HashMap<>();
+        if (i == 1){
+            map.put("status",200);
+            map.put("msg","OK");
+        }else {
+            map.put("status",0);
+            map.put("msg","该工艺编号已经存在，请更换工艺编号！");
+        }
+
+        return map;
+    }
+
 
     @Autowired
     TechnologyRequirementService requirementService;

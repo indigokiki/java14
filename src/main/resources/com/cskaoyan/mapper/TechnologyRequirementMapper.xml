@@ -240,4 +240,12 @@
     where technology_id = #{technologyId}
   </select>
 
+  <!--新增-->
+  <select id="selectByPrimaryKeyWithTechName" resultMap="BaseResultMapWithTechName">
+    select
+    <include refid="Base_Column_List" />
+    from technology_requirement
+    where technology_requirement_id = #{technologyRequirementId}
+  </select>
+
 </mapper>

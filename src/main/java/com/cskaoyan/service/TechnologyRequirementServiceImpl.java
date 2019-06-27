@@ -46,7 +46,7 @@ public class TechnologyRequirementServiceImpl implements TechnologyRequirementSe
     //工艺要求编号搜索：精确查询
     @Override
     public Page<TechnologyRequirement> searchTechReqPageById(String technologyRequirementId) {
-        TechnologyRequirement technologyRequirement = requirementMapper.selectByPrimaryKey(technologyRequirementId);
+        TechnologyRequirement technologyRequirement = requirementMapper.selectByPrimaryKeyWithTechName(technologyRequirementId);
         List<TechnologyRequirement> requirementList = new ArrayList<>();
         requirementList.add(technologyRequirement);
 
