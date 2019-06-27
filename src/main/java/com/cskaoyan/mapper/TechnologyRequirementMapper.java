@@ -35,6 +35,6 @@ public interface TechnologyRequirementMapper {
     //新增
     List<TechnologyRequirement> selectTechReqByTechnologyId(@Param("technologyId") String technologyId);
     //新增，用于搜索
-    TechnologyRequirement selectByPrimaryKeyWithTechName(@Param("technologyRequirementId")String technologyRequirementId);
+    TechnologyRequirement selectByPrimaryKeyWithTechName(@Param("technologyRequirementId") String technologyRequirementId);
 
 }

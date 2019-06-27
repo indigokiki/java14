@@ -1,6 +1,5 @@
 package com.cskaoyan.mapper;
 
-import com.cskaoyan.bean.Process;
 import com.cskaoyan.bean.ProcessExample;
 import org.apache.ibatis.annotations.Param;
 
