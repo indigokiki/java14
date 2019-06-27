@@ -1,7 +1,6 @@
 package com.cskaoyan.controller.devman;
 
 import com.cskaoyan.bean.devman.Department;
-import com.cskaoyan.bean.devman.Device;
 import com.cskaoyan.mapper.devman.IDepartmentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

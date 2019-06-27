@@ -28,8 +28,8 @@
     </thead>
 </table>
 
-<div  id="toolbar_technologyRequirement" style=" height: 22px; padding: 3px 11px; background: #fafafa;">  
-	
+<div  id="toolbar_technologyRequirement" style=" height: 22px; padding: 3px 11px; background: #fafafa;">
+
 	<c:forEach items="${sessionScope.sysPermissionList}" var="per" >
 		<c:if test="${per=='technologyRequirement:add' }" >
 		    <div style="float: left;">  
