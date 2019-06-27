@@ -1,3 +1,4 @@
+/*
 package com.cskaoyan;
 
 import com.cskaoyan.bean.Technology;
@@ -13,10 +14,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
+*/
 /**
  * @author YangShuo
  * @date 2019-06-26 20:21
- */
+ *//*
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:application.xml")
 public class TechnologyTest {
@@ -41,3 +44,4 @@ public class TechnologyTest {
         System.out.println("technologies = " + technologies);
     }
 }
+*/
