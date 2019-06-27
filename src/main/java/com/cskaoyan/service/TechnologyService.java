@@ -1,5 +1,6 @@
 package com.cskaoyan.service;
 
+import com.cskaoyan.bean.Page;
 import com.cskaoyan.bean.Technology;
 
 import java.util.List;
@@ -14,4 +15,6 @@ public interface TechnologyService {
     Technology selectTechnologyById(String technologyId);
 
     List<Technology> selectTechnologys();
+
+    Page<Technology> selectTechnologyPage(int page, int rows);
 }
