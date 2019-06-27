@@ -1,13 +1,8 @@
 package com.cskaoyan.bean.schemedprogress;
 
-
-import com.cskaoyan.bean.Custom;
-import com.cskaoyan.bean.Product;
-
 import java.math.BigDecimal;
 
-public class OrderRow {
-
+public class Order {
     private String orderId;
 
     private String orderDate;
@@ -28,9 +23,9 @@ public class OrderRow {
 
     private int status;
 
-    private Custom custom;
+    private String customId;
 
-    private Product product;
+    private String productId;
 
     public String getOrderId() {
         return orderId;
@@ -112,25 +107,25 @@ public class OrderRow {
         this.status = status;
     }
 
-    public Custom getCustom() {
-        return custom;
+    public String getCustomId() {
+        return customId;
     }
 
-    public void setCustom(Custom custom) {
-        this.custom = custom;
+    public void setCustomId(String customId) {
+        this.customId = customId;
     }
 
-    public Product getProduct() {
-        return product;
+    public String getProductId() {
+        return productId;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     @Override
     public String toString() {
-        return "OrderRow{" +
+        return "Order{" +
                 "orderId='" + orderId + '\'' +
                 ", orderDate='" + orderDate + '\'' +
                 ", requestDate='" + requestDate + '\'' +
@@ -141,8 +136,8 @@ public class OrderRow {
                 ", image='" + image + '\'' +
                 ", file='" + file + '\'' +
                 ", status=" + status +
-                ", custom=" + custom +
-                ", product=" + product +
+                ", customId='" + customId + '\'' +
+                ", productId='" + productId + '\'' +
                 '}';
     }
 }

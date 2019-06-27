@@ -14,12 +14,12 @@
         <result property="file" column="file"/>
         <result property="status" column="ostatus"/>
 
-        <association property="custom" javaType="com.cskaoyan.bean.schemedprogress.Custom">
+        <association property="custom" javaType="com.cskaoyan.bean.Custom">
             <result column="custom_id" property="customId"/>
             <result property="customName" column="custom_name"/>
         </association>
-
-        <association property="product" javaType="com.cskaoyan.bean.schemedprogress.Product">
+        <association property="product" javaType="com.cskaoyan.bean.Product">
+     
             <result property="productId" column="product_id"/>
             <result property="productName" column="product_name"/>
         </association>
@@ -40,6 +40,58 @@
           o.product_id = p.product_id
     </select>
 
+
+    <select id="selectOrdersById" resultMap="OrderRow">
+         select
+          o.order_id,o.order_date,o.request_date,o.note onote,o.quantity,o.unit_price,o.unit,o.file,o.status ostatus,
+          c.custom_id,c.custom_name,p.product_name,p.product_id
+        from
+          c_order o left join custom c
+        on
+          o.custom_id = c.custom_id
+        left join
+          product p
+        on
+          o.product_id = p.product_id
+        where
+          o.order_id = #{id}
+    </select>
+
+    <select id="selectOrdersBCustom" resultMap="OrderRow">
+         select
+          o.order_id,o.order_date,o.request_date,o.note onote,o.quantity,o.unit_price,o.unit,o.file,o.status ostatus,
+          c.custom_id,c.custom_name,p.product_name,p.product_id
+        from
+          c_order o left join custom c
+        on
+          o.custom_id = c.custom_id
+        left join
+          product p
+        on
+          o.product_id = p.product_id
+        where
+          c.custom_name = #{customName}
+    </select>
+
+    <select id="selectOrdersByProduct" resultMap="OrderRow">
+         select
+          o.order_id,o.order_date,o.request_date,o.note onote,o.quantity,o.unit_price,o.unit,o.file,o.status ostatus,
+          c.custom_id,c.custom_name,p.product_name,p.product_id
+        from
+          c_order o left join custom c
+        on
+          o.custom_id = c.custom_id
+        left join
+          product p
+        on
+          o.product_id = p.product_id
+        where
+          p.product_name = #{productName}
+    </select>
+
+
+
+
     <select id="OrdersCount" resultType="_int">
         select
           count(*)
@@ -53,4 +105,49 @@
           o.product_id = p.product_id
     </select>
 
+
+    <select id="OrderCountById" resultType="_int">
+        select
+          count(*)
+        from
+          c_order o left join custom c
+        on
+          o.custom_id = c.custom_id
+        left join
+          product p
+        on
+          o.product_id = p.product_id
+        where
+          o.order_id = #{id}
+    </select>
+
+    <select id="OrderCountByCustom" resultType="_int">
+        select
+          count(*)
+        from
+          c_order o left join custom c
+        on
+          o.custom_id = c.custom_id
+        left join
+          product p
+        on
+          o.product_id = p.product_id
+        where
+           c.custom_name = #{customName}
+    </select>
+
+    <select id="OrderCountByProduct" resultType="_int">
+        select
+          count(*)
+        from
+          c_order o left join custom c
+        on
+          o.custom_id = c.custom_id
+        left join
+          product p
+        on
+          o.product_id = p.product_id
+        where
+          p.product_name = #{productName}
+    </select>
 </mapper>
