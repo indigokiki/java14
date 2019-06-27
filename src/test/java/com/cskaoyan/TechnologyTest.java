@@ -1,4 +1,3 @@
-/*
 package com.cskaoyan;
 
 import com.cskaoyan.bean.*;
@@ -16,11 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
-*/
-/**
- * @author YangShuo
- * @date 2019-06-26 20:21
- *//*
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -93,4 +87,3 @@ public class TechnologyTest {
 
 }
 
-*/
