@@ -7,9 +7,23 @@
         <result property="productId" column="product_id"/>
         <result property="unqualifyItem" column="unqualify_item"/>
         <result property="unqualifyCount" column="unqualify_count"/>
+        <result property="applyDate" column="apply_date" javaType="java.sql.Timestamp"/>
+        <result property="assemblyDate" column="assembly_date" javaType="java.sql.Timestamp"/>
+        <result property="empId" column="emp_id"/>
+        <result property="empName" column="emp_name"/>
+        <result property="note" column="note"/>
+        <result property="productName" column="product_name"/>
     </resultMap>
 
     <select id="getUnqualifyApplyList" resultMap="unqualifyApplyMap">
-        select unqualify_apply_id,product_id,unqualify_item,unqualify_count from unqualify_apply
+        select ua.unqualify_apply_id,ua.product_id,ua.unqualify_item,ua.unqualify_count,
+        ua.apply_date,ua.assembly_date,ua.emp_id,ua.note,emp.emp_name,pro.product_name
+        from unqualify_apply ua
+        left join employee emp on ua.emp_id = emp.emp_id
+        left join product pro on ua.product_id = pro.product_id
+    </select>
+
+    <select id="getUnqualifyApplyNum" resultType="Integer">
+        select count(unqualify_apply_id) from unqualify_apply
     </select>
 </mapper>
