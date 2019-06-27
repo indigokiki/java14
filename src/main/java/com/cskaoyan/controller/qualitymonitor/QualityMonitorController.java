@@ -1,7 +1,9 @@
 package com.cskaoyan.controller.qualitymonitor;
 
 import com.cskaoyan.bean.*;
+import com.cskaoyan.bean.Process;
 import com.cskaoyan.service.qualitymonitor.QualityMonitorService;
+import com.cskaoyan.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Isolation;
@@ -44,6 +46,11 @@ public class QualityMonitorController {
         return "{}";
     }
 
+    @RequestMapping("unqualify/delete_judge")
+    public String unqualifydeletejudge(){
+        return "{}";
+    }
+
     @RequestMapping("unqualify/add")
     public ModelAndView unqualifyadd(ModelAndView modelAndView){
         modelAndView.setViewName("/WEB-INF/jsp/unqualify_add.jsp");
@@ -59,12 +66,47 @@ public class QualityMonitorController {
 
     @RequestMapping("unqualify/insert")
     @Transactional(isolation = Isolation.SERIALIZABLE)
-    public String unqualifyinsert(UnqualifyApply unqualifyApply){
+    public ResponseVo unqualifyinsert(UnqualifyApply unqualifyApply){
         int status = qualityMonitorService.addUnqualifyApply(unqualifyApply);
-        if(1 == status){
-            return "{\"status\":200,\"msg\":\"OK\",\"data\":null}";
+        ResponseVo<Object> responseVo = new ResponseVo<>();
+        if (status == 1){
+            responseVo.setStatus(200);
+            responseVo.setMsg("OK");
+        }else {
+            responseVo.setStatus(0);
+            responseVo.setMsg("操作失败！请联系管理员！");
         }
-        return "{\"status\":0,\"msg\":\"ERROR\",\"data\":add failed!}";
+        return responseVo;
+    }
+
+    @RequestMapping("unqualify/update_all")
+    @Transactional(isolation = Isolation.SERIALIZABLE)
+    public ResponseVo unqualifyupdate(UnqualifyApply unqualifyApply){
+        int status = qualityMonitorService.updateUnqualifyApply(unqualifyApply);
+        ResponseVo<Object> responseVo = new ResponseVo<>();
+        if (status == 1){
+            responseVo.setStatus(200);
+            responseVo.setMsg("OK");
+        }else {
+            responseVo.setStatus(0);
+            responseVo.setMsg("操作失败！请联系管理员！");
+        }
+        return responseVo;
+    }
+
+    @RequestMapping("unqualify/delete_batch")
+    @Transactional(isolation = Isolation.SERIALIZABLE)
+    public ResponseVo unqualifydelete(String[] ids){
+        int status = qualityMonitorService.deleteUnqualifyApply(ids);
+        ResponseVo<Object> responseVo = new ResponseVo<>();
+        if (status == 1){
+            responseVo.setStatus(200);
+            responseVo.setMsg("OK");
+        }else {
+            responseVo.setStatus(0);
+            responseVo.setMsg("操作失败！请联系管理员！");
+        }
+        return responseVo;
     }
 
     @RequestMapping("measure/find")
@@ -89,6 +131,11 @@ public class QualityMonitorController {
         return "{}";
     }
 
+    @RequestMapping("fMeasureCheck/delete_judge")
+    public String measuredeletejudge(){
+        return "{}";
+    }
+
     @RequestMapping("measure/add")
     public ModelAndView measureadd(ModelAndView modelAndView){
         modelAndView.setViewName("/WEB-INF/jsp/measurement_add.jsp");
@@ -104,12 +151,47 @@ public class QualityMonitorController {
 
     @RequestMapping("measure/insert")
     @Transactional(isolation = Isolation.SERIALIZABLE)
-    public String measureinsert(FinalMeasuretCheck finalMeasuretCheck){
+    public ResponseVo measureinsert(FinalMeasuretCheck finalMeasuretCheck){
         int status = qualityMonitorService.addFinalMeasuretCheck(finalMeasuretCheck);
-        if(1 == status){
-            return "{\"status\":200,\"msg\":\"OK\",\"data\":null}";
+        ResponseVo<Object> responseVo = new ResponseVo<>();
+        if (status == 1){
+            responseVo.setStatus(200);
+            responseVo.setMsg("OK");
+        }else {
+            responseVo.setStatus(0);
+            responseVo.setMsg("操作失败！请联系管理员！");
         }
-        return "{\"status\":0,\"msg\":\"ERROR\",\"data\":add failed!}";
+        return responseVo;
+    }
+
+    @RequestMapping("measure/update_all")
+    @Transactional(isolation = Isolation.SERIALIZABLE)
+    public ResponseVo measureupdate(FinalMeasuretCheck finalMeasuretCheck){
+        int status = qualityMonitorService.updateFinalMeasuretCheck(finalMeasuretCheck);
+        ResponseVo<Object> responseVo = new ResponseVo<>();
+        if (status == 1){
+            responseVo.setStatus(200);
+            responseVo.setMsg("OK");
+        }else {
+            responseVo.setStatus(0);
+            responseVo.setMsg("操作失败！请联系管理员！");
+        }
+        return responseVo;
+    }
+
+    @RequestMapping("measure/delete_batch")
+    @Transactional(isolation = Isolation.SERIALIZABLE)
+    public ResponseVo measuredelete(String[] ids){
+        int status = qualityMonitorService.deleteFinalMeasuretCheck(ids);
+        ResponseVo<Object> responseVo = new ResponseVo<>();
+        if (status == 1){
+            responseVo.setStatus(200);
+            responseVo.setMsg("OK");
+        }else {
+            responseVo.setStatus(0);
+            responseVo.setMsg("操作失败！请联系管理员！");
+        }
+        return responseVo;
     }
 
     @RequestMapping("f_count_check/find")
@@ -146,14 +228,54 @@ public class QualityMonitorController {
         return "{}";
     }
 
+    @RequestMapping("fCountCheck/delete_judge")
+    public String fcountcheckdeletejudge(){
+        return "{}";
+    }
+
     @RequestMapping("f_count_check/insert")
     @Transactional(isolation = Isolation.SERIALIZABLE)
-    public String fcountcheckinsert(FinalCountCheck finalCountCheck){
+    public ResponseVo fcountcheckinsert(FinalCountCheck finalCountCheck){
         int status = qualityMonitorService.addFinalCountCheck(finalCountCheck);
-        if(1 == status){
-            return "{\"status\":200,\"msg\":\"OK\",\"data\":null}";
+        ResponseVo<Object> responseVo = new ResponseVo<>();
+        if (status == 1){
+            responseVo.setStatus(200);
+            responseVo.setMsg("OK");
+        }else {
+            responseVo.setStatus(0);
+            responseVo.setMsg("操作失败！请联系管理员！");
         }
-        return "{\"status\":0,\"msg\":\"ERROR\",\"data\":add failed!}";
+        return responseVo;
+    }
+
+    @RequestMapping("f_count_check/update_all")
+    @Transactional(isolation = Isolation.SERIALIZABLE)
+    public ResponseVo fcountcheckupdate(FinalCountCheck finalCountCheck){
+        int status = qualityMonitorService.updateFinalCountCheck(finalCountCheck);
+        ResponseVo<Object> responseVo = new ResponseVo<>();
+        if (status == 1){
+            responseVo.setStatus(200);
+            responseVo.setMsg("OK");
+        }else {
+            responseVo.setStatus(0);
+            responseVo.setMsg("操作失败！请联系管理员！");
+        }
+        return responseVo;
+    }
+
+    @RequestMapping("f_count_check/delete_batch")
+    @Transactional(isolation = Isolation.SERIALIZABLE)
+    public ResponseVo fcountcheckdelete(String[] ids){
+        int status = qualityMonitorService.deleteFinalCountCheck(ids);
+        ResponseVo<Object> responseVo = new ResponseVo<>();
+        if (status == 1){
+            responseVo.setStatus(200);
+            responseVo.setMsg("OK");
+        }else {
+            responseVo.setStatus(0);
+            responseVo.setMsg("操作失败！请联系管理员！");
+        }
+        return responseVo;
     }
 
     @RequestMapping("p_measure_check/find")
@@ -190,14 +312,54 @@ public class QualityMonitorController {
         return "{}";
     }
 
+    @RequestMapping("pMeasureCheck/delete_judge")
+    public String pmeasurecheckdeletejudge(){
+        return "{}";
+    }
+
     @RequestMapping("p_measure_check/insert")
     @Transactional(isolation = Isolation.SERIALIZABLE)
-    public String pmeasurecheckinsert(ProcessMeasureCheck processMeasureCheck){
+    public ResponseVo pmeasurecheckinsert(ProcessMeasureCheck processMeasureCheck){
         int status = qualityMonitorService.addProcessMeasureCheck(processMeasureCheck);
-        if(1 == status){
-            return "{\"status\":200,\"msg\":\"OK\",\"data\":null}";
+        ResponseVo<Object> responseVo = new ResponseVo<>();
+        if (status == 1){
+            responseVo.setStatus(200);
+            responseVo.setMsg("OK");
+        }else {
+            responseVo.setStatus(0);
+            responseVo.setMsg("操作失败！请联系管理员！");
         }
-        return "{\"status\":0,\"msg\":\"ERROR\",\"data\":add failed!}";
+        return responseVo;
+    }
+
+    @RequestMapping("p_measure_check/update_all")
+    @Transactional(isolation = Isolation.SERIALIZABLE)
+    public ResponseVo pmeasurecheckupdate(ProcessMeasureCheck processMeasureCheck){
+        int status = qualityMonitorService.updateProcessMeasureCheck(processMeasureCheck);
+        ResponseVo<Object> responseVo = new ResponseVo<>();
+        if (status == 1){
+            responseVo.setStatus(200);
+            responseVo.setMsg("OK");
+        }else {
+            responseVo.setStatus(0);
+            responseVo.setMsg("操作失败！请联系管理员！");
+        }
+        return responseVo;
+    }
+
+    @RequestMapping("p_measure_check/delete_batch")
+    @Transactional(isolation = Isolation.SERIALIZABLE)
+    public ResponseVo pmeasurecheckdelete(String[] ids){
+        int status = qualityMonitorService.deleteProcessMeasureCheck(ids);
+        ResponseVo<Object> responseVo = new ResponseVo<>();
+        if (status == 1){
+            responseVo.setStatus(200);
+            responseVo.setMsg("OK");
+        }else {
+            responseVo.setStatus(0);
+            responseVo.setMsg("操作失败！请联系管理员！");
+        }
+        return responseVo;
     }
 
     @RequestMapping("p_count_check/find")
@@ -234,14 +396,54 @@ public class QualityMonitorController {
         return "{}";
     }
 
+    @RequestMapping("pCountCheck/delete_judge")
+    public String pcountcheckdeletejudge(){
+        return "{}";
+    }
+
     @RequestMapping("p_count_check/insert")
     @Transactional(isolation = Isolation.SERIALIZABLE)
-    public String pcountcheckinsert(ProcessCountCheck processCountCheck){
+    public ResponseVo pcountcheckinsert(ProcessCountCheck processCountCheck){
         int status = qualityMonitorService.addProcessCountCheck(processCountCheck);
-        if(1 == status){
-            return "{\"status\":200,\"msg\":\"OK\",\"data\":null}";
+        ResponseVo<Object> responseVo = new ResponseVo<>();
+        if (status == 1){
+            responseVo.setStatus(200);
+            responseVo.setMsg("OK");
+        }else {
+            responseVo.setStatus(0);
+            responseVo.setMsg("操作失败！请联系管理员！");
         }
-        return "{\"status\":0,\"msg\":\"ERROR\",\"data\":add failed!}";
+        return responseVo;
+    }
+
+    @RequestMapping("p_count_check/update_all")
+    @Transactional(isolation = Isolation.SERIALIZABLE)
+    public ResponseVo pcountcheckupdate(ProcessCountCheck processCountCheck){
+        int status = qualityMonitorService.updateProcessCountCheck(processCountCheck);
+        ResponseVo<Object> responseVo = new ResponseVo<>();
+        if (status == 1){
+            responseVo.setStatus(200);
+            responseVo.setMsg("OK");
+        }else {
+            responseVo.setStatus(0);
+            responseVo.setMsg("操作失败！请联系管理员！");
+        }
+        return responseVo;
+    }
+
+    @RequestMapping("p_count_check/delete_batch")
+    @Transactional(isolation = Isolation.SERIALIZABLE)
+    public ResponseVo pcountcheckdelete(String[] ids){
+        int status = qualityMonitorService.deleteProcessCountCheck(ids);
+        ResponseVo<Object> responseVo = new ResponseVo<>();
+        if (status == 1){
+            responseVo.setStatus(200);
+            responseVo.setMsg("OK");
+        }else {
+            responseVo.setStatus(0);
+            responseVo.setMsg("操作失败！请联系管理员！");
+        }
+        return responseVo;
     }
 
 
@@ -251,11 +453,11 @@ public class QualityMonitorController {
 
 
 
-//    @RequestMapping("department/get_data")
-//    public List<Department> depgetdata(){
-//        return qualityMonitorService.getDepartmentList();
-//    }
-//
+    @RequestMapping("department/get_data")
+    public List<Department> depgetdata(){
+        return qualityMonitorService.getDepartmentList();
+    }
+
     @RequestMapping("custom/get_data")
     public List<Custom> cusgetdata(){
         return qualityMonitorService.getCustomList();
@@ -271,6 +473,15 @@ public class QualityMonitorController {
         return qualityMonitorService.getTechnologyPlanList();
     }
 
+    @RequestMapping("order/get_data")
+    public List<OrderByRevEngineering> ordergetdata(){
+        return qualityMonitorService.getOrderList();
+    }
+
+    @RequestMapping("process/get_data")
+    public List<Process> processgetdata(){
+        return qualityMonitorService.getProcessList();
+    }
 
 
 

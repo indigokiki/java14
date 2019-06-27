@@ -1,6 +1,7 @@
 package com.cskaoyan.bean;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class ProcessCountCheck {
@@ -18,7 +19,7 @@ public class ProcessCountCheck {
 
     private BigDecimal qualify;
 
-    private Date cdate;
+    private Timestamp cdate;
 
     private String measureData;
 
@@ -98,7 +99,7 @@ public class ProcessCountCheck {
         return cdate;
     }
 
-    public void setCdate(Date cdate) {
+    public void setCdate(Timestamp cdate) {
         this.cdate = cdate;
     }
 

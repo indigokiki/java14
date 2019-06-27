@@ -1,6 +1,7 @@
 package com.cskaoyan.service.qualitymonitor;
 
 import com.cskaoyan.bean.*;
+import com.cskaoyan.bean.Process;
 import com.cskaoyan.mapper.*;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,12 @@ public class QualityMonitorServiceImpl implements QualityMonitorService {
     @Autowired
     ProcessCountCheckMapper processCountCheckMapper;
 
+    @Autowired
+    ProcessMapper processMapper;
+
+    @Autowired
+    OrderMapperByRevEngineering orderMapperByRevEngineering;
+
     @Override
     public List<Department> getDepartmentList() {
         DepartmentExample departmentExample = new DepartmentExample();
@@ -60,6 +67,18 @@ public class QualityMonitorServiceImpl implements QualityMonitorService {
     public List<TechnologyPlan> getTechnologyPlanList() {
         List<TechnologyPlan> technologyPlans = technologyPlanMapper.selectByExample(new TechnologyPlanExample());
         return technologyPlans;
+    }
+
+    @Override
+    public List<OrderByRevEngineering> getOrderList() {
+        List<OrderByRevEngineering> orderByRevEngineerings = orderMapperByRevEngineering.selectByExample(new OrderExample());
+        return orderByRevEngineerings;
+    }
+
+    @Override
+    public List<Process> getProcessList() {
+        List<Process> processes = processMapper.selectByExample(new ProcessExample());
+        return processes;
     }
 
     @Override
@@ -142,5 +161,91 @@ public class QualityMonitorServiceImpl implements QualityMonitorService {
         return insert;
     }
 
+    @Override
+    public int updateUnqualifyApply(UnqualifyApply unqualifyApply) {
+        int i = unqualifyApplyMapper.updateByPrimaryKey(unqualifyApply);
+        return i;
+    }
+
+    @Override
+    public int updateFinalMeasuretCheck(FinalMeasuretCheck finalMeasuretCheck) {
+        int i = finalMeasuretCheckMapper.updateByPrimaryKey(finalMeasuretCheck);
+        return i;
+    }
+
+    @Override
+    public int updateFinalCountCheck(FinalCountCheck finalCountCheck) {
+        return finalCountCheckMapper.updateByPrimaryKey(finalCountCheck);
+    }
+
+    @Override
+    public int updateProcessMeasureCheck(ProcessMeasureCheck processMeasureCheck) {
+        return processMeasureCheckMapper.updateByPrimaryKey(processMeasureCheck);
+    }
+
+    @Override
+    public int updateProcessCountCheck(ProcessCountCheck processCountCheck) {
+        return processCountCheckMapper.updateByPrimaryKey(processCountCheck);
+    }
+
+    @Override
+    public int deleteUnqualifyApply(String[] unqualifyApplyId) {
+        for (String id : unqualifyApplyId) {
+            int i = unqualifyApplyMapper.deleteByPrimaryKey(id);
+            if(1 != i){
+                //throw new Exception("error delete data");
+                return 0;
+            }
+        }
+        return 1;
+    }
+
+    @Override
+    public int deleteFinalMeasuretCheck(String[] finalMeasuretCheckIds) {
+        for (String id : finalMeasuretCheckIds) {
+            int i = finalMeasuretCheckMapper.deleteByPrimaryKey(id);
+            if(1 != i){
+                //throw new Exception("error delete data");
+                return 0;
+            }
+        }
+        return 1;
+    }
+
+    @Override
+    public int deleteFinalCountCheck(String[] finalCountCheckIds) {
+        for (String id : finalCountCheckIds) {
+            int i = finalCountCheckMapper.deleteByPrimaryKey(id);
+            if(1 != i){
+                //throw new Exception("error delete data");
+                return 0;
+            }
+        }
+        return 1;
+    }
+
+    @Override
+    public int deleteProcessMeasureCheck(String[] processMeasureCheckIds) {
+        for (String id : processMeasureCheckIds) {
+            int i = processMeasureCheckMapper.deleteByPrimaryKey(id);
+            if(1 != i){
+                //throw new Exception("error delete data");
+                return 0;
+            }
+        }
+        return 1;
+    }
+
+    @Override
+    public int deleteProcessCountCheck(String[] processCountCheckIds) {
+        for (String id : processCountCheckIds) {
+            int i = processCountCheckMapper.deleteByPrimaryKey(id);
+            if(1 != i){
+                //throw new Exception("error delete data");
+                return 0;
+            }
+        }
+        return 1;
+    }
 
 }

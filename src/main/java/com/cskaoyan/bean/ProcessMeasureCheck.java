@@ -1,5 +1,6 @@
 package com.cskaoyan.bean;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class ProcessMeasureCheck {
@@ -9,7 +10,7 @@ public class ProcessMeasureCheck {
 
     private String checkItem;
 
-    private Date cdate;
+    private Timestamp cdate;
 
     private String measureData;
 
@@ -57,7 +58,7 @@ public class ProcessMeasureCheck {
         return cdate;
     }
 
-    public void setCdate(Date cdate) {
+    public void setCdate(Timestamp cdate) {
         this.cdate = cdate;
     }
 

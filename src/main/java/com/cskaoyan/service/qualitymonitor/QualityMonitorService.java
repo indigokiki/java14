@@ -1,6 +1,7 @@
 package com.cskaoyan.service.qualitymonitor;
 
 import com.cskaoyan.bean.*;
+import com.cskaoyan.bean.Process;
 
 
 import java.util.List;
@@ -14,6 +15,10 @@ public interface QualityMonitorService {
     List<Product> getProductList();
 
     List<TechnologyPlan> getTechnologyPlanList();
+
+    List<OrderByRevEngineering> getOrderList();
+
+    List<Process> getProcessList();
 
     Page getMeasurePage(int page,int rows);
 
@@ -34,5 +39,25 @@ public interface QualityMonitorService {
     int addProcessMeasureCheck(ProcessMeasureCheck processMeasureCheck);
 
     int addProcessCountCheck(ProcessCountCheck processCountCheck);
+
+    int updateUnqualifyApply(UnqualifyApply unqualifyApply);
+
+    int updateFinalMeasuretCheck(FinalMeasuretCheck finalMeasuretCheck);
+
+    int updateFinalCountCheck(FinalCountCheck finalCountCheck);
+
+    int updateProcessMeasureCheck(ProcessMeasureCheck processMeasureCheck);
+
+    int updateProcessCountCheck(ProcessCountCheck processCountCheck);
+
+    int deleteUnqualifyApply(String[] unqualifyApplyIds);
+
+    int deleteFinalMeasuretCheck(String[] finalMeasuretCheckIds);
+
+    int deleteFinalCountCheck(String[] finalCountCheckIds);
+
+    int deleteProcessMeasureCheck(String[] processMeasureCheckIds);
+
+    int deleteProcessCountCheck(String[] processCountCheckIds);
 
 }
