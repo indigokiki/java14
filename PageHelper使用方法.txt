@@ -1,12 +1,12 @@
-1¡¢´ÓgithubÀ­×îĞÂµÄapplication.xml 
+1ã€ä»githubæ‹‰æœ€æ–°çš„application.xml 
 
-2¡¢Á½ĞĞ´úÂë¸ã¶¨
+2ã€ä¸¤è¡Œä»£ç æå®š
 
-   //Ê×ÏÈÕâÃ´Ğ´
+   //é¦–å…ˆè¿™ä¹ˆå†™
    PageHelper.startPage(pageNum,pageSize);
-   //È»ºó½ô½Ó×Åµ÷ÓÃµÄmapper.selectÓï¾ä£¬¾Í»á×Ô¶¯·ÖÒ³£¡£¡
+   //ç„¶åç´§æ¥ç€è°ƒç”¨çš„mapper.selectè¯­å¥ï¼Œå°±ä¼šè‡ªåŠ¨åˆ†é¡µï¼ï¼
    List<UnqualifyApply> unqualifyApplies = unqualifyApplyMapper.selectUnqualifyApplyList();
 
 
-   //½ÓÏÂÀ´ÔÙµ÷ÓÃmapper.selectÓï¾ä²»»á·ÖÒ³£¬ËùÒÔÃ¿µ÷ÓÃÒ»´ÎselectÓï¾ä¶¼ÒªĞ´Ò»¾ä£¨Ò»´ÎĞÔ´úÂë£©
+   //æ¥ä¸‹æ¥å†è°ƒç”¨mapper.selectè¯­å¥ä¸ä¼šåˆ†é¡µï¼Œæ‰€ä»¥æ¯è°ƒç”¨ä¸€æ¬¡selectè¯­å¥éƒ½è¦å†™ä¸€å¥ï¼ˆä¸€æ¬¡æ€§ä»£ç ï¼‰
    PageHelper.startPage(pageNum,pageSize);
