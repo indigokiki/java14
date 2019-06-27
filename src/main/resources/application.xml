@@ -29,9 +29,9 @@
             <array>
                 <bean class="com.github.pagehelper.PageHelper">
                     <property name="properties">
-                        <!--使用下面的方式配置参数，一行配置一个 -->
                         <value>
-                            params=value1
+                            dialect=mysql
+                            reasonable=true
                         </value>
                     </property>
                 </bean>
@@ -41,8 +41,10 @@
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.cskaoyan.mapper"/>
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
+
+    <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+
 
    
 </beans>
