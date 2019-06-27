@@ -27,6 +27,11 @@ public interface TechnologyMapper {
     int updateByPrimaryKeySelective(Technology record);
 
     int updateByPrimaryKey(Technology record);
-
+    //新增
     List<Technology> selectAll();
+    //新增
+    String selectTechnologyNameById(@Param("technology_id") String technologyId);
+    //新增
+    String[] selectTechnologyIdByName(@Param("technologyName") String technologyName);
+
 }

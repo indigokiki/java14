@@ -218,4 +218,26 @@
     <include refid="Base_Column_List" />
     from technology_requirement
   </select>
+  <!--新增-->
+  <select id="selectAllWithTechnologyName" resultMap="BaseResultMapWithTechName">
+    select
+    <include refid="Base_Column_List" />
+    from technology_requirement
+  </select>
+  <resultMap id="BaseResultMapWithTechName" type="com.cskaoyan.bean.TechnologyRequirement">
+    <id column="technology_requirement_id" jdbcType="VARCHAR" property="technologyRequirementId" />
+    <result column="technology_id" jdbcType="VARCHAR" property="technologyId" />
+    <result column="requirement" jdbcType="VARCHAR" property="requirement" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="revise_time" jdbcType="TIMESTAMP" property="reviseTime" />
+    <association property="technologyName" column="technology_id" select="com.cskaoyan.mapper.TechnologyMapper.selectTechnologyNameById"/>
+  </resultMap>
+  <!--新增-->
+  <select id="selectTechReqByTechnologyId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from technology_requirement
+    where technology_id = #{technologyId}
+  </select>
+
 </mapper>

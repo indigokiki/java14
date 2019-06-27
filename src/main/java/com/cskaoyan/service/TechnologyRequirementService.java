@@ -16,4 +16,8 @@ public interface TechnologyRequirementService {
 
     Page<TechnologyRequirement> selectTechReqPage(int page, int rows);
 
+    Page<TechnologyRequirement> searchTechReqPageById(String technologyRequirementId);
+
+    Page<TechnologyRequirement> searchTechReqPageByTechnologyName(String technologyName, int page, int rows);
+
 }

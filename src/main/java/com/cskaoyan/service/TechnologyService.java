@@ -17,4 +17,8 @@ public interface TechnologyService {
     List<Technology> selectTechnologys();
 
     Page<Technology> selectTechnologyPage(int page, int rows);
+
+    Page<Technology> searchTechPageById(String technologyId);
+
+    Page<Technology> searchTechPageByVagueName(String vagueTechnologyName, int page, int rows);
 }

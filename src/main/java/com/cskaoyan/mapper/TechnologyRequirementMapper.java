@@ -28,6 +28,10 @@ public interface TechnologyRequirementMapper {
     int updateByPrimaryKeySelective(TechnologyRequirement record);
 
     int updateByPrimaryKey(TechnologyRequirement record);
-
+    //新增
     List<TechnologyRequirement> selectAll();
+    //新增
+    List<TechnologyRequirement> selectAllWithTechnologyName();
+    //新增
+    List<TechnologyRequirement> selectTechReqByTechnologyId(@Param("technologyId") String technologyId);
 }

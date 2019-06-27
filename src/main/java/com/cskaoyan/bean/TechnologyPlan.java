@@ -19,6 +19,18 @@ public class TechnologyPlan {
 
     private Date technologyPlanEnd;
 
+    //增加一个成员变量technologyName,用于对应的jsp
+    private String technologyName;
+
+    public String getTechnologyName() {
+        return technologyName;
+    }
+
+    public void setTechnologyName(String technologyName) {
+        this.technologyName = technologyName;
+    }
+
+
     public String getTechnologyPlanId() {
         return technologyPlanId;
     }

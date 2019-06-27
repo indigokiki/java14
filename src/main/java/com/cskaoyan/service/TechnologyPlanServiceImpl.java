@@ -23,7 +23,7 @@ public class TechnologyPlanServiceImpl implements TechnologyPlanService {
     @Override
     public Page<TechnologyPlan> selectTechPlanPage(int page, int rows) {
         PageHelper.startPage(page, rows);
-        List<TechnologyPlan> technologyPlans = planMapper.selectAll();
+        List<TechnologyPlan> technologyPlans = planMapper.selectAllWithTechnologyName();
         Page<TechnologyPlan> technologyPlanPage = new Page<>();
         technologyPlanPage.setRows(technologyPlans);
         technologyPlanPage.setTotal(technologyPlans.size());

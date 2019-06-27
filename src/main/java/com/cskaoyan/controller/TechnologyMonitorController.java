@@ -61,6 +61,31 @@ public class TechnologyMonitorController {
         return technologyPage;
     }
 
+    @RequestMapping("/technology/get/{technologyId}")
+    @ResponseBody
+    public Technology getTechnologyById(@PathVariable("technologyId") String technologyId){
+        Technology technology = technologyService.selectTechnologyById(technologyId);
+        return technology;
+    }
+
+    /*工艺编号搜索：technology/search_technology_by_technologyId
+    * 精确查询*/
+    @RequestMapping("/technology/search_technology_by_technologyId")
+    @ResponseBody
+    public Page<Technology> searchTechPageById(String searchValue){
+        Page<Technology> technologyPage = technologyService.searchTechPageById(searchValue);
+        return technologyPage;
+    }
+
+    /*工艺名称搜索：technology/search_technology_by_technologyName
+    * 模糊查询*/
+    @RequestMapping("/technology/search_technology_by_technologyName")
+    @ResponseBody
+    public Page<Technology> searchTechPageByName(String searchValue, int page, int rows){
+        Page<Technology> technologyPage = technologyService.searchTechPageByVagueName(searchValue, page, rows);
+        return technologyPage;
+    }
+
 
     @Autowired
     TechnologyRequirementService requirementService;
@@ -81,6 +106,19 @@ public class TechnologyMonitorController {
         Page<TechnologyRequirement> technologyRequirementPage = requirementService.selectTechReqPage(page, rows);
         return technologyRequirementPage;
     }
+
+    //工艺要求编号搜索：technologyRequirement/search_technologyRequirement_by_technologyRequirementId
+    @RequestMapping("/technologyRequirement/search_technologyRequirement_by_technologyRequirementId")
+    @ResponseBody
+    public Page<TechnologyRequirement> searchTechReqPageById(String searchValue){
+        Page<TechnologyRequirement> technologyRequirementPage = requirementService.searchTechReqPageById(searchValue);
+        return technologyRequirementPage;
+    }
+
+
+    //工艺名称搜索：technologyRequirement/search_technologyRequirement_by_technologyName
+
+
 
     //三.工艺计划
 
