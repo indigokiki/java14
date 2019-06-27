@@ -1,0 +1,12 @@
+1、从github拉最新的application.xml 
+
+2、两行代码搞定
+
+   //首先这么写
+   PageHelper.startPage(pageNum,pageSize);
+   //然后紧接着调用的mapper.select语句，就会自动分页！！
+   List<UnqualifyApply> unqualifyApplies = unqualifyApplyMapper.selectUnqualifyApplyList();
+
+
+   //接下来再调用mapper.select语句不会分页，所以每调用一次select语句都要写一句（一次性代码）
+   PageHelper.startPage(pageNum,pageSize);
