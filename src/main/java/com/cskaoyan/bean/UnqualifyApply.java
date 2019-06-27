@@ -1,47 +1,28 @@
 package com.cskaoyan.bean;
 
-
-
-
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class UnqualifyApply {
-
-    private Timestamp applyDate;
-    private Timestamp assemblyDate;
-    private String empId;
-    private String empName;
-    private String note;
-    private String productId;
-    private String productName;
     private String unqualifyApplyId;
-    private int unqualifyCount;
+
+    private String productId;
+
     private String unqualifyItem;
 
+    private Integer unqualifyCount;
 
-    public Timestamp getApplyDate() {
-        return applyDate;
-    }
+    private Timestamp assemblyDate;
 
-    public void setApplyDate(Timestamp applyDate) {
-        this.applyDate = applyDate;
-    }
+    private String empId;
 
-    public Timestamp getAssemblyDate() {
-        return assemblyDate;
-    }
+    private Timestamp applyDate;
 
-    public void setAssemblyDate(Timestamp assemblyDate) {
-        this.assemblyDate = assemblyDate;
-    }
+    private String note;
 
-    public String getEmpId() {
-        return empId;
-    }
+    private String productName;
 
-    public void setEmpId(String empId) {
-        this.empId = empId;
-    }
+    private String empName;
 
     public String getEmpName() {
         return empName;
@@ -49,22 +30,6 @@ public class UnqualifyApply {
 
     public void setEmpName(String empName) {
         this.empName = empName;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
-
-    public String getProductId() {
-        return productId;
-    }
-
-    public void setProductId(String productId) {
-        this.productId = productId;
     }
 
     public String getProductName() {
@@ -80,15 +45,15 @@ public class UnqualifyApply {
     }
 
     public void setUnqualifyApplyId(String unqualifyApplyId) {
-        this.unqualifyApplyId = unqualifyApplyId;
+        this.unqualifyApplyId = unqualifyApplyId == null ? null : unqualifyApplyId.trim();
     }
 
-    public int getUnqualifyCount() {
-        return unqualifyCount;
+    public String getProductId() {
+        return productId;
     }
 
-    public void setUnqualifyCount(int unqualifyCount) {
-        this.unqualifyCount = unqualifyCount;
+    public void setProductId(String productId) {
+        this.productId = productId == null ? null : productId.trim();
     }
 
     public String getUnqualifyItem() {
@@ -96,6 +61,46 @@ public class UnqualifyApply {
     }
 
     public void setUnqualifyItem(String unqualifyItem) {
-        this.unqualifyItem = unqualifyItem;
+        this.unqualifyItem = unqualifyItem == null ? null : unqualifyItem.trim();
+    }
+
+    public Integer getUnqualifyCount() {
+        return unqualifyCount;
+    }
+
+    public void setUnqualifyCount(Integer unqualifyCount) {
+        this.unqualifyCount = unqualifyCount;
+    }
+
+    public Date getAssemblyDate() {
+        return assemblyDate;
+    }
+
+    public void setAssemblyDate(Timestamp assemblyDate) {
+        this.assemblyDate = assemblyDate;
+    }
+
+    public String getEmpId() {
+        return empId;
+    }
+
+    public void setEmpId(String empId) {
+        this.empId = empId == null ? null : empId.trim();
+    }
+
+    public Date getApplyDate() {
+        return applyDate;
+    }
+
+    public void setApplyDate(Timestamp applyDate) {
+        this.applyDate = applyDate;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note == null ? null : note.trim();
     }
 }

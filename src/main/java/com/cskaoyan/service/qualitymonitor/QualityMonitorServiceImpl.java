@@ -5,6 +5,7 @@ import com.cskaoyan.mapper.*;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -109,6 +110,36 @@ public class QualityMonitorServiceImpl implements QualityMonitorService {
         returnpage.setTotal(processCountCheckMapper.getProcessCountCheckNum());
         returnpage.setRows(processCountCheckList);
         return returnpage;
+    }
+
+    @Override
+    public int addUnqualifyApply(UnqualifyApply unqualifyApply) {
+        int insert = unqualifyApplyMapper.insert(unqualifyApply);
+        return insert;
+    }
+
+    @Override
+    public int addFinalMeasuretCheck(FinalMeasuretCheck finalMeasuretCheck) {
+        int insert = finalMeasuretCheckMapper.insert(finalMeasuretCheck);
+        return insert;
+    }
+
+    @Override
+    public int addFinalCountCheck(FinalCountCheck finalCountCheck) {
+        int insert = finalCountCheckMapper.insert(finalCountCheck);
+        return insert;
+    }
+
+    @Override
+    public int addProcessMeasureCheck(ProcessMeasureCheck processMeasureCheck) {
+        int insert = processMeasureCheckMapper.insert(processMeasureCheck);
+        return insert;
+    }
+
+    @Override
+    public int addProcessCountCheck(ProcessCountCheck processCountCheck) {
+        int insert = processCountCheckMapper.insert(processCountCheck);
+        return insert;
     }
 
 
