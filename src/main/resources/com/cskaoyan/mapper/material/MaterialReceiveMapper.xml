@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cskaoyan.mapper.MaterialMapper">
-  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.Material">
-    <id column="material_id" jdbcType="VARCHAR" property="materialId" />
-    <result column="material_type" jdbcType="VARCHAR" property="materialType" />
-    <result column="status" jdbcType="VARCHAR" property="status" />
-    <result column="remaining" jdbcType="INTEGER" property="remaining" />
+<mapper namespace="com.cskaoyan.mapper.material.MaterialReceiveMapper">
+  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.material.MaterialReceive">
+    <id column="receive_id" jdbcType="VARCHAR" property="receiveId" />
+    <result column="material_id" jdbcType="VARCHAR" property="materialId" />
+    <result column="amount" jdbcType="INTEGER" property="amount" />
+    <result column="receive_date" jdbcType="TIMESTAMP" property="receiveDate" />
+    <result column="sender" jdbcType="VARCHAR" property="sender" />
+    <result column="receiver" jdbcType="VARCHAR" property="receiver" />
     <result column="note" jdbcType="VARCHAR" property="note" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -67,16 +69,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    material_id, material_type, status, remaining, note
+    receive_id, material_id, amount, receive_date, sender, receiver, note
   </sql>
-  <select id="selectByExample" parameterType="com.cskaoyan.bean.MaterialExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.cskaoyan.bean.material.MaterialReceiveExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     'false' as QUERYID,
     <include refid="Base_Column_List" />
-    from material
+    from material_receive
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -84,85 +86,106 @@
       order by ${orderByClause}
     </if>
   </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from material
-    where material_id = #{materialId,jdbcType=VARCHAR}
+    from material_receive
+    where receive_id = #{receiveId,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from material
-    where material_id = #{materialId,jdbcType=VARCHAR}
+    delete from material_receive
+    where receive_id = #{receiveId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.cskaoyan.bean.MaterialExample">
-    delete from material
+  <delete id="deleteByExample" parameterType="com.cskaoyan.bean.material.MaterialReceiveExample">
+    delete from material_receive
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.cskaoyan.bean.Material">
-    insert into material (material_id, material_type, status, 
-      remaining, note)
-    values (#{materialId,jdbcType=VARCHAR}, #{materialType,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
-      #{remaining,jdbcType=INTEGER}, #{note,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.cskaoyan.bean.material.MaterialReceive">
+    insert into material_receive (receive_id, material_id, amount, 
+      receive_date, sender, receiver, 
+      note)
+    values (#{receiveId,jdbcType=VARCHAR}, #{materialId,jdbcType=VARCHAR}, #{amount,jdbcType=INTEGER}, 
+      #{receiveDate,jdbcType=TIMESTAMP}, #{sender,jdbcType=VARCHAR}, #{receiver,jdbcType=VARCHAR}, 
+      #{note,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.cskaoyan.bean.Material">
-    insert into material
+  <insert id="insertSelective" parameterType="com.cskaoyan.bean.material.MaterialReceive">
+    insert into material_receive
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="receiveId != null">
+        receive_id,
+      </if>
       <if test="materialId != null">
         material_id,
       </if>
-      <if test="materialType != null">
-        material_type,
+      <if test="amount != null">
+        amount,
       </if>
-      <if test="status != null">
-        status,
+      <if test="receiveDate != null">
+        receive_date,
       </if>
-      <if test="remaining != null">
-        remaining,
+      <if test="sender != null">
+        sender,
+      </if>
+      <if test="receiver != null">
+        receiver,
       </if>
       <if test="note != null">
         note,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="receiveId != null">
+        #{receiveId,jdbcType=VARCHAR},
+      </if>
       <if test="materialId != null">
         #{materialId,jdbcType=VARCHAR},
       </if>
-      <if test="materialType != null">
-        #{materialType,jdbcType=VARCHAR},
+      <if test="amount != null">
+        #{amount,jdbcType=INTEGER},
       </if>
-      <if test="status != null">
-        #{status,jdbcType=VARCHAR},
+      <if test="receiveDate != null">
+        #{receiveDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="remaining != null">
-        #{remaining,jdbcType=INTEGER},
+      <if test="sender != null">
+        #{sender,jdbcType=VARCHAR},
+      </if>
+      <if test="receiver != null">
+        #{receiver,jdbcType=VARCHAR},
       </if>
       <if test="note != null">
         #{note,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.cskaoyan.bean.MaterialExample" resultType="java.lang.Long">
-    select count(*) from material
+  <select id="countByExample" parameterType="com.cskaoyan.bean.material.MaterialReceiveExample" resultType="java.lang.Long">
+    select count(*) from material_receive
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update material
+    update material_receive
     <set>
+      <if test="record.receiveId != null">
+        receive_id = #{record.receiveId,jdbcType=VARCHAR},
+      </if>
       <if test="record.materialId != null">
         material_id = #{record.materialId,jdbcType=VARCHAR},
       </if>
-      <if test="record.materialType != null">
-        material_type = #{record.materialType,jdbcType=VARCHAR},
+      <if test="record.amount != null">
+        amount = #{record.amount,jdbcType=INTEGER},
       </if>
-      <if test="record.status != null">
-        status = #{record.status,jdbcType=VARCHAR},
+      <if test="record.receiveDate != null">
+        receive_date = #{record.receiveDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.remaining != null">
-        remaining = #{record.remaining,jdbcType=INTEGER},
+      <if test="record.sender != null">
+        sender = #{record.sender,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiver != null">
+        receiver = #{record.receiver,jdbcType=VARCHAR},
       </if>
       <if test="record.note != null">
         note = #{record.note,jdbcType=VARCHAR},
@@ -173,40 +196,50 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update material
-    set material_id = #{record.materialId,jdbcType=VARCHAR},
-      material_type = #{record.materialType,jdbcType=VARCHAR},
-      status = #{record.status,jdbcType=VARCHAR},
-      remaining = #{record.remaining,jdbcType=INTEGER},
+    update material_receive
+    set receive_id = #{record.receiveId,jdbcType=VARCHAR},
+      material_id = #{record.materialId,jdbcType=VARCHAR},
+      amount = #{record.amount,jdbcType=INTEGER},
+      receive_date = #{record.receiveDate,jdbcType=TIMESTAMP},
+      sender = #{record.sender,jdbcType=VARCHAR},
+      receiver = #{record.receiver,jdbcType=VARCHAR},
       note = #{record.note,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.Material">
-    update material
+  <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.material.MaterialReceive">
+    update material_receive
     <set>
-      <if test="materialType != null">
-        material_type = #{materialType,jdbcType=VARCHAR},
+      <if test="materialId != null">
+        material_id = #{materialId,jdbcType=VARCHAR},
       </if>
-      <if test="status != null">
-        status = #{status,jdbcType=VARCHAR},
+      <if test="amount != null">
+        amount = #{amount,jdbcType=INTEGER},
       </if>
-      <if test="remaining != null">
-        remaining = #{remaining,jdbcType=INTEGER},
+      <if test="receiveDate != null">
+        receive_date = #{receiveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sender != null">
+        sender = #{sender,jdbcType=VARCHAR},
+      </if>
+      <if test="receiver != null">
+        receiver = #{receiver,jdbcType=VARCHAR},
       </if>
       <if test="note != null">
         note = #{note,jdbcType=VARCHAR},
       </if>
     </set>
-    where material_id = #{materialId,jdbcType=VARCHAR}
+    where receive_id = #{receiveId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.Material">
-    update material
-    set material_type = #{materialType,jdbcType=VARCHAR},
-      status = #{status,jdbcType=VARCHAR},
-      remaining = #{remaining,jdbcType=INTEGER},
+  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.material.MaterialReceive">
+    update material_receive
+    set material_id = #{materialId,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=INTEGER},
+      receive_date = #{receiveDate,jdbcType=TIMESTAMP},
+      sender = #{sender,jdbcType=VARCHAR},
+      receiver = #{receiver,jdbcType=VARCHAR},
       note = #{note,jdbcType=VARCHAR}
-    where material_id = #{materialId,jdbcType=VARCHAR}
+    where receive_id = #{receiveId,jdbcType=VARCHAR}
   </update>
 </mapper>
