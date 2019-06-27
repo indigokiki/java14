@@ -1,7 +1,7 @@
 package com.cskaoyan.bean;
 
 import java.sql.Timestamp;
-import java.util.Date;
+
 
 public class FinalMeasuretCheck {
     private String fMeasureCheckId;
@@ -54,7 +54,7 @@ public class FinalMeasuretCheck {
         this.checkItem = checkItem == null ? null : checkItem.trim();
     }
 
-    public Date getCdate() {
+    public Timestamp getCdate() {
         return cdate;
     }
 

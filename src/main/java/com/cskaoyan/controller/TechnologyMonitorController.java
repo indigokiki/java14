@@ -198,6 +198,18 @@ public class TechnologyMonitorController {
 
 
     //工艺名称搜索：technologyRequirement/search_technologyRequirement_by_technologyName
+    //精确搜索
+    @RequestMapping("/technologyRequirement/search_technologyRequirement_by_technologyName")
+    @ResponseBody
+    public Page<TechnologyRequirement> searchTechReqPageByTechName(String searchValue, int page, int rows){
+        Page<TechnologyRequirement> requirementPage = requirementService.searchTechReqPageByTechnologyName(searchValue, page, rows);
+        return requirementPage;
+    }
+
+
+
+
+
 
 
 

@@ -25,4 +25,14 @@ public interface QualityMonitorService {
 
     Page getPCountCheckPage(int page,int rows);
 
+    int addUnqualifyApply(UnqualifyApply unqualifyApply);
+
+    int addFinalMeasuretCheck(FinalMeasuretCheck finalMeasuretCheck);
+
+    int addFinalCountCheck(FinalCountCheck finalCountCheck);
+
+    int addProcessMeasureCheck(ProcessMeasureCheck processMeasureCheck);
+
+    int addProcessCountCheck(ProcessCountCheck processCountCheck);
+
 }

@@ -1,9 +1,7 @@
 package com.cskaoyan.controller.qualitymonitor;
 
 import com.cskaoyan.bean.*;
-import com.cskaoyan.bean.schemedprogress.Order;
 import com.cskaoyan.service.qualitymonitor.QualityMonitorService;
-import com.cskaoyan.service.schemedprogress.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +22,14 @@ public class QualityMonitorController {
 
     @RequestMapping("unqualify/find*")
     public ModelAndView unqualifyfind(ModelAndView modelAndView){
+    @RequestMapping("unqualify/find")
+    public ModelAndView unqualifyfind(ModelAndView modelAndView, HttpServletRequest httpServletRequest){
+        HttpSession session = httpServletRequest.getSession();
+        List<String> sysPermissionList = new ArrayList<>();
+        sysPermissionList.add("unqualify:add");
+        sysPermissionList.add("unqualify:edit");
+        sysPermissionList.add("unqualify:delete");
+        session.setAttribute("sysPermissionList",sysPermissionList);
         modelAndView.setViewName("/WEB-INF/jsp/unqualify_list.jsp");
         return modelAndView;
     }
@@ -58,13 +64,7 @@ public class QualityMonitorController {
 //    public List<Department> depgetdata(){
 //        return qualityMonitorService.getDepartmentList();
 //    }
-
-
-    @RequestMapping ("order/get_data")
-    public List<Order> ordergetdata(){
-        return orderService.getOrderData();
-    }
-
+//
     @RequestMapping("custom/get_data")
     public List<Custom> cusgetdata(){
         return qualityMonitorService.getCustomList();

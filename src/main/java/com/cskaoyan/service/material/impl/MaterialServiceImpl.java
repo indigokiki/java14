@@ -58,4 +58,11 @@ public class MaterialServiceImpl implements MaterialService {
         int insert = materialMapper.insert(material);
         return insert;
     }
+
+    @Override
+    public int deleteMaterials(String id) {
+        MaterialExample materialExample = new MaterialExample();
+        int i = materialMapper.deleteByPrimaryKey(id);
+        return i;
+    }
 }

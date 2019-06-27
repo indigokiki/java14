@@ -68,17 +68,28 @@ public class MaterialMonitorController {
         return map;
     }
     //物料删除确认
-    @RequestMapping("material/delete_judge")
+    @RequestMapping("/material/delete_judge")
     @ResponseBody
     public String deleteMaterialConfirm(){
         return "{}";
     }
-   /* //物料从数据库删除
-    @RequestMapping("material/delete_batch")
+    //物料从数据库删除
+    @RequestMapping("/material/delete_batch")
     @ResponseBody
-    public Map<String,Object> deleteMaterials(List<Material> materials){
-
-    }*/
+    public Map<String,Object> deleteMaterials(String[] ids){
+        int i = 0;
+        for(String id : ids){
+             i += materialService.deleteMaterials(id);
+        }
+        Map<String, Object> map = new HashMap<>();
+        if(i>=1){
+            map.put("status",200);
+            map.put("msg","ok");
+        }else{
+            map.put("data","error");
+        }
+        return map;
+    }
 
     //物料收入
     @RequestMapping("/materialReceive/find")
