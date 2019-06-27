@@ -49,10 +49,10 @@ public class QualityMonitorController {
 
 
 
-    @RequestMapping("department/get_data")
+    /*@RequestMapping("department/get_data")
     public List<Department> depgetdata(){
         return qualityMonitorService.getDepartmentList();
-    }
+    }*/
 
     @RequestMapping("custom/get_data")
     public List<Custom> cusgetdata(){
