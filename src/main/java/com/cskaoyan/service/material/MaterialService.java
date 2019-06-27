@@ -12,6 +12,7 @@ public interface MaterialService {
      Page<MaterialConsumes> selectMaterialConsumesPage(int page, int rows);
 
      int insertMaterial(Material material);
+     int deleteMaterials(String id);
 
 
 }
