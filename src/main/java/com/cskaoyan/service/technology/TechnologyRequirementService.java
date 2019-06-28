@@ -29,4 +29,7 @@ public interface TechnologyRequirementService {
     //删除功能
     int deleteRequirementById(String technologyRequirementId);
 
+    //只修改requrirement成员变量的功能
+    int updateRequirementOnlyById(String technologyRequirementId, String requirement);
+
 }

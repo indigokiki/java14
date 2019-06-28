@@ -108,4 +108,12 @@ public class TechnologyRequirementServiceImpl implements TechnologyRequirementSe
         int i = requirementMapper.deleteByPrimaryKey(technologyRequirementId);
         return i;
     }
+
+    @Override
+    public int updateRequirementOnlyById(String technologyRequirementId, String requirement) {
+        TechnologyRequirement technologyRequirement = requirementMapper.selectByPrimaryKey(technologyRequirementId);
+        technologyRequirement.setRequirement(requirement);
+        int i = requirementMapper.updateByPrimaryKey(technologyRequirement);
+        return i;
+    }
 }

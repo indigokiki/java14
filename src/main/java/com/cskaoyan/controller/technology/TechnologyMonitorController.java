@@ -282,6 +282,25 @@ public class TechnologyMonitorController {
         return responseVo;
     }
 
+
+    @RequestMapping("/technologyRequirement/update_requirement")
+    @ResponseBody
+    public ResponseVo updateRequirementById(String technologyRequirementId, String requirement){
+        int i = requirementService.updateRequirementOnlyById(technologyRequirementId, requirement);
+        ResponseVo<Object> responseVo = new ResponseVo<>();
+        if (i == 1){
+            responseVo.setStatus(200);
+            responseVo.setMsg("OK");
+        }else {
+            responseVo.setStatus(0);
+            responseVo.setMsg("编辑失败！");
+        }
+
+        return responseVo;
+    }
+
+
+
     /*工艺要求-删除*/
     @RequestMapping("/technologyRequirement/delete_judge")
     @ResponseBody
