@@ -32,4 +32,8 @@ public interface FinalMeasuretCheckMapper {
     List<FinalMeasuretCheck> getFinalMeasuretCheckList();
 
     int getFinalMeasuretCheckNum();
+
+    List<FinalMeasuretCheck> selectFinalMeasuretCheckListByOrderId(@Param("orderId") String orderId);
+
+    int countFinalMeasuretCheckListByOrderId(@Param("orderId")String orderId);
 }

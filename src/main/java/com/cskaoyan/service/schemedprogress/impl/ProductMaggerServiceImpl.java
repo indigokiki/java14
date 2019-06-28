@@ -1,6 +1,5 @@
 package com.cskaoyan.service.schemedprogress.impl;
 
-import com.cskaoyan.bean.ProcessExample;
 import com.cskaoyan.bean.Product;
 import com.cskaoyan.bean.ProductExample;
 import com.cskaoyan.bean.schemedprogress.ProductMagger;
