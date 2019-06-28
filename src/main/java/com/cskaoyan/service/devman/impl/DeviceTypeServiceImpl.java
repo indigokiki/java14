@@ -24,4 +24,21 @@ public class DeviceTypeServiceImpl implements IDeviceTpyeService {
         deviceTypeManage.setTotal(all.size());
         return deviceTypeManage;
     }
+
+    @Override
+    public void update(DeviceType deviceType) {
+        idevmanMapper.update(deviceType);
+    }
+
+    @Override
+    public void insert(DeviceType deviceType) {
+        idevmanMapper.insert(deviceType);
+    }
+
+    @Override
+    public void delete(String[] ids) {
+        for (String id : ids) {
+            idevmanMapper.delete(id);
+        }
+    }
 }
