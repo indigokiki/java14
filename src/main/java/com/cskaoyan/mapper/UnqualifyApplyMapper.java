@@ -32,4 +32,8 @@ public interface UnqualifyApplyMapper {
     List<UnqualifyApply> getUnqualifyApplyList();
 
     int getUnqualifyApplyNum();
+
+    List<UnqualifyApply> selectUnqualifyApplyListByProductName(@Param("productName") String productName);
+
+    int countUnqualifyApplyListByProductName(@Param("productName") String productName);
 }

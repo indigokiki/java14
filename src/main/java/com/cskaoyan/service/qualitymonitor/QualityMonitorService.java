@@ -61,4 +61,20 @@ public interface QualityMonitorService {
 
     int deleteProcessCountCheck(String[] processCountCheckIds);
 
+    Page searchUnqualifyApplyById(String id,int page,int rows);
+
+    Page searchMeasurePageById(String id,int page,int rows);
+
+    Page searchFCountCheckPageById(String id,int page,int rows);
+
+    Page searchPMeasureCheckPageById(String id,int page,int rows);
+
+    Page searchPCountCheckPageById(String id,int page,int rows);
+
+    Page searchUnqualifyApplyByProductName(String productName,int page,int rows);
+
+    Page searchMeasurePageByOrderId(String id,int page,int rows);
+
+    Page searchFCountCheckPageByOrderId(String id,int page,int rows);
+
 }

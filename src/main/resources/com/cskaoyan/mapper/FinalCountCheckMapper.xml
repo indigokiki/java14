@@ -343,4 +343,30 @@
   <select id="getFinalCountCheckNum" resultType="Integer">
     select count(f_count_check_id) from final_count_check
   </select>
+
+  <select id="selectFinalCountCheckListByOrderId" resultMap="BaseResultMap">
+    select fcc.f_count_check_id,
+    fcc.order_id,
+    fcc.check_item,
+    fcc.sample,
+    fcc.check_number,
+    fcc.unqualify,
+    fcc.qualify,
+    fcc.cdate,
+    fcc.measure_data,
+    fcc.emp_id,
+    fcc.result,
+    fcc.note,
+    emp.emp_name
+    from final_count_check fcc
+    left join employee emp on fcc.emp_id = emp.emp_id
+    where fcc.order_id like #{orderId}
+  </select>
+
+  <select id="countFinalCountCheckListByOrderId" resultType="Integer">
+    select count(fcc.f_count_check_id)
+    from final_count_check fcc
+    left join employee emp on fcc.emp_id = emp.emp_id
+    where fcc.order_id like #{orderId}
+  </select>
 </mapper>
