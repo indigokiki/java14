@@ -6,6 +6,7 @@ import com.cskaoyan.mapper.devman.IDeviceTpyeMapper;
 import com.cskaoyan.service.devman.IDeviceTpyeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -42,8 +43,17 @@ public class DeviceTpyeController {
 
 
     @RequestMapping("deviceType/get_data")
+    @ResponseBody
     public List<DeviceType> findlist(){
         List<DeviceType> all = deviceTpyeMapper.findAll();
         return all;
+    }
+
+
+    @RequestMapping("deviceType/get/{id}")
+    @ResponseBody
+    public DeviceType findByTypeId(@PathVariable("id") String id){
+        DeviceType byTypeId = deviceTpyeMapper.findByTypeId(id);
+        return byTypeId;
     }
 }

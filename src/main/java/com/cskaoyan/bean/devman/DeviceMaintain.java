@@ -10,11 +10,11 @@ public class DeviceMaintain {
 
     private String deviceMaintainEmpId;
 
-    private Date deviceMaintainDate;
+    private String deviceMaintainDate;
 
     private String deviceMaintainResult;
 
-    private BigDecimal deviceMaintainCost;
+    private Double deviceMaintainCost;
 
     private String note;
     private String deviceMaintainEmp;
@@ -51,11 +51,11 @@ public class DeviceMaintain {
         this.deviceMaintainEmpId = deviceMaintainEmpId == null ? null : deviceMaintainEmpId.trim();
     }
 
-    public Date getDeviceMaintainDate() {
+    public String getDeviceMaintainDate() {
         return deviceMaintainDate;
     }
 
-    public void setDeviceMaintainDate(Date deviceMaintainDate) {
+    public void setDeviceMaintainDate(String deviceMaintainDate) {
         this.deviceMaintainDate = deviceMaintainDate;
     }
 
@@ -67,11 +67,11 @@ public class DeviceMaintain {
         this.deviceMaintainResult = deviceMaintainResult == null ? null : deviceMaintainResult.trim();
     }
 
-    public BigDecimal getDeviceMaintainCost() {
+    public Double getDeviceMaintainCost() {
         return deviceMaintainCost;
     }
 
-    public void setDeviceMaintainCost(BigDecimal deviceMaintainCost) {
+    public void setDeviceMaintainCost(Double deviceMaintainCost) {
         this.deviceMaintainCost = deviceMaintainCost;
     }
 

@@ -11,9 +11,9 @@ public class Employee {
 
     private String idCode;
 
-    private Date birthday;
+    private String birthday;
 
-    private Date joinDate;
+    private String joinDate;
 
     private String status;
 
@@ -61,19 +61,19 @@ public class Employee {
         this.idCode = idCode == null ? null : idCode.trim();
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
-    public Date getJoinDate() {
+    public String getJoinDate() {
         return joinDate;
     }
 
-    public void setJoinDate(Date joinDate) {
+    public void setJoinDate(String joinDate) {
         this.joinDate = joinDate;
     }
 

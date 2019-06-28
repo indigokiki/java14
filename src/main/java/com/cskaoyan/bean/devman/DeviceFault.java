@@ -11,7 +11,7 @@ public class DeviceFault {
 
     private String deviceFaultDetail;
 
-    private Date deviceFaultDate;
+    private String deviceFaultDate;
 
     private String deviceFaultMaintenance;
     private String deviceName;
@@ -56,11 +56,11 @@ public class DeviceFault {
         this.deviceFaultDetail = deviceFaultDetail == null ? null : deviceFaultDetail.trim();
     }
 
-    public Date getDeviceFaultDate() {
+    public String getDeviceFaultDate() {
         return deviceFaultDate;
     }
 
-    public void setDeviceFaultDate(Date deviceFaultDate) {
+    public void setDeviceFaultDate(String deviceFaultDate) {
         this.deviceFaultDate = deviceFaultDate;
     }
 
