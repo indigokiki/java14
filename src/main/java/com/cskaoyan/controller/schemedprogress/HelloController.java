@@ -9,6 +9,6 @@ public class HelloController {
     @RequestMapping("hello")
     public String home(){
         System.out.println("123");
-        return "home";
+        return "/WEB-INF/jsp/home.jsp";
     }
 }

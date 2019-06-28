@@ -36,7 +36,7 @@ public class DeviceTpyeController {
         ModelAndView mv = new ModelAndView();
         String[] sysPermissionList={"device:add","device:edit","device:delete"};
         session.setAttribute("sysPermissionList",sysPermissionList);
-        mv.setViewName("deviceType");
+        mv.setViewName("/WEB-INF/jsp/deviceType.jsp");
 
         return mv;
     }
@@ -56,4 +56,12 @@ public class DeviceTpyeController {
         DeviceType byTypeId = deviceTpyeMapper.findByTypeId(id);
         return byTypeId;
     }
+
+    @RequestMapping("deviceType/edit_judge")
+    @ResponseBody
+    public String judge(){
+        return "";
+    }
+
+
 }

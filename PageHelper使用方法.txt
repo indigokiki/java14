@@ -1,0 +1,24 @@
+1、从github拉最新的application.xml 
+
+2、两行代码搞定
+
+   //首先这么写
+   PageHelper.startPage(pageNum,pageSize);
+   //然后紧接着调用的mapper.select语句，就会自动分页！！
+   List<xxxx> xxxxlist = xxxxMapper.selectxxxxxx();
+
+
+
+   //接下来再调用mapper.select语句不会分页，所以每调用一次select语句都要写一句（一次性代码）
+   PageHelper.startPage(pageNum,pageSize);
+
+
+
+3、很重要的注意事项
+
+    Page<T> page = new Page<>();
+
+    page.setRows();//这里放的是你刚select出来的xxxxlist
+    page.setTotal();//这里放的是mapper.countxxxx，也就是数据库中的数据总条目数，
+                    //而不是xxxxlist.size()，这样起不了分页的效果！！
+                    //前端会检查的你total是否大于10，大于的话可以点下一页，否则不可以

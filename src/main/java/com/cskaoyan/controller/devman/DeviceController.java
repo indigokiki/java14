@@ -28,7 +28,7 @@ public class DeviceController {
         ModelAndView modelAndView = new ModelAndView();
         String[] sysPermissionList={"device:add","device:edit","device:delete"};
         session.setAttribute("sysPermissionList",sysPermissionList);
-        modelAndView.setViewName("deviceList");
+        modelAndView.setViewName("/WEB-INF/jsp/deviceList.jsp");
         return modelAndView;
     }
 
@@ -73,14 +73,14 @@ public class DeviceController {
     @RequestMapping("deviceList/add")
     public ModelAndView add(){
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("deviceList_add");
+        mv.setViewName("/WEB-INF/jsp/deviceList_add.jsp");
         return mv;
     }
 
     @RequestMapping("deviceList/edit")
     public ModelAndView editDev(){
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("deviceList_edit");
+        mv.setViewName("/WEB-INF/jsp/deviceList_edit.jsp");
         return mv;
     }
 

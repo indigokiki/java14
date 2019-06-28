@@ -20,7 +20,7 @@ public class DeviceMaintainController {
     @RequestMapping("device/deviceMaintain")
     public ModelAndView findAll(){
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("deviceMaintain");
+        mv.setViewName("/WEB-INF/jsp/deviceMaintain.jsp");
         String[] sysPermissionList={"device:add","device:edit","device:delete"};
         session.setAttribute("sysPermissionList",sysPermissionList);
         return mv;
