@@ -115,6 +115,13 @@ public class QualityMonitorController {
         return qualityMonitorService.searchUnqualifyApplyById(searchValue,page,rows);
     }
 
+
+    @RequestMapping("unqualify/search_unqualify_by_productName")
+    public Page unqualifysearchbyproductname(String searchValue,int page,int rows){
+        return qualityMonitorService.searchUnqualifyApplyByProductName(searchValue,page,rows);
+    }
+
+
     @RequestMapping("measure/find")
     public ModelAndView measurefind(ModelAndView modelAndView,HttpServletRequest httpServletRequest){
         HttpSession session = httpServletRequest.getSession();
@@ -200,6 +207,17 @@ public class QualityMonitorController {
         return responseVo;
     }
 
+    @RequestMapping("measure/search_fMeasureCheck_by_fMeasureCheckId")
+    public Page measuresearchbyid(String searchValue,int page,int rows){
+        return qualityMonitorService.searchMeasurePageById(searchValue,page,rows);
+    }
+
+    @RequestMapping("measure/search_fMeasureCheck_by_orderId")
+    public Page measuresearchbyorderid(String searchValue,int page,int rows){
+        return qualityMonitorService.searchMeasurePageByOrderId(searchValue,page,rows);
+    }
+
+
     @RequestMapping("f_count_check/find")
     public ModelAndView fcountcheckfind(ModelAndView modelAndView,HttpServletRequest httpServletRequest){
         HttpSession session = httpServletRequest.getSession();
@@ -282,6 +300,16 @@ public class QualityMonitorController {
             responseVo.setMsg("操作失败！请联系管理员！");
         }
         return responseVo;
+    }
+
+    @RequestMapping("f_count_check/search_fCountCheck_by_fCountCheckId")
+    public Page fcountchecksearchbyid(String searchValue,int page,int rows){
+        return qualityMonitorService.searchFCountCheckPageById(searchValue,page,rows);
+    }
+
+    @RequestMapping("f_count_check/search_fCountCheck_by_orderId")
+    public Page fcountchecksearchbyorderid(String searchValue,int page,int rows){
+        return qualityMonitorService.searchFCountCheckPageByOrderId(searchValue,page,rows);
     }
 
     @RequestMapping("p_measure_check/find")
@@ -368,6 +396,11 @@ public class QualityMonitorController {
         return responseVo;
     }
 
+    @RequestMapping("p_measure_check/search_pMeasureCheck_by_pMeasureCheckId")
+    public Page pmeasurechecksearchbyid(String searchValue,int page,int rows){
+        return qualityMonitorService.searchPMeasureCheckPageById(searchValue,page,rows);
+    }
+
     @RequestMapping("p_count_check/find")
     public ModelAndView pcountcheckfind(ModelAndView modelAndView,HttpServletRequest httpServletRequest){
         HttpSession session = httpServletRequest.getSession();
@@ -450,6 +483,11 @@ public class QualityMonitorController {
             responseVo.setMsg("操作失败！请联系管理员！");
         }
         return responseVo;
+    }
+
+    @RequestMapping("p_count_check/search_pCountCheck_by_pCountCheckId")
+    public Page pcountchecksearchbyid(String searchValue,int page,int rows){
+        return qualityMonitorService.searchPCountCheckPageById(searchValue,page,rows);
     }
 
 

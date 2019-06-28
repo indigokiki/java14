@@ -70,4 +70,10 @@ public interface QualityMonitorService {
 
     Page searchPCountCheckPageById(String id,int page,int rows);
 
+    Page searchUnqualifyApplyByProductName(String productName,int page,int rows);
+
+    Page searchMeasurePageByOrderId(String id,int page,int rows);
+
+    Page searchFCountCheckPageByOrderId(String id,int page,int rows);
+
 }

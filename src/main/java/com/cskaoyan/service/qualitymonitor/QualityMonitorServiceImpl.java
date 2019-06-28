@@ -286,19 +286,57 @@ public class QualityMonitorServiceImpl implements QualityMonitorService {
 
     @Override
     public Page searchPMeasureCheckPageById(String id, int page, int rows) {
-        UnqualifyApplyExample unqualifyApplyExample = new UnqualifyApplyExample();
-        UnqualifyApplyExample.Criteria criteria = unqualifyApplyExample.createCriteria();
-        criteria.andUnqualifyApplyIdLike("%" + id + "%");
+        ProcessMeasureCheckExample processMeasureCheckExample = new ProcessMeasureCheckExample();
+        ProcessMeasureCheckExample.Criteria criteria = processMeasureCheckExample.createCriteria();
+        criteria.andPMeasureCheckIdLike("%" + id + "%");
         PageHelper.startPage(page,rows);
-        Page<UnqualifyApply> mypage = new Page<>();
-        mypage.setRows(unqualifyApplyMapper.selectByExample(unqualifyApplyExample));
-        mypage.setTotal((int)unqualifyApplyMapper.countByExample(unqualifyApplyExample));
+        Page<ProcessMeasureCheck> mypage = new Page<>();
+        mypage.setRows(processMeasureCheckMapper.selectByExample(processMeasureCheckExample));
+        mypage.setTotal((int)processMeasureCheckMapper.countByExample(processMeasureCheckExample));
         return mypage;
     }
 
     @Override
     public Page searchPCountCheckPageById(String id, int page, int rows) {
-        return null;
+        ProcessCountCheckExample processCountCheckExample = new ProcessCountCheckExample();
+        ProcessCountCheckExample.Criteria criteria = processCountCheckExample.createCriteria();
+        criteria.andPCountCheckIdLike("%" + id + "%");
+        PageHelper.startPage(page,rows);
+        Page<ProcessCountCheck> mypage = new Page<>();
+        mypage.setRows(processCountCheckMapper.selectByExample(processCountCheckExample));
+        mypage.setTotal((int)processCountCheckMapper.countByExample(processCountCheckExample));
+        return mypage;
+
+    }
+
+    @Override
+    public Page searchUnqualifyApplyByProductName(String productName, int page, int rows) {
+        PageHelper.startPage(page,rows);
+        List<UnqualifyApply> unqualifyApplies = unqualifyApplyMapper.selectUnqualifyApplyListByProductName("%" + productName + "%");
+        Page<UnqualifyApply> mypage = new Page<>();
+        mypage.setRows(unqualifyApplies);
+        mypage.setTotal(unqualifyApplyMapper.countUnqualifyApplyListByProductName("%" + productName + "%"));
+        return mypage;
+    }
+
+    @Override
+    public Page searchMeasurePageByOrderId(String id, int page, int rows) {
+        PageHelper.startPage(page,rows);
+        List<FinalMeasuretCheck> finalMeasuretCheckList = finalMeasuretCheckMapper.selectFinalMeasuretCheckListByOrderId("%" + id + "%");
+        Page<FinalMeasuretCheck> mypage = new Page<>();
+        mypage.setRows(finalMeasuretCheckList);
+        mypage.setTotal(finalMeasuretCheckMapper.countFinalMeasuretCheckListByOrderId("%" + id + "%"));
+        return mypage;
+    }
+
+    @Override
+    public Page searchFCountCheckPageByOrderId(String id, int page, int rows) {
+        PageHelper.startPage(page,rows);
+        List<FinalCountCheck> finalCountChecks = finalCountCheckMapper.selectFinalCountCheckListByOrderId("%" + id + "%");
+        Page<FinalCountCheck> mypage = new Page<>();
+        mypage.setRows(finalCountChecks);
+        mypage.setTotal(finalCountCheckMapper.countFinalCountCheckListByOrderId("%" + id + "%"));
+        return mypage;
     }
 
 }

@@ -285,4 +285,26 @@
   <select id="getFinalMeasuretCheckNum" resultType="Integer">
         select count(f_measure_check_id) from final_measuret_check
     </select>
+
+  <select id="selectFinalMeasuretCheckListByOrderId" resultMap="finalMeasuretCheckMap">
+      select fmc.f_measure_check_id,
+      fmc.order_id,
+      fmc.check_item,
+      fmc.cdate,
+      fmc.measure_data,
+      fmc.emp_id,
+      fmc.result,
+      fmc.note,
+      emp.emp_name
+      from final_measuret_check fmc
+      left join employee emp on fmc.emp_id = emp.emp_id
+      where fmc.order_id like #{orderId}
+    </select>
+
+  <select id="countFinalMeasuretCheckListByOrderId" resultType="Integer">
+      select count(fmc.f_measure_check_id)
+      from final_measuret_check fmc
+      left join employee emp on fmc.emp_id = emp.emp_id
+      where fmc.order_id like #{orderId}
+    </select>
 </mapper>

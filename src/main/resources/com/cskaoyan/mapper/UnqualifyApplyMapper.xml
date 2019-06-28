@@ -281,4 +281,21 @@
   <select id="getUnqualifyApplyNum" resultType="Integer">
         select count(unqualify_apply_id) from unqualify_apply
    </select>
+
+  <select id="selectUnqualifyApplyListByProductName" resultMap="unqualifyApplyMap">
+        select ua.unqualify_apply_id,ua.product_id,ua.unqualify_item,ua.unqualify_count,
+        ua.apply_date,ua.assembly_date,ua.emp_id,ua.note,emp.emp_name,pro.product_name
+        from unqualify_apply ua
+        left join employee emp on ua.emp_id = emp.emp_id
+        left join product pro on ua.product_id = pro.product_id
+        where pro.product_name like #{productName}
+    </select>
+
+  <select id="countUnqualifyApplyListByProductName" resultType="Integer">
+        select count(ua.unqualify_apply_id)
+        from unqualify_apply ua
+        left join employee emp on ua.emp_id = emp.emp_id
+        left join product pro on ua.product_id = pro.product_id
+        where pro.product_name like #{productName}
+    </select>
 </mapper>
