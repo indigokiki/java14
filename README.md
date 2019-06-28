@@ -44,3 +44,6 @@ PageHelper很重要的注意事项
     page.setTotal();//这里放的是mapper.countxxxx，也就是数据库中的数据总条目数，
                     //而不是xxxxlist.size()，这样起不了分页的效果！！
                     //前端会检查的你total是否大于10，大于的话可以点下一页，否则不可以
+
+
+提示：增、改功能报“请求参数错误”的情况，可能的解决方法：各自pojo的成员变量里有Date类型的请注意，可能需要改成Timestamp类型（因为在mysql里，Date类型只包含年月日，Timestamp类型包含年月日+时分秒）。
