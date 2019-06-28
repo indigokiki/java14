@@ -23,7 +23,7 @@ public class DeviceCheckController {
         ModelAndView mv = new ModelAndView();
         String[] sysPermissionList={"device:add","device:edit","device:delete"};
         session.setAttribute("sysPermissionList",sysPermissionList);
-        mv.setViewName("deviceCheck");
+        mv.setViewName("/WEB-INF/jsp/deviceCheck.jsp");
         return mv;
     }
 

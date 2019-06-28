@@ -28,7 +28,7 @@ public class DeviceCheck {
 
     private String deviceCheckEmp;
 
-    private Date deviceCheckDate;
+    private String deviceCheckDate;
 
     private String deviceCheckResult;
 
@@ -58,11 +58,11 @@ public class DeviceCheck {
         this.deviceCheckEmpId = deviceCheckEmpId == null ? null : deviceCheckEmpId.trim();
     }
 
-    public Date getDeviceCheckDate() {
+    public String getDeviceCheckDate() {
         return deviceCheckDate;
     }
 
-    public void setDeviceCheckDate(Date deviceCheckDate) {
+    public void setDeviceCheckDate(String deviceCheckDate) {
         this.deviceCheckDate = deviceCheckDate;
     }
 

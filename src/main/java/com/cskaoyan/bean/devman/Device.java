@@ -14,11 +14,11 @@ public class Device {
 
     private String deviceStatus;
 
-    private Date devicePurchaseDate;
+    private String devicePurchaseDate;
 
-    private BigDecimal devicePurchasePrice;
+    private Double devicePurchasePrice;
 
-    private Date deviceManufactureDate;
+    private String deviceManufactureDate;
     private String deviceTypeName;
 
     public String getDeviceTypeName() {
@@ -29,7 +29,7 @@ public class Device {
         this.deviceTypeName = deviceTypeName;
     }
 
-    private Date deviceServiceLife;
+    private String deviceServiceLife;
 
     private String deviceKeeperId;
     private String deviceKeeper;
@@ -75,35 +75,35 @@ public class Device {
         this.deviceStatus = deviceStatus == null ? null : deviceStatus.trim();
     }
 
-    public Date getDevicePurchaseDate() {
+    public String getDevicePurchaseDate() {
         return devicePurchaseDate;
     }
 
-    public void setDevicePurchaseDate(Date devicePurchaseDate) {
+    public void setDevicePurchaseDate(String devicePurchaseDate) {
         this.devicePurchaseDate = devicePurchaseDate;
     }
 
-    public BigDecimal getDevicePurchasePrice() {
+    public Double getDevicePurchasePrice() {
         return devicePurchasePrice;
     }
 
-    public void setDevicePurchasePrice(BigDecimal devicePurchasePrice) {
+    public void setDevicePurchasePrice(Double devicePurchasePrice) {
         this.devicePurchasePrice = devicePurchasePrice;
     }
 
-    public Date getDeviceManufactureDate() {
+    public String getDeviceManufactureDate() {
         return deviceManufactureDate;
     }
 
-    public void setDeviceManufactureDate(Date deviceManufactureDate) {
+    public void setDeviceManufactureDate(String deviceManufactureDate) {
         this.deviceManufactureDate = deviceManufactureDate;
     }
 
-    public Date getDeviceServiceLife() {
+    public String getDeviceServiceLife() {
         return deviceServiceLife;
     }
 
-    public void setDeviceServiceLife(Date deviceServiceLife) {
+    public void setDeviceServiceLife(String deviceServiceLife) {
         this.deviceServiceLife = deviceServiceLife;
     }
 

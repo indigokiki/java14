@@ -26,7 +26,7 @@ public class DeviceFaultController {
         ModelAndView modelAndView = new ModelAndView();
         String[] sysPermissionList={"device:add","device:edit","device:delete"};
         session.setAttribute("sysPermissionList",sysPermissionList);
-        modelAndView.setViewName("deviceFault");
+        modelAndView.setViewName("/WEB-INF/jsp/deviceFault.jsp");
         return modelAndView;
     }
 
