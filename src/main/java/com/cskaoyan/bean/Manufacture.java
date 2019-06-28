@@ -1,5 +1,6 @@
 package com.cskaoyan.bean;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Manufacture {
@@ -11,16 +12,16 @@ public class Manufacture {
 
     private Integer launchQuantity;
 
-    private Date beginDate;
+    private Timestamp beginDate;
 
-    private Date endDate;
+    private Timestamp endDate;
 
     public String getManufactureSn() {
         return manufactureSn;
     }
 
     public void setManufactureSn(String manufactureSn) {
-        this.manufactureSn = manufactureSn == null ? null : manufactureSn.trim();
+        this.manufactureSn = manufactureSn;
     }
 
     public String getOrderId() {
@@ -28,7 +29,7 @@ public class Manufacture {
     }
 
     public void setOrderId(String orderId) {
-        this.orderId = orderId == null ? null : orderId.trim();
+        this.orderId = orderId;
     }
 
     public String getTechnologyId() {
@@ -36,7 +37,7 @@ public class Manufacture {
     }
 
     public void setTechnologyId(String technologyId) {
-        this.technologyId = technologyId == null ? null : technologyId.trim();
+        this.technologyId = technologyId;
     }
 
     public Integer getLaunchQuantity() {
@@ -47,19 +48,31 @@ public class Manufacture {
         this.launchQuantity = launchQuantity;
     }
 
-    public Date getBeginDate() {
+    public Timestamp getBeginDate() {
         return beginDate;
     }
 
-    public void setBeginDate(Date beginDate) {
+    public void setBeginDate(Timestamp beginDate) {
         this.beginDate = beginDate;
     }
 
-    public Date getEndDate() {
+    public Timestamp getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(Timestamp endDate) {
         this.endDate = endDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Manufacture{" +
+                "manufactureSn='" + manufactureSn + '\'' +
+                ", orderId='" + orderId + '\'' +
+                ", technologyId='" + technologyId + '\'' +
+                ", launchQuantity=" + launchQuantity +
+                ", beginDate=" + beginDate +
+                ", endDate=" + endDate +
+                '}';
     }
 }

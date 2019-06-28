@@ -150,4 +150,11 @@
         where
           p.product_name = #{productName}
     </select>
+
+    <delete id="deleteByIds">
+        delete from c_order where  order_id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
 </mapper>

@@ -26,4 +26,6 @@ public interface OrderMapper {
 
     int OrderCountByProduct(@Param("productName") String productName);
 
+    int deleteByIds(@Param("ids") String[] ids);
+
 }

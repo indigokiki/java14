@@ -459,7 +459,7 @@ function doSearch_work(value,name){ //用户输入用户名,点击搜素,触发�
     	for(var i in sels){
     		ids.push(sels[i].workId);
     	}
-    	ids = ids.join(","); 
+    	ids = ids.join(",");
     	
     	return ids;
     }

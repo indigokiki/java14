@@ -1,9 +1,13 @@
 package com.cskaoyan.controller.schemedprogress;
 
+import com.cskaoyan.bean.OrderByRevEngineering;
+import com.cskaoyan.bean.schemedprogress.Order;
 import com.cskaoyan.bean.schemedprogress.OrderMangger;
 import com.cskaoyan.service.schemedprogress.OrderService;
+import com.cskaoyan.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -41,7 +45,6 @@ public class OrderController {
     @RequestMapping("find")
     public ModelAndView getList(ModelAndView modelAndView){
         modelAndView.setViewName("/WEB-INF/jsp/order_list.jsp");
-
         String[] sysPermissionList = {"order:add","order:edit","order:delete"};
         session.setAttribute("sysPermissionList",sysPermissionList);
         return modelAndView;
@@ -70,21 +73,17 @@ public class OrderController {
 
     @RequestMapping("insert")
     @ResponseBody
-    public Map insertOrder(String orderId, String customId, String productId,
-                           String quantity, String unitPrice, String unit, String status,
-                           Date orderDate, Date requestDate, MultipartFile image, MultipartFile orderAddFile, String note) throws IOException {
-        File directory = new File("D://fileupload/image");
-        if (!directory.exists()){
-            directory.mkdir();
+    public ResponseVo insertOrder(OrderByRevEngineering order) throws IOException {
+        int status = orderService.insert(order);
+        ResponseVo<Object> responseVo = new ResponseVo<>();
+        if (status == 1){
+            responseVo.setStatus(200);
+            responseVo.setMsg("OK");
+        }else {
+            responseVo.setStatus(0);
+            responseVo.setMsg("操作失败！请联系管理员！");
         }
-        String name = image.getOriginalFilename();
-        File file = new File(directory, name);
-        image.transferTo(file);
-        Map<String, Object> map = new HashMap();
-        map.put("status", 200);
-        map.put("msg","OK");
-        map.put("data",null);
-        return map;
+        return responseVo;
     }
 
 
@@ -93,9 +92,71 @@ public class OrderController {
     public String add(){
         return "";
     }
+
     @RequestMapping("add")
     public ModelAndView add(ModelAndView modelAndView){
         modelAndView.setViewName("/WEB-INF/jsp/order_add.jsp");
         return modelAndView;
     }
+
+    @RequestMapping("delete_judge")
+    @ResponseBody
+    public String delete(){
+        return "";
+    }
+
+    @RequestMapping("delete_batch")
+    @ResponseBody
+    public ResponseVo delete(String[] ids){
+
+        int i = orderService.deleteByIds(ids);
+        int status = 0;
+        if(i > 0){
+            status = 1;
+        }
+        ResponseVo<Object> responseVo = new ResponseVo<>();
+        if (status == 1){
+            responseVo.setStatus(200);
+            responseVo.setMsg("OK");
+        }else {
+            responseVo.setStatus(0);
+            responseVo.setMsg("操作失败！请联系管理员！");
+        }
+        return responseVo;
+    }
+
+    @RequestMapping("edit_judge")
+    @ResponseBody
+    public String edit_judge(){
+        return "{}";
+    }
+
+    @RequestMapping("edit")
+    public ModelAndView edit(ModelAndView modelAndView){
+        modelAndView.setViewName("/WEB-INF/jsp/order_edit.jsp");
+        return modelAndView;
+    }
+
+    @RequestMapping("update_all")
+    @ResponseBody
+    public ResponseVo update_all(OrderByRevEngineering order){
+        int status = orderService.update(order);
+        ResponseVo<Object> responseVo = new ResponseVo<>();
+        if (status == 1){
+            responseVo.setStatus(200);
+            responseVo.setMsg("OK");
+        }else {
+            responseVo.setStatus(0);
+            responseVo.setMsg("操作失败！请联系管理员！");
+        }
+        return responseVo;
+    }
+
+    @RequestMapping("get/{oid}")
+    @ResponseBody
+    public OrderByRevEngineering get(@PathVariable("oid") String oid){
+        OrderByRevEngineering order = orderService.getById(oid);
+        return order;
+    }
+
 }

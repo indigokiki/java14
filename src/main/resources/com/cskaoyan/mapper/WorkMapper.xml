@@ -227,7 +227,7 @@
   </update>
 
   <resultMap id="WorkRow" type="com.cskaoyan.bean.schemedprogress.WorkRow">
-    <result column="work_id" property="workid"/>
+    <result column="work_id" property="workId"/>
     <result property="processNumber" column="process_number"/>
     <result column="rating" property="rating"/>
 
@@ -261,7 +261,6 @@
       <result column="status"  property="status" />
     </association>
 
-
   </resultMap>
 
   <select id="getAllWorkByPage" resultMap="WorkRow">
@@ -276,5 +275,69 @@
     from work w left join process p on w.process_id = p.process_id
                 left join device d on w.device_id = d.device_id
                 left join product t on w.product_id = t.product_id
+  </select>
+
+  <select id="search_work_by_workId" resultMap="WorkRow">
+    select w.work_id,w.process_number,w.rating,p.*,d.*,t.product_id,t.product_name,t.product_type,t.image,t.note,t.status
+    from work w left join process p on w.process_id = p.process_id
+                left join device d on w.device_id = d.device_id
+                left join product t on w.product_id = t.product_id
+    where w.work_id = #{id}
+  </select>
+
+  <select id="count_search_work_by_workId" resultType="_int">
+    select count(*)
+    from work w left join process p on w.process_id = p.process_id
+                left join device d on w.device_id = d.device_id
+                left join product t on w.product_id = t.product_id
+    where w.work_id = #{id}
+  </select>
+
+  <select id="search_work_by_workProduct" resultMap="WorkRow">
+    select w.work_id,w.process_number,w.rating,p.*,d.*,t.product_id,t.product_name,t.product_type,t.image,t.note,t.status
+    from work w left join process p on w.process_id = p.process_id
+                left join device d on w.device_id = d.device_id
+                left join product t on w.product_id = t.product_id
+    where t.product_name = #{name}
+  </select>
+
+  <select id="count_search_work_by_workProduct" resultType="_int">
+    select count(*)
+    from work w left join process p on w.process_id = p.process_id
+                left join device d on w.device_id = d.device_id
+                left join product t on w.product_id = t.product_id
+    where t.product_name = #{name}
+  </select>
+
+  <select id="search_work_by_workDevice" resultMap="WorkRow">
+    select w.work_id,w.process_number,w.rating,p.*,d.*,t.product_id,t.product_name,t.product_type,t.image,t.note,t.status
+    from work w left join process p on w.process_id = p.process_id
+                left join device d on w.device_id = d.device_id
+                left join product t on w.product_id = t.product_id
+    where d.device_name = #{device}
+  </select>
+
+  <select id="count_search_work_by_workDevice" resultType="_int">
+     select count(*)
+    from work w left join process p on w.process_id = p.process_id
+                left join device d on w.device_id = d.device_id
+                left join product t on w.product_id = t.product_id
+    where d.device_name = #{device}
+  </select>
+
+  <select id="search_work_by_workProcess" resultMap="WorkRow">
+    select w.work_id,w.process_number,w.rating,p.*,d.*,t.product_id,t.product_name,t.product_type,t.image,t.note,t.status
+    from work w left join process p on w.process_id = p.process_id
+                left join device d on w.device_id = d.device_id
+                left join product t on w.product_id = t.product_id
+    where p.process_id = #{process}
+  </select>
+
+  <select id="count_search_work_by_workProcess" resultType="_int">
+    select count(*)
+    from work w left join process p on w.process_id = p.process_id
+                left join device d on w.device_id = d.device_id
+                left join product t on w.product_id = t.product_id
+    where p.process_id = #{process}
   </select>
 </mapper>

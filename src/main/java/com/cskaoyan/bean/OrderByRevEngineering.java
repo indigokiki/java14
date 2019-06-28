@@ -1,6 +1,7 @@
 package com.cskaoyan.bean;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class OrderByRevEngineering {
@@ -10,9 +11,9 @@ public class OrderByRevEngineering {
 
     private String productId;
 
-    private Date orderDate;
+    private Timestamp orderDate;
 
-    private Date requestDate;
+    private Timestamp requestDate;
 
     private String note;
 
@@ -33,7 +34,7 @@ public class OrderByRevEngineering {
     }
 
     public void setOrderId(String orderId) {
-        this.orderId = orderId == null ? null : orderId.trim();
+        this.orderId = orderId;
     }
 
     public String getCustomId() {
@@ -41,7 +42,7 @@ public class OrderByRevEngineering {
     }
 
     public void setCustomId(String customId) {
-        this.customId = customId == null ? null : customId.trim();
+        this.customId = customId;
     }
 
     public String getProductId() {
@@ -49,22 +50,22 @@ public class OrderByRevEngineering {
     }
 
     public void setProductId(String productId) {
-        this.productId = productId == null ? null : productId.trim();
+        this.productId = productId;
     }
 
-    public Date getOrderDate() {
+    public Timestamp getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(Timestamp orderDate) {
         this.orderDate = orderDate;
     }
 
-    public Date getRequestDate() {
+    public Timestamp getRequestDate() {
         return requestDate;
     }
 
-    public void setRequestDate(Date requestDate) {
+    public void setRequestDate(Timestamp requestDate) {
         this.requestDate = requestDate;
     }
 
@@ -73,7 +74,7 @@ public class OrderByRevEngineering {
     }
 
     public void setNote(String note) {
-        this.note = note == null ? null : note.trim();
+        this.note = note;
     }
 
     public Integer getQuantity() {
@@ -97,7 +98,7 @@ public class OrderByRevEngineering {
     }
 
     public void setUnit(String unit) {
-        this.unit = unit == null ? null : unit.trim();
+        this.unit = unit;
     }
 
     public String getImage() {
@@ -105,7 +106,7 @@ public class OrderByRevEngineering {
     }
 
     public void setImage(String image) {
-        this.image = image == null ? null : image.trim();
+        this.image = image;
     }
 
     public String getFile() {
@@ -113,7 +114,7 @@ public class OrderByRevEngineering {
     }
 
     public void setFile(String file) {
-        this.file = file == null ? null : file.trim();
+        this.file = file;
     }
 
     public Integer getStatus() {
@@ -122,5 +123,23 @@ public class OrderByRevEngineering {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderByRevEngineering{" +
+                "orderId='" + orderId + '\'' +
+                ", customId='" + customId + '\'' +
+                ", productId='" + productId + '\'' +
+                ", orderDate=" + orderDate +
+                ", requestDate=" + requestDate +
+                ", note='" + note + '\'' +
+                ", quantity=" + quantity +
+                ", unitPrice=" + unitPrice +
+                ", unit='" + unit + '\'' +
+                ", image='" + image + '\'' +
+                ", file='" + file + '\'' +
+                ", status=" + status +
+                '}';
     }
 }

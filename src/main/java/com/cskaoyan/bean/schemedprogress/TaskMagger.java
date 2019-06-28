@@ -1,12 +1,14 @@
 package com.cskaoyan.bean.schemedprogress;
 
+import com.cskaoyan.bean.Task;
+
 import java.util.List;
 
-public class ManufactureMagger {
+public class TaskMagger {
 
     private int total;
 
-    private List<ManufactureRow> rows;
+    private List<Task> rows;
 
     public int getTotal() {
         return total;
@@ -16,17 +18,17 @@ public class ManufactureMagger {
         this.total = total;
     }
 
-    public List<ManufactureRow> getRows() {
+    public List<Task> getRows() {
         return rows;
     }
 
-    public void setRows(List<ManufactureRow> rows) {
+    public void setRows(List<Task> rows) {
         this.rows = rows;
     }
 
     @Override
     public String toString() {
-        return "ManufactureMagger{" +
+        return "TaskMagger{" +
                 "total=" + total +
                 ", rows=" + rows +
                 '}';

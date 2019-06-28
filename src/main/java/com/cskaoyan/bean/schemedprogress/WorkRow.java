@@ -8,7 +8,7 @@ import com.cskaoyan.bean.Work;
 public class WorkRow {
 
 
-    private String  workid;
+    private String  workId;
 
     private Process process;
 
@@ -20,12 +20,12 @@ public class WorkRow {
 
     private int rating;
 
-    public String getWorkid() {
-        return workid;
+    public String getWorkId() {
+        return workId;
     }
 
-    public void setWorkid(String workid) {
-        this.workid = workid;
+    public void setWorkId(String workId) {
+        this.workId = workId;
     }
 
     public Process getProcess() {
@@ -71,7 +71,7 @@ public class WorkRow {
     @Override
     public String toString() {
         return "WorkRow{" +
-                "workid='" + workid + '\'' +
+                "workid='" + workId + '\'' +
                 ", process=" + process +
                 ", processNumber='" + processNumber + '\'' +
                 ", device=" + device +

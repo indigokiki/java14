@@ -33,4 +33,20 @@ public interface WorkMapper {
     List<WorkRow> getAllWorkByPage();
 
     int getCountWork();
+
+    List<WorkRow> search_work_by_workId(@Param("id") String id);
+
+    int count_search_work_by_workId(@Param("id") String id);
+
+    List<WorkRow> search_work_by_workProduct(@Param("name") String name);
+
+    int count_search_work_by_workProduct(@Param("name") String name);
+
+    List<WorkRow> search_work_by_workDevice(@Param("device") String device);
+
+    int count_search_work_by_workDevice(@Param("device") String device);
+
+    List<WorkRow> search_work_by_workProcess(@Param("process") String process);
+
+    int count_search_work_by_workProcess(@Param("process") String process);
 }

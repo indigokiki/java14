@@ -37,4 +37,50 @@ public class CustomMaggerServiceImpl implements CustomMaggerService {
         List<Custom> customs = customMapper.selectByExample(customExample);
         return customs;
     }
+
+    @Override
+    public int insertCustom(Custom custom) {
+        int insert = customMapper.insert(custom);
+        return insert;
+    }
+
+    @Override
+    public int upddateCustom(Custom custom) {
+        int update = customMapper.updateByPrimaryKey(custom);
+        return update;
+    }
+
+    @Override
+    public int deleteCustom(String[] ids) {
+        int status = 1;
+        for (String id : ids) {
+            int delete = customMapper.deleteByPrimaryKey(id);
+            if(delete == 0){
+                status = 0;
+            }
+        }
+
+        return status;
+    }
+
+    @Override
+    public List<Custom> search_custom_by_customId(String searchValue, String page, String rows) {
+        CustomExample customExample = new CustomExample();
+        CustomExample.Criteria criteria = customExample.createCriteria();
+        criteria.andCustomIdEqualTo(searchValue);
+        PageHelper.startPage(Integer.parseInt(page), Integer.parseInt(rows));
+        List<Custom> customs = customMapper.selectByExample(customExample);
+        return customs;
+    }
+
+    @Override
+    public List<Custom> search_custom_by_customName(String searchValue, String page, String rows) {
+        CustomExample customExample = new CustomExample();
+        CustomExample.Criteria criteria = customExample.createCriteria();
+        criteria.andCustomNameEqualTo(searchValue);
+        PageHelper.startPage(Integer.parseInt(page), Integer.parseInt(rows));
+        List<Custom> customs = customMapper.selectByExample(customExample);
+        return customs;
+
+    }
 }
