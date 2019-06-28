@@ -48,12 +48,12 @@
 	<c:forEach items="${sessionScope.sysPermissionList}" var="per" > 
 		<c:if test="${per=='device:add'}">
 		    <div style="float: left;">  
-		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-add" onclick="device_add()">新增</a>
+		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-add" onclick="device_add()">新增</a>  
 		    </div>  
 		</c:if>
 		<c:if test="${per=='device:edit'}">
 		    <div style="float: left;">  
-		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-edit" onclick="device_edit()">编辑</a>
+		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-edit" onclick="device_edit()">编辑</a>  
 		    </div>  
 		</c:if>
 		<c:if test="${per=='device:delete'}">

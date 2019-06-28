@@ -231,7 +231,9 @@
     <result property="processNumber" column="process_number"/>
     <result column="rating" property="rating"/>
 
-    <association property="process" javaType="com.cskaoyan.bean.Process">
+
+    <association property="process" javaType="com.cskaoyan.bean.technology.Process">
+
       <id column="process_id"  property="processId" />
       <result column="technology_plan_id"  property="technologyPlanId" />
       <result column="sequence" property="sequence" />

@@ -45,6 +45,7 @@ public class DeviceTpyeController {
     }
 
 
+
     @RequestMapping("deviceType/get_data")
     @ResponseBody
     public List<DeviceType> findlist(){
@@ -137,4 +138,5 @@ public class DeviceTpyeController {
         responseVo.setMsg("OK");
         return  responseVo;
     }
+
 }

@@ -87,6 +87,7 @@ public class DeviceController {
     @RequestMapping("deviceList/insert")
     @ResponseBody
     public ResponseVo insert(Device device){
+        System.out.println("insert`111111111111111111111111111111");
         deviceService.insert(device);
         ResponseVo responseVo = new ResponseVo();
         responseVo.setStatus(200);
