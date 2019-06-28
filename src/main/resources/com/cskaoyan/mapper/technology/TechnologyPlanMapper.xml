@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cskaoyan.mapper.TechnologyPlanMapper">
-  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.TechnologyPlan">
+<mapper namespace="com.cskaoyan.mapper.technology.TechnologyPlanMapper">
+  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.technology.TechnologyPlan">
     <id column="technology_plan_id" jdbcType="VARCHAR" property="technologyPlanId" />
     <result column="technology_id" jdbcType="VARCHAR" property="technologyId" />
     <result column="batch_amount" jdbcType="INTEGER" property="batchAmount" />
@@ -73,7 +73,7 @@
     technology_plan_id, technology_id, batch_amount, start_plan, end_plan, commit_plan, 
     technology_plan_start, technology_plan_end
   </sql>
-  <select id="selectByExample" parameterType="com.cskaoyan.bean.TechnologyPlanExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.cskaoyan.bean.technology.TechnologyPlanExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -97,13 +97,13 @@
     delete from technology_plan
     where technology_plan_id = #{technologyPlanId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.cskaoyan.bean.TechnologyPlanExample">
+  <delete id="deleteByExample" parameterType="com.cskaoyan.bean.technology.TechnologyPlanExample">
     delete from technology_plan
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.cskaoyan.bean.TechnologyPlan">
+  <insert id="insert" parameterType="com.cskaoyan.bean.technology.TechnologyPlan">
     insert into technology_plan (technology_plan_id, technology_id, batch_amount, 
       start_plan, end_plan, commit_plan, 
       technology_plan_start, technology_plan_end
@@ -113,7 +113,7 @@
       #{technologyPlanStart,jdbcType=TIMESTAMP}, #{technologyPlanEnd,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.cskaoyan.bean.TechnologyPlan">
+  <insert id="insertSelective" parameterType="com.cskaoyan.bean.technology.TechnologyPlan">
     insert into technology_plan
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="technologyPlanId != null">
@@ -168,7 +168,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.cskaoyan.bean.TechnologyPlanExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.cskaoyan.bean.technology.TechnologyPlanExample" resultType="java.lang.Long">
     select count(*) from technology_plan
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -220,7 +220,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.TechnologyPlan">
+  <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.technology.TechnologyPlan">
     update technology_plan
     <set>
       <if test="technologyId != null">
@@ -247,7 +247,7 @@
     </set>
     where technology_plan_id = #{technologyPlanId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.TechnologyPlan">
+  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.technology.TechnologyPlan">
     update technology_plan
     set technology_id = #{technologyId,jdbcType=VARCHAR},
       batch_amount = #{batchAmount,jdbcType=INTEGER},
@@ -272,7 +272,7 @@
     <include refid="Base_Column_List" />
     from technology_plan
   </select>
-  <resultMap id="BaseResultMapWithTechName" type="com.cskaoyan.bean.TechnologyPlan">
+  <resultMap id="BaseResultMapWithTechName" type="com.cskaoyan.bean.technology.TechnologyPlan">
     <id column="technology_plan_id" jdbcType="VARCHAR" property="technologyPlanId" />
     <result column="technology_id" jdbcType="VARCHAR" property="technologyId" />
     <result column="batch_amount" jdbcType="INTEGER" property="batchAmount" />
@@ -281,6 +281,19 @@
     <result column="commit_plan" jdbcType="TIMESTAMP" property="commitPlan" />
     <result column="technology_plan_start" jdbcType="TIMESTAMP" property="technologyPlanStart" />
     <result column="technology_plan_end" jdbcType="TIMESTAMP" property="technologyPlanEnd" />
-    <association property="technologyName" column="technology_id" select="com.cskaoyan.mapper.TechnologyMapper.selectTechnologyNameById"/>
+    <association property="technologyName" column="technology_id" select="com.cskaoyan.mapper.technology.TechnologyMapper.selectTechnologyNameById"/>
   </resultMap>
+
+
+  <!--新增-->
+  <select id="selectByTechnologyIds" resultMap="BaseResultMapWithTechName">
+    select
+    <include refid="Base_Column_List" />
+    from technology_plan
+    where technology_id in
+    <foreach collection="technologyIds" item="technologyId" separator="," open="(" close=")">
+      #{technologyId}
+    </foreach>
+  </select>
+
 </mapper>

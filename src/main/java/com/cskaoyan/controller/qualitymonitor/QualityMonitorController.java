@@ -1,7 +1,8 @@
 package com.cskaoyan.controller.qualitymonitor;
 
 import com.cskaoyan.bean.*;
-import com.cskaoyan.bean.Process;
+import com.cskaoyan.bean.technology.Process;
+import com.cskaoyan.bean.technology.TechnologyPlan;
 import com.cskaoyan.service.qualitymonitor.QualityMonitorService;
 import com.cskaoyan.vo.ResponseVo;
 import org.springframework.beans.factory.annotation.Autowired;

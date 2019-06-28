@@ -1,6 +1,7 @@
-package com.cskaoyan.bean;
+package com.cskaoyan.bean.technology;
 
-import java.util.Date;
+
+import java.sql.Timestamp;
 
 public class TechnologyPlan {
     private String technologyPlanId;
@@ -9,15 +10,15 @@ public class TechnologyPlan {
 
     private Integer batchAmount;
 
-    private Date startPlan;
+    private Timestamp startPlan;
 
-    private Date endPlan;
+    private Timestamp endPlan;
 
-    private Date commitPlan;
+    private Timestamp commitPlan;
 
-    private Date technologyPlanStart;
+    private Timestamp technologyPlanStart;
 
-    private Date technologyPlanEnd;
+    private Timestamp technologyPlanEnd;
 
     //增加一个成员变量technologyName,用于对应的jsp
     private String technologyName;
@@ -55,43 +56,43 @@ public class TechnologyPlan {
         this.batchAmount = batchAmount;
     }
 
-    public Date getStartPlan() {
+    public Timestamp getStartPlan() {
         return startPlan;
     }
 
-    public void setStartPlan(Date startPlan) {
+    public void setStartPlan(Timestamp startPlan) {
         this.startPlan = startPlan;
     }
 
-    public Date getEndPlan() {
+    public Timestamp getEndPlan() {
         return endPlan;
     }
 
-    public void setEndPlan(Date endPlan) {
+    public void setEndPlan(Timestamp endPlan) {
         this.endPlan = endPlan;
     }
 
-    public Date getCommitPlan() {
+    public Timestamp getCommitPlan() {
         return commitPlan;
     }
 
-    public void setCommitPlan(Date commitPlan) {
+    public void setCommitPlan(Timestamp commitPlan) {
         this.commitPlan = commitPlan;
     }
 
-    public Date getTechnologyPlanStart() {
+    public Timestamp getTechnologyPlanStart() {
         return technologyPlanStart;
     }
 
-    public void setTechnologyPlanStart(Date technologyPlanStart) {
+    public void setTechnologyPlanStart(Timestamp technologyPlanStart) {
         this.technologyPlanStart = technologyPlanStart;
     }
 
-    public Date getTechnologyPlanEnd() {
+    public Timestamp getTechnologyPlanEnd() {
         return technologyPlanEnd;
     }
 
-    public void setTechnologyPlanEnd(Date technologyPlanEnd) {
+    public void setTechnologyPlanEnd(Timestamp technologyPlanEnd) {
         this.technologyPlanEnd = technologyPlanEnd;
     }
 }

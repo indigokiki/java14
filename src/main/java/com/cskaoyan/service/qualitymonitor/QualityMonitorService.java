@@ -1,7 +1,8 @@
 package com.cskaoyan.service.qualitymonitor;
 
 import com.cskaoyan.bean.*;
-import com.cskaoyan.bean.Process;
+import com.cskaoyan.bean.technology.Process;
+import com.cskaoyan.bean.technology.TechnologyPlan;
 
 
 import java.util.List;

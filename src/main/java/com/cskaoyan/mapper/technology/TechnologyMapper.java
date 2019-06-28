@@ -1,7 +1,7 @@
-package com.cskaoyan.mapper;
+package com.cskaoyan.mapper.technology;
 
-import com.cskaoyan.bean.Technology;
-import com.cskaoyan.bean.TechnologyExample;
+import com.cskaoyan.bean.technology.Technology;
+import com.cskaoyan.bean.technology.TechnologyExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -33,5 +33,6 @@ public interface TechnologyMapper {
     String selectTechnologyNameById(@Param("technology_id") String technologyId);
     //新增
     List<String> selectTechnologyIdByName(@Param("technologyName") String technologyName);
+
 
 }

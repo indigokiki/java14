@@ -1,6 +1,6 @@
 package com.cskaoyan.bean.schemedprogress;
 
-import com.cskaoyan.bean.Technology;
+import com.cskaoyan.bean.technology.Technology;
 
 public class ManufactureRow {
 

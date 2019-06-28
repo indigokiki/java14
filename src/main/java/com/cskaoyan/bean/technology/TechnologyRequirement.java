@@ -1,5 +1,6 @@
-package com.cskaoyan.bean;
+package com.cskaoyan.bean.technology;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class TechnologyRequirement {
@@ -9,9 +10,9 @@ public class TechnologyRequirement {
 
     private String requirement;
 
-    private Date addTime;
+    private Timestamp addTime;
 
-    private Date reviseTime;
+    private Timestamp reviseTime;
 
     //增加一个成员变量technologyName,用于对应的jsp
     private String technologyName;
@@ -48,19 +49,19 @@ public class TechnologyRequirement {
         this.requirement = requirement == null ? null : requirement.trim();
     }
 
-    public Date getAddTime() {
+    public Timestamp getAddTime() {
         return addTime;
     }
 
-    public void setAddTime(Date addTime) {
+    public void setAddTime(Timestamp addTime) {
         this.addTime = addTime;
     }
 
-    public Date getReviseTime() {
+    public Timestamp getReviseTime() {
         return reviseTime;
     }
 
-    public void setReviseTime(Date reviseTime) {
+    public void setReviseTime(Timestamp reviseTime) {
         this.reviseTime = reviseTime;
     }
 }

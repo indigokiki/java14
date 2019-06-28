@@ -1,7 +1,7 @@
-package com.cskaoyan.service;
+package com.cskaoyan.service.technology;
 
 import com.cskaoyan.bean.Page;
-import com.cskaoyan.bean.Technology;
+import com.cskaoyan.bean.technology.Technology;
 
 import java.util.List;
 
@@ -16,9 +16,11 @@ public interface TechnologyService {
 
     List<Technology> selectTechnologys();
 
+    String selectTechnologyNameById(String technologyId);
+
     Page<Technology> selectTechnologyPage(int page, int rows);
 
-    Page<Technology> searchTechPageById(String technologyId);
+    Page<Technology> searchTechPageByVagueId(String vagueTechnologyId, int page, int rows);
 
     Page<Technology> searchTechPageByVagueName(String vagueTechnologyName, int page, int rows);
 
@@ -30,5 +32,10 @@ public interface TechnologyService {
 
     //工艺管理-删除功能
     int deleteTechnologyById(String technologyId);
+
+    //二、工艺计划搜索使用
+    List<String> selectTechnologyIdByVagueName(String vagueTechnologyName);
+
+
 
 }

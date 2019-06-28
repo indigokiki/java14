@@ -1,8 +1,7 @@
-package com.cskaoyan.mapper;
+package com.cskaoyan.mapper.technology;
 
-import com.cskaoyan.bean.Technology;
-import com.cskaoyan.bean.TechnologyRequirement;
-import com.cskaoyan.bean.TechnologyRequirementExample;
+import com.cskaoyan.bean.technology.TechnologyRequirement;
+import com.cskaoyan.bean.technology.TechnologyRequirementExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -39,4 +38,5 @@ public interface TechnologyRequirementMapper {
 
     //新增，用于工艺名称搜索功能
     List<TechnologyRequirement> selectByTechnologyIds(@Param("technologyIds") List<String> technologyIds);
+
 }

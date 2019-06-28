@@ -1,4 +1,4 @@
-package com.cskaoyan.bean;
+package com.cskaoyan.bean.technology;
 
 import java.math.BigDecimal;
 

@@ -1,9 +1,9 @@
-package com.cskaoyan.service;
+package com.cskaoyan.service.technology;
 
 import com.cskaoyan.bean.Page;
-import com.cskaoyan.bean.Technology;
-import com.cskaoyan.bean.TechnologyExample;
-import com.cskaoyan.mapper.TechnologyMapper;
+import com.cskaoyan.bean.technology.Technology;
+import com.cskaoyan.bean.technology.TechnologyExample;
+import com.cskaoyan.mapper.technology.TechnologyMapper;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,26 +35,41 @@ public class TechnologyServiceImpl implements TechnologyService {
     }
 
     @Override
+    public String selectTechnologyNameById(String technologyId) {
+        String technologyName = technologyMapper.selectTechnologyNameById(technologyId);
+        return technologyName;
+    }
+
+    @Override
     public Page<Technology> selectTechnologyPage(int page, int rows) {
         PageHelper.startPage(page, rows);
         List<Technology> technologyList = technologyMapper.selectAll();
         Page<Technology> techPage = new Page<>();
         techPage.setRows(technologyList);
-        techPage.setTotal(technologyList.size());
+
+        int count = (int) technologyMapper.countByExample(new TechnologyExample());
+        techPage.setTotal(count);
 
         return techPage;
     }
 
-    //工艺编号搜索做精确查询：虽然是分页，但technologyId是主键，只能查出来1或0个结果。
+    //工艺编号搜索做模糊查询
     @Override
-    public Page<Technology> searchTechPageById(String technologyId) {
-        Technology technology = technologyMapper.selectByPrimaryKey(technologyId);
-        List<Technology> technologyList = new ArrayList<>();
-        technologyList.add(technology);
+    public Page<Technology> searchTechPageByVagueId(String vagueTechnologyId, int page, int rows) {
+        TechnologyExample technologyExample = new TechnologyExample();
+        TechnologyExample.Criteria criteria = technologyExample.createCriteria();
+        vagueTechnologyId = "%" + vagueTechnologyId + "%";
+        criteria.andTechnologyIdLike(vagueTechnologyId);
+
+        PageHelper.startPage(page,rows);
+        List<Technology> technologyList = technologyMapper.selectByExample(technologyExample);
 
         Page<Technology> technologyPage = new Page<>();
-        technologyPage.setTotal(technologyList.size());
         technologyPage.setRows(technologyList);
+
+        int count = (int) technologyMapper.countByExample(technologyExample);
+        technologyPage.setTotal(count);
+
         return technologyPage;
     }
 
@@ -70,8 +85,11 @@ public class TechnologyServiceImpl implements TechnologyService {
         List<Technology> technologyList = technologyMapper.selectByExample(technologyExample);
 
         Page<Technology> technologyPage = new Page<>();
-        technologyPage.setTotal(technologyList.size());
         technologyPage.setRows(technologyList);
+
+        int count = (int) technologyMapper.countByExample(technologyExample);
+        technologyPage.setTotal(count);
+
         return technologyPage;
     }
 
@@ -91,6 +109,22 @@ public class TechnologyServiceImpl implements TechnologyService {
     public int deleteTechnologyById(String technologyId) {
         int i = technologyMapper.deleteByPrimaryKey(technologyId);
         return i;
+    }
+
+    @Override
+    public List<String> selectTechnologyIdByVagueName(String vagueTechnologyName) {
+        vagueTechnologyName = "%" + vagueTechnologyName + "%";
+        TechnologyExample technologyExample = new TechnologyExample();
+        TechnologyExample.Criteria criteria = technologyExample.createCriteria();
+        criteria.andTechnologyNameLike(vagueTechnologyName);
+
+        List<Technology> technologyList = technologyMapper.selectByExample(technologyExample);
+        List<String> technologyIds = new ArrayList<>();
+        for (Technology technology : technologyList){
+            technologyIds.add(technology.getTechnologyId());
+        }
+
+        return technologyIds;
     }
 
 

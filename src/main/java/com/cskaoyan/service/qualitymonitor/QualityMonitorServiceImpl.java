@@ -1,8 +1,13 @@
 package com.cskaoyan.service.qualitymonitor;
 
 import com.cskaoyan.bean.*;
-import com.cskaoyan.bean.Process;
+import com.cskaoyan.bean.technology.Process;
+import com.cskaoyan.bean.technology.ProcessExample;
+import com.cskaoyan.bean.technology.TechnologyPlan;
+import com.cskaoyan.bean.technology.TechnologyPlanExample;
 import com.cskaoyan.mapper.*;
+import com.cskaoyan.mapper.technology.ProcessMapper;
+import com.cskaoyan.mapper.technology.TechnologyPlanMapper;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

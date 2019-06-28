@@ -246,7 +246,7 @@
       <result property="productId" column="pproductid"/>
     </association>
 
-    <association property="technology" javaType="com.cskaoyan.bean.Technology">
+    <association property="technology" javaType="com.cskaoyan.bean.technology.Technology">
       <id column="technology_id" jdbcType="VARCHAR" property="technologyId" />
       <result column="technology_name" jdbcType="VARCHAR" property="technologyName" />
       <result column="price" jdbcType="DECIMAL" property="price" />

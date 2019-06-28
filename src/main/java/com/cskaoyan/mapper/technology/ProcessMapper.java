@@ -1,7 +1,7 @@
-package com.cskaoyan.mapper;
+package com.cskaoyan.mapper.technology;
 
-import com.cskaoyan.bean.Process;
-import com.cskaoyan.bean.ProcessExample;
+import com.cskaoyan.bean.technology.Process;
+import com.cskaoyan.bean.technology.ProcessExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
