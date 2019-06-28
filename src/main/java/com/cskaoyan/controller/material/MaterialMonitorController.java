@@ -24,7 +24,14 @@ public class MaterialMonitorController {
     @Autowired
     HttpSession session;
 
-    //物料信息
+    //物料信息获取
+    @ResponseBody
+    @RequestMapping("/material/get_data")
+    public List<Material> findData(){
+        List<Material> list=materialService.findAllMaterial();
+        return list;
+    }
+    //物料信息数据展示
     @RequestMapping("/material/find")
     public ModelAndView findMaterial(){
         ModelAndView modelAndView = new ModelAndView();
@@ -67,6 +74,33 @@ public class MaterialMonitorController {
         }
         return map;
     }
+    //物料信息編輯判斷
+    @RequestMapping("/material/edit_judge")
+    @ResponseBody
+    public String editMaterialjudge(){
+        return "{}";
+    }
+    //物料信息编辑页面跳转
+    @RequestMapping("/material/edit")
+    public ModelAndView editMaterial(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/WEB-INF/jsp/material_edit.jsp");
+        return modelAndView;
+    }
+    //物料信息数据库更新
+    @RequestMapping("/material/update_all")
+    @ResponseBody
+    public Map<String,Object> updateMaterial(Material material){
+        int i = materialService.updateMaterial(material);
+        Map<String, Object> map = new HashMap<>();
+        if(i==1){
+            map.put("status",200);
+            map.put("msg","ok");
+        }else{
+            map.put("data","error");
+        }
+        return map;
+    }
     //物料删除确认
     @RequestMapping("/material/delete_judge")
     @ResponseBody
@@ -90,43 +124,34 @@ public class MaterialMonitorController {
         }
         return map;
     }
+    //物料信息搜索——物料编号
+    @RequestMapping("/material/search_material_by_materialId")
+    @ResponseBody
+    public Page<Material> searchMaterialById(String searchValue,int page,int rows){
+        Page<Material> materialPage = materialService.searchMaterialById(searchValue, page, rows);
+        return materialPage;
+    }
+    //物料信息搜索——物料类型
+    @RequestMapping("/material/search_material_by_materialType")
+    @ResponseBody
+    public Page<Material> searchMaterialByType (String searchValue,int page,int rows){
+        Page<Material> materialPage = materialService.searchMaterialByType(searchValue, page, rows);
+        return materialPage;
+    }
 
-    //物料收入
-    @RequestMapping("/materialReceive/find")
-    public ModelAndView findMaterialReceive(){
-        ModelAndView modelAndView = new ModelAndView();
-        String[] sysPermissionList = {"materialReceive:add","materialReceive:edit","materialReceive:delete"};
-        session.setAttribute("sysPermissionList",sysPermissionList);
-        modelAndView.setViewName("/WEB-INF/jsp/materialReceive_list.jsp");
-        return modelAndView;
-    }
-    @RequestMapping("/materialReceive/list")
+    //物料信息详情更新
+    @RequestMapping("/material/update_note")
     @ResponseBody
-    public Page<MaterialReceives> MaterialReceives(int page, int rows){
-        Page<MaterialReceives> materialReceivesPage = materialService.selectMaterialReceivesPage(page, rows);
-        return materialReceivesPage;
+    public Map<String ,Object> materialDetails(String materialId,String note){
+        int i = materialService.updateMaterialDetail(materialId,note);
+        Map<String, Object> map = new HashMap<>();
+        if(i==1){
+            map.put("status",200);
+            map.put("msg","ok");
+        }else{
+            map.put("data","error");
+        }
+        return map;
     }
-    //物料消耗
-    @RequestMapping("/materialConsume/find")
-    public ModelAndView findMaterialConsume(){
-        ModelAndView modelAndView = new ModelAndView();
-        String[] sysPermissionList = {"materialConsume:add","materialConsume:edit","materialConsume:delete"};
-        session.setAttribute("sysPermissionList",sysPermissionList);
-        modelAndView.setViewName("/WEB-INF/jsp/materialConsume_list.jsp");
-        return modelAndView;
-    }
-    @RequestMapping("/materialConsume/list")
-    @ResponseBody
-    public Page<MaterialConsumes> MaterialConsumes(int page, int rows){
-        Page<MaterialConsumes> materialConsumesPage = materialService.selectMaterialConsumesPage(page,rows);
-        return materialConsumesPage;
-    }
-    @Autowired
-    MaterialMapper materialMapper;
-    @RequestMapping("/ilm")
-    @ResponseBody
-    public List<MaterialReceives> mytest(){
-        List<MaterialReceives> materialReceives = materialMapper.allMaterialReceives();
-        return materialReceives;
-    }
+
 }

@@ -1,5 +1,6 @@
 package com.cskaoyan.bean.material;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class MaterialReceive {
@@ -7,11 +8,11 @@ public class MaterialReceive {
 
     private String materialId;
 
-    private Material material;
+  /*  private Material material;*/
 
     private Integer amount;
 
-    private Date receiveDate;
+    private Timestamp receiveDate;
 
     private String sender;
 
@@ -19,13 +20,6 @@ public class MaterialReceive {
 
     private String note;
 
-    public Material getMaterial() {
-        return material;
-    }
-
-    public void setMaterial(Material material) {
-        this.material = material;
-    }
 
     public String getReceiveId() {
         return receiveId;
@@ -51,11 +45,11 @@ public class MaterialReceive {
         this.amount = amount;
     }
 
-    public Date getReceiveDate() {
+    public Timestamp getReceiveDate() {
         return receiveDate;
     }
 
-    public void setReceiveDate(Date receiveDate) {
+    public void setReceiveDate(Timestamp receiveDate) {
         this.receiveDate = receiveDate;
     }
 
@@ -81,5 +75,25 @@ public class MaterialReceive {
 
     public void setNote(String note) {
         this.note = note == null ? null : note.trim();
+    }
+
+
+
+    public MaterialReceive() {
+    }
+
+    public MaterialReceive(String receiveId, String note) {
+        this.receiveId = receiveId;
+        this.note = note;
+    }
+
+    public MaterialReceive(String receiveId, String materialId, Integer amount, Timestamp receiveDate, String sender, String receiver, String note) {
+        this.receiveId = receiveId;
+        this.materialId = materialId;
+        this.amount = amount;
+        this.receiveDate = receiveDate;
+        this.sender = sender;
+        this.receiver = receiver;
+        this.note = note;
     }
 }

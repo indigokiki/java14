@@ -9,7 +9,7 @@
     <thead>
         <tr>
 			<th data-options="field:'ck',checkbox:true"></th>
-			<th data-options="field:'orderid',align:'center',width:100">订单编号</th>
+			<th data-options="field:'orderId',align:'center',width:100">订单编号</th>
 			<th data-options="field:'custom',align:'center',width:100,formatter:formatCustom">订购客户</th>
 			<th data-options="field:'product',align:'center',width:100,formatter:formatProduct">订购产品</th>
 			<th data-options="field:'quantity',align:'center',width:100">订购数量</th>
