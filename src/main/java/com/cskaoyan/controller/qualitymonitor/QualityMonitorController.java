@@ -109,6 +109,12 @@ public class QualityMonitorController {
         return responseVo;
     }
 
+
+    @RequestMapping("unqualify/search_unqualify_by_unqualifyId")
+    public Page unqualifysearchbyid(String searchValue,int page,int rows){
+        return qualityMonitorService.searchUnqualifyApplyById(searchValue,page,rows);
+    }
+
     @RequestMapping("measure/find")
     public ModelAndView measurefind(ModelAndView modelAndView,HttpServletRequest httpServletRequest){
         HttpSession session = httpServletRequest.getSession();
