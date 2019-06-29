@@ -14,7 +14,7 @@ public interface EmployeeMapper_p {
 
     int deleteByPrimaryKey(String empId);
 
-    int insert(Employee record);
+    int insert(Employee_p record);
 
     int insertSelective(Employee record);
 
@@ -28,8 +28,11 @@ public interface EmployeeMapper_p {
 
     int updateByPrimaryKeySelective(Employee record);
 
-    int updateByPrimaryKey(Employee record);
+    int updateByPrimaryKey(Employee_p record);
 
     List<Employee_p>getEmployee_pList();
+
+    List<Employee_p> getByID(@Param("id") String id);
+    int countgetByID(@Param("id") String id);
 
 }

@@ -68,12 +68,12 @@
 	        </tr>
 	        <tr>
 	            <td>生日:</td>
-	            <td><input class="easyui-datebox" name="birthday"     
+	            <td><input class="easyui-datetimebox" name="birthday"
         			value="5/5/2016" style="width:150px"> </td>
 	        </tr>
 	        <tr>
 	            <td>入职日期:</td>
-	            <td><input class="easyui-datebox" name="joinDate"     
+	            <td><input class="easyui-datetimebox" name="joinDate"
         			value="5/5/2016" style="width:150px"> </td>
 	        </tr>
 	        <tr>

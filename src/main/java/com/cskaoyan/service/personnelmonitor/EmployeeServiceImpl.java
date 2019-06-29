@@ -12,6 +12,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     EmployeeMapper employeeMapper;
+
     @Autowired
     EmployeeMapper_p employeeMapper_p;
 
@@ -30,5 +31,63 @@ public class EmployeeServiceImpl implements EmployeeService {
         returnpage.setTotal((int) employeeMapper.countByExample(new EmployeeExample()));
         returnpage.setRows(employeeList);
         return returnpage;
+    }
+
+    @Override
+    public int addEmployee(Employee employee) {
+        int insert = employeeMapper.insert(employee);
+        return insert;
+    }
+
+    @Override
+    public int updataEmployee(Employee employee) {
+        int i = employeeMapper.updateByPrimaryKey(employee);
+        return i;
+    }
+
+    @Override
+    public int deleteEmployee(String[] employeeIds) {
+        for (String id : employeeIds) {
+            int i = employeeMapper.deleteByPrimaryKey(id);
+            if(1 != i){
+                return 0;
+            }
+        }
+        return 1;
+    }
+
+    public Page selectEmployeeByEmployeeId(String id,int page,int rows){
+        PageHelper.startPage(page, rows);
+        List<Employee_p> employee_ps = employeeMapper_p.getByID(id);
+        int count = employeeMapper_p.countgetByID(id);
+        Page<Employee_p> page1 = new Page<>();
+        page1.setTotal(count);
+        page1.setRows(employee_ps);
+        return page1;
+
+    }
+
+    @Override
+    public Page selectEmployeeByEmployeeName(String employeename, int page, int rows) {
+        EmployeeExample employeeExample = new EmployeeExample();
+        EmployeeExample.Criteria criteria = employeeExample.createCriteria();
+        criteria.andEmpNameLike("%" + employeename + "%");
+        PageHelper.startPage(page,rows);
+        Page<Employee> mypage = new Page<>();
+        mypage.setRows(employeeMapper.selectByExample(employeeExample));
+        mypage.setTotal((int)employeeMapper.countByExample(employeeExample));
+        return mypage;
+    }
+
+    @Override
+    public Page selectEmployeeByDepartmentName(String departmentname, int page, int rows) {
+        EmployeeExample employeeExample = new EmployeeExample();
+        EmployeeExample.Criteria criteria = employeeExample.createCriteria();
+        criteria.andDepartmentIdLike("%" + departmentname + "%");
+        PageHelper.startPage(page,rows);
+        Page<Employee> mypage = new Page<>();
+        mypage.setRows(employeeMapper.selectByExample(employeeExample));
+        mypage.setTotal((int)employeeMapper.countByExample(employeeExample));
+        return mypage;
     }
 }
