@@ -1,9 +1,8 @@
 package com.cskaoyan.bean.schemedprogress;
 
 import com.cskaoyan.bean.Device;
-import com.cskaoyan.bean.Process;
+import com.cskaoyan.bean.technology.Process;
 import com.cskaoyan.bean.Product;
-import com.cskaoyan.bean.Work;
 
 public class WorkRow {
 

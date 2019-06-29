@@ -1,5 +1,6 @@
 package com.cskaoyan.bean.material;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class MaterialConsume {
@@ -11,13 +12,21 @@ public class MaterialConsume {
 
     private Integer consumeAmount;
 
-    private Date consumeDate;
+    private Timestamp consumeDate;
 
     private String sender;
 
     private String receiver;
 
     private String note;
+
+    public MaterialConsume() {
+    }
+
+    public MaterialConsume(String consumeId, String note) {
+        this.consumeId = consumeId;
+        this.note = note;
+    }
 
     public String getConsumeId() {
         return consumeId;
@@ -51,11 +60,11 @@ public class MaterialConsume {
         this.consumeAmount = consumeAmount;
     }
 
-    public Date getConsumeDate() {
+    public Timestamp getConsumeDate() {
         return consumeDate;
     }
 
-    public void setConsumeDate(Date consumeDate) {
+    public void setConsumeDate(Timestamp consumeDate) {
         this.consumeDate = consumeDate;
     }
 

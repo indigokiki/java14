@@ -1,6 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cskaoyan.mapper.material.MaterialConsumeMapper">
+
+  <resultMap id="materialConsumes" type="com.cskaoyan.bean.material.MaterialConsumes">
+    <result property="consumeId" column="consume_id"/>
+    <result property="consumeAmount" column="consume_amount"/>
+    <result property="consumeDate" column="consume_date"/>
+    <result property="sender" column="sender"/>
+    <result property="receiver" column="receiver"/>
+    <result property="note" column="note"/>
+
+    <association property="work" javaType="com.cskaoyan.bean.Work">
+      <result property="workId" column="work_id"/>
+      <result property="processNumber" column="process_number"/>
+      <result property="productId" column="product_id"/>
+      <result property="processId" column="process_id"/>
+      <result property="deviceId" column="device_id"/>
+      <result property="rating" column="rating"/>
+    </association>
+
+    <association property="material" javaType="com.cskaoyan.bean.material.Material">
+      <result property="materialId" column="material_id"/>
+      <result property="materialType" column="material_type"/>
+      <result property="status" column="status"/>
+      <result property="remaining" column="remaining"/>
+      <result property="note" column="note"/>
+    </association>
+  </resultMap>
+
+  <select id="allMaterialConsumes" resultMap="materialConsumes" >
+
+select c.consume_id,c.consume_amount,c.consume_date,c.receiver,c.sender,c.note,
+m.material_id,m.material_type,m.remaining,m.`status`,m.note,
+w.work_id,w.device_id,w.process_id,w.process_number,w.rating
+from material_consume c left join  material m on
+c.material_id = m.material_id left join work w on
+c.work_id = w.work_id
+  </select>
+
+  <select id="searchMaterialReceiveByConsumeId" resultMap="materialConsumes">
+select c.consume_id,c.consume_amount,c.consume_date,c.receiver,c.sender,c.note,
+m.material_id,m.material_type,m.remaining,m.`status`,m.note,
+w.work_id,w.device_id,w.process_id,w.process_number,w.rating
+from material_consume c left join  material m on
+c.material_id = m.material_id left join work w on
+c.work_id = w.work_id
+where c.consume_id like #{searchValue}
+  </select>
+
+  <select id="searchMaterialConsumeByMaterialId" resultMap="materialConsumes">
+select c.consume_id,c.consume_amount,c.consume_date,c.receiver,c.sender,c.note,
+m.material_id,m.material_type,m.remaining,m.`status`,m.note,
+w.work_id,w.device_id,w.process_id,w.process_number,w.rating
+from material_consume c left join  material m on
+c.material_id = m.material_id left join work w on
+c.work_id = w.work_id
+where m.material_id like #{searchValue}
+  </select>
+
+  <select id="searchMaterialConsumeByWorkId" resultMap="materialConsumes">
+select c.consume_id,c.consume_amount,c.consume_date,c.receiver,c.sender,c.note,
+m.material_id,m.material_type,m.remaining,m.`status`,m.note,
+w.work_id,w.device_id,w.process_id,w.process_number,w.rating
+from material_consume c left join  material m on
+c.material_id = m.material_id left join work w on
+c.work_id = w.work_id
+where w.work_id like #{searchValue}
+  </select>
+
+
   <resultMap id="BaseResultMap" type="com.cskaoyan.bean.material.MaterialConsume">
     <id column="consume_id" jdbcType="VARCHAR" property="consumeId" />
     <result column="work_id" jdbcType="VARCHAR" property="workId" />

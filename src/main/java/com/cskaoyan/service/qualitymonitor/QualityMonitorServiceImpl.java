@@ -1,8 +1,13 @@
 package com.cskaoyan.service.qualitymonitor;
 
 import com.cskaoyan.bean.*;
-import com.cskaoyan.bean.Process;
+import com.cskaoyan.bean.technology.Process;
+import com.cskaoyan.bean.technology.ProcessExample;
+import com.cskaoyan.bean.technology.TechnologyPlan;
+import com.cskaoyan.bean.technology.TechnologyPlanExample;
 import com.cskaoyan.mapper.*;
+import com.cskaoyan.mapper.technology.ProcessMapper;
+import com.cskaoyan.mapper.technology.TechnologyPlanMapper;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -246,6 +251,97 @@ public class QualityMonitorServiceImpl implements QualityMonitorService {
             }
         }
         return 1;
+    }
+
+    @Override
+    public Page searchUnqualifyApplyById(String id, int page, int rows) {
+        UnqualifyApplyExample unqualifyApplyExample = new UnqualifyApplyExample();
+        UnqualifyApplyExample.Criteria criteria = unqualifyApplyExample.createCriteria();
+        criteria.andUnqualifyApplyIdLike("%" + id + "%");
+        PageHelper.startPage(page,rows);
+        Page<UnqualifyApply> mypage = new Page<>();
+        mypage.setRows(unqualifyApplyMapper.selectByExample(unqualifyApplyExample));
+        mypage.setTotal((int)unqualifyApplyMapper.countByExample(unqualifyApplyExample));
+        return mypage;
+    }
+
+    @Override
+    public Page searchMeasurePageById(String id, int page, int rows) {
+        FinalMeasuretCheckExample finalMeasuretCheckExample = new FinalMeasuretCheckExample();
+        FinalMeasuretCheckExample.Criteria criteria = finalMeasuretCheckExample.createCriteria();
+        criteria.andFMeasureCheckIdLike("%" + id + "%");
+        PageHelper.startPage(page,rows);
+        Page<FinalMeasuretCheck> mypage = new Page<>();
+        mypage.setRows(finalMeasuretCheckMapper.selectByExample(finalMeasuretCheckExample));
+        mypage.setTotal((int)finalMeasuretCheckMapper.countByExample(finalMeasuretCheckExample));
+        return mypage;
+    }
+
+    @Override
+    public Page searchFCountCheckPageById(String id, int page, int rows) {
+        FinalCountCheckExample finalCountCheckExample = new FinalCountCheckExample();
+        FinalCountCheckExample.Criteria criteria = finalCountCheckExample.createCriteria();
+        criteria.andFCountCheckIdLike("%" + id + "%");
+        PageHelper.startPage(page,rows);
+        Page<FinalCountCheck> mypage = new Page<>();
+        mypage.setRows(finalCountCheckMapper.selectByExample(finalCountCheckExample));
+        mypage.setTotal((int)finalCountCheckMapper.countByExample(finalCountCheckExample));
+        return mypage;
+    }
+
+    @Override
+    public Page searchPMeasureCheckPageById(String id, int page, int rows) {
+        ProcessMeasureCheckExample processMeasureCheckExample = new ProcessMeasureCheckExample();
+        ProcessMeasureCheckExample.Criteria criteria = processMeasureCheckExample.createCriteria();
+        criteria.andPMeasureCheckIdLike("%" + id + "%");
+        PageHelper.startPage(page,rows);
+        Page<ProcessMeasureCheck> mypage = new Page<>();
+        mypage.setRows(processMeasureCheckMapper.selectByExample(processMeasureCheckExample));
+        mypage.setTotal((int)processMeasureCheckMapper.countByExample(processMeasureCheckExample));
+        return mypage;
+    }
+
+    @Override
+    public Page searchPCountCheckPageById(String id, int page, int rows) {
+        ProcessCountCheckExample processCountCheckExample = new ProcessCountCheckExample();
+        ProcessCountCheckExample.Criteria criteria = processCountCheckExample.createCriteria();
+        criteria.andPCountCheckIdLike("%" + id + "%");
+        PageHelper.startPage(page,rows);
+        Page<ProcessCountCheck> mypage = new Page<>();
+        mypage.setRows(processCountCheckMapper.selectByExample(processCountCheckExample));
+        mypage.setTotal((int)processCountCheckMapper.countByExample(processCountCheckExample));
+        return mypage;
+
+    }
+
+    @Override
+    public Page searchUnqualifyApplyByProductName(String productName, int page, int rows) {
+        PageHelper.startPage(page,rows);
+        List<UnqualifyApply> unqualifyApplies = unqualifyApplyMapper.selectUnqualifyApplyListByProductName("%" + productName + "%");
+        Page<UnqualifyApply> mypage = new Page<>();
+        mypage.setRows(unqualifyApplies);
+        mypage.setTotal(unqualifyApplyMapper.countUnqualifyApplyListByProductName("%" + productName + "%"));
+        return mypage;
+    }
+
+    @Override
+    public Page searchMeasurePageByOrderId(String id, int page, int rows) {
+        PageHelper.startPage(page,rows);
+        List<FinalMeasuretCheck> finalMeasuretCheckList = finalMeasuretCheckMapper.selectFinalMeasuretCheckListByOrderId("%" + id + "%");
+        Page<FinalMeasuretCheck> mypage = new Page<>();
+        mypage.setRows(finalMeasuretCheckList);
+        mypage.setTotal(finalMeasuretCheckMapper.countFinalMeasuretCheckListByOrderId("%" + id + "%"));
+        return mypage;
+    }
+
+    @Override
+    public Page searchFCountCheckPageByOrderId(String id, int page, int rows) {
+        PageHelper.startPage(page,rows);
+        List<FinalCountCheck> finalCountChecks = finalCountCheckMapper.selectFinalCountCheckListByOrderId("%" + id + "%");
+        Page<FinalCountCheck> mypage = new Page<>();
+        mypage.setRows(finalCountChecks);
+        mypage.setTotal(finalCountCheckMapper.countFinalCountCheckListByOrderId("%" + id + "%"));
+        return mypage;
     }
 
 }

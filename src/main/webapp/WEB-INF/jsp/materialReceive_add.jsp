@@ -23,7 +23,7 @@
 	        <tr>
 	            <td>收入数量:</td>
 	            <td>
-	            	<input class="easyui-textbox" type="text" name="ammount" style="width: 160px;"/>
+	            	<input class="easyui-textbox" type="text" name="amount" style="width: 160px;"/>
 	            </td>
 	        </tr>
 	        <tr>
@@ -52,7 +52,7 @@
 	            </td>
 	        </tr>
 	    </table>
-	    <input type="hidden" name="materialReceiveParams"/>
+	  <%--  <input type="hidden" name="materialReceiveParams"/>--%>
 	</form>
 	<div style="padding:5px">
 	    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitMaterialReceiveAddForm()">提交</a>

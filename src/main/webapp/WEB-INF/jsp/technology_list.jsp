@@ -23,7 +23,7 @@
 </table>
 
 <div  id="toolbar_technology" style=" height: 22px; padding: 3px 11px; background: #fafafa;">  
-	<%--0627上午，删除{sessionScope.sysPermissionList}中的“sessionScope”，方可加载新增、编辑、删除图标--%>
+
 	<c:forEach items="${sessionScope.sysPermissionList}" var="per" >
 		<c:if test="${per == 'technology:add' }" >
 		    <div style="float: left;">  

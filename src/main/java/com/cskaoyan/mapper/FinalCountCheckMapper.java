@@ -4,6 +4,7 @@ import com.cskaoyan.bean.FinalCountCheck;
 import com.cskaoyan.bean.FinalCountCheckExample;
 import org.apache.ibatis.annotations.Param;
 
+
 import java.util.List;
 
 public interface FinalCountCheckMapper {
@@ -32,4 +33,8 @@ public interface FinalCountCheckMapper {
     List<FinalCountCheck> getFinalCountCheckList();
 
     int getFinalCountCheckNum();
+
+    List<FinalCountCheck> selectFinalCountCheckListByOrderId(@Param("orderId") String orderId);
+
+    int countFinalCountCheckListByOrderId(@Param("orderId") String orderId);
 }

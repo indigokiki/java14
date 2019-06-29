@@ -1,7 +1,8 @@
 package com.cskaoyan.service.qualitymonitor;
 
 import com.cskaoyan.bean.*;
-import com.cskaoyan.bean.Process;
+import com.cskaoyan.bean.technology.Process;
+import com.cskaoyan.bean.technology.TechnologyPlan;
 
 
 import java.util.List;
@@ -59,5 +60,21 @@ public interface QualityMonitorService {
     int deleteProcessMeasureCheck(String[] processMeasureCheckIds);
 
     int deleteProcessCountCheck(String[] processCountCheckIds);
+
+    Page searchUnqualifyApplyById(String id,int page,int rows);
+
+    Page searchMeasurePageById(String id,int page,int rows);
+
+    Page searchFCountCheckPageById(String id,int page,int rows);
+
+    Page searchPMeasureCheckPageById(String id,int page,int rows);
+
+    Page searchPCountCheckPageById(String id,int page,int rows);
+
+    Page searchUnqualifyApplyByProductName(String productName,int page,int rows);
+
+    Page searchMeasurePageByOrderId(String id,int page,int rows);
+
+    Page searchFCountCheckPageByOrderId(String id,int page,int rows);
 
 }

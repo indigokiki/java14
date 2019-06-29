@@ -33,12 +33,12 @@ public class WorkController {
         return modelAndView;
     }
 
-    @RequestMapping("deviceType/get_data")
+ /*   @RequestMapping("deviceType/get_data")
     @ResponseBody
     public List<DeviceType> getAllDeviceType(){
         List<DeviceType> allDeviceType = workService.getAllDeviceType();
         return allDeviceType;
-    }
+    }*/
 
     @RequestMapping("work/list")
     @ResponseBody

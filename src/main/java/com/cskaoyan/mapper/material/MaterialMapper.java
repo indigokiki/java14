@@ -10,9 +10,9 @@ import java.util.List;
 import java.util.Map;
 
 public interface MaterialMapper {
-    List<MaterialReceives> allMaterialReceives();
 
-    List<MaterialConsumes> allMaterialConsumes();
+
+
 
     long countByExample(MaterialExample example);
 

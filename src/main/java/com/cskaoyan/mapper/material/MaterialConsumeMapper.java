@@ -2,11 +2,19 @@ package com.cskaoyan.mapper.material;
 
 import com.cskaoyan.bean.material.MaterialConsume;
 import com.cskaoyan.bean.material.MaterialConsumeExample;
+import com.cskaoyan.bean.material.MaterialConsumes;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface MaterialConsumeMapper {
+
+    List<MaterialConsumes> allMaterialConsumes();
+
+    List<MaterialConsumes> searchMaterialReceiveByConsumeId(@Param("searchValue")String value);
+    List<MaterialConsumes> searchMaterialConsumeByMaterialId(@Param("searchValue")String value);
+    List<MaterialConsumes> searchMaterialConsumeByWorkId(@Param("searchValue")String value);
+
     long countByExample(MaterialConsumeExample example);
 
     int deleteByExample(MaterialConsumeExample example);

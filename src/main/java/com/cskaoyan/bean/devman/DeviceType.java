@@ -17,7 +17,7 @@ public class DeviceType {
 
     private Integer deviceTypeQuantity;
 
-    private Date deviceTypeWarranty;
+    private String deviceTypeWarranty;
 
     public String getDeviceTypeId() {
         return deviceTypeId;
@@ -75,7 +75,7 @@ public class DeviceType {
         this.deviceTypeQuantity = deviceTypeQuantity;
     }
 
-    public Date getDeviceTypeWarranty() {
+    public String getDeviceTypeWarranty() {
         return deviceTypeWarranty;
     }
 
@@ -93,7 +93,7 @@ public class DeviceType {
                 '}';
     }
 
-    public void setDeviceTypeWarranty(Date deviceTypeWarranty) {
+    public void setDeviceTypeWarranty(String deviceTypeWarranty) {
         this.deviceTypeWarranty = deviceTypeWarranty;
     }
 }

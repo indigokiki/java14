@@ -61,4 +61,12 @@ public class Material {
                 ", note='" + note + '\'' +
                 '}';
     }
+
+    public Material() {
+    }
+
+    public Material(String materialId, String note) {
+        this.materialId = materialId;
+        this.note = note;
+    }
 }
