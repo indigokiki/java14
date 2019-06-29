@@ -348,4 +348,13 @@
   </select>
 
 
+<select id="getByID" resultMap="BaseResultMap">
+  select ep.emp_id,ep.emp_name,ep.sex,ep.id_code,ep.birthday,ep.join_date,ep.status,ep.education,ep.degree,ep.major,ep.graduate_school,ep.education_form,ep.department_id,dp.department_name,dp.note
+  from employee e left join department d on e.department_id = d.department_id where e.emp_id = #{id}
+</select>
+
+  <select id="countgetByID" resultType="_int">
+    select count(*)
+  from employee e left join department d on e.department_id = d.department_id where e.emp_id = #{id}
+  </select>
 </mapper>

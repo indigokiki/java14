@@ -1,6 +1,7 @@
 package com.cskaoyan.bean;
 
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Employee {
     private String empId;
@@ -11,9 +12,9 @@ public class Employee {
 
     private String idCode;
 
-    private Date birthday;
+    private Timestamp birthday;
 
-    private Date joinDate;
+    private Timestamp joinDate;
 
     private String status;
 
@@ -28,6 +29,24 @@ public class Employee {
     private String educationForm;
 
     private String departmentId;
+
+    private String employeeParams;
+
+    public String getEmployeeParams() {
+        return employeeParams;
+    }
+
+    public void setEmployeeParams(String employeeParams) {
+        this.employeeParams = employeeParams;
+    }
+
+    public String getGraduateSchool() {
+        return graduateSchool;
+    }
+
+    public void setGraduateSchool(String graduateSchool) {
+        this.graduateSchool = graduateSchool;
+    }
 
     public String getEmpId() {
         return empId;
@@ -61,19 +80,19 @@ public class Employee {
         this.idCode = idCode == null ? null : idCode.trim();
     }
 
-    public Date getBirthday() {
+    public Timestamp getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(Timestamp birthday) {
         this.birthday = birthday;
     }
 
-    public Date getJoinDate() {
+    public Timestamp getJoinDate() {
         return joinDate;
     }
 
-    public void setJoinDate(Date joinDate) {
+    public void setJoinDate(Timestamp joinDate) {
         this.joinDate = joinDate;
     }
 
@@ -109,13 +128,13 @@ public class Employee {
         this.major = major == null ? null : major.trim();
     }
 
-    public String getGraduateSchool() {
+    /*public String getGraduateSchool() {
         return graduateSchool;
     }
 
     public void setGraduateSchool(String graduateSchool) {
         this.graduateSchool = graduateSchool == null ? null : graduateSchool.trim();
-    }
+    }*/
 
     public String getEducationForm() {
         return educationForm;

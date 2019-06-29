@@ -1,5 +1,6 @@
 package com.cskaoyan.bean;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Employee_p {
@@ -11,9 +12,9 @@ public class Employee_p {
 
     private String idCode;
 
-    private Date birthday;
+    private Timestamp birthday;
 
-    private Date joinDate;
+    private Timestamp joinDate;
 
     private String status;
 
@@ -71,19 +72,19 @@ public class Employee_p {
         this.idCode = idCode == null ? null : idCode.trim();
     }
 
-    public Date getBirthday() {
+    public Timestamp getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(Timestamp birthday) {
         this.birthday = birthday;
     }
 
-    public Date getJoinDate() {
+    public Timestamp getJoinDate() {
         return joinDate;
     }
 
-    public void setJoinDate(Date joinDate) {
+    public void setJoinDate(Timestamp joinDate) {
         this.joinDate = joinDate;
     }
 
